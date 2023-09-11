@@ -1,0 +1,6 @@
+vite.config.ts
+
+dist/
+.eslintrc-auto-import.json
+auto-import.d.ts
+pnpm-lock.yaml
