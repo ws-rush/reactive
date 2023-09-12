@@ -14,8 +14,16 @@ export default defineConfig({
     react(), 
     generouted(),
     UnoCSS(),
-    Inspect(), 
-    Unfonts({ fontsource: { families: ['Lato'] } }),
+    Inspect(),
+    topLevelAwait(),
+    Unfonts({
+      fontsource: { 
+        families: [{
+          name: 'Lato',
+          weights: [100,300,400,700,900]
+        }] 
+      } 
+    }),
     AutoImport({
       imports: [
         'react', 
