@@ -18,42 +18,43 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - ⚡️ [React 18](https://react.dev/), [Vite](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - born with fastness
 
-- 🗂 [File based routing with layouts support](https://github.com/oedotme/generouted) #miss modals implementation
+- 🗂 [File based routing with layouts support](https://github.com/oedotme/generouted)
 
 - 📦 [Components auto importing](./src/components)
 
 - 🍍 [State Management via zustand](https://github.com/pmndrs/zustand)
 
-- 📲 [PWA](https://github.com/antfu/vite-plugin-pwa)
+- 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) # not implemented
 
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
 
 - 😃 [Use icons from any icon sets with classes](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
 
-- 🌍 [I18n ready](./locales)
+- 🌍 [I18n ready](./locales) # not implemented need unplugin
 
-- 🔎 [Component Preview](https://github.com/johnsoncodehk/vite-plugin-vue-component-preview)
+- 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown) # not implemented
 
-- 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown)
+- 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import)
 
-- 🔥 Use the [new `<script setup>` syntax](https://github.com/vuejs/rfcs/pull/227)
+- 🖨 Static-site generation (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg) # not implemeted
 
-- 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import) - use Composition API and others directly
+- 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters) # not implemented
 
-- 🖨 Static-site generation (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg)
-
-- 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters)
-
-- 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts)
+- 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts)  # not implemented, see unplugin 
 
 - 🦾 TypeScript, of course
 
-- ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest), E2E Testing with [Cypress](https://cypress.io/) on [GitHub Actions](https://github.com/features/actions)
+- ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest), E2E Testing with [Cypress](https://cypress.io/) on [GitHub Actions](https://github.com/features/actions) # miss ci piplines
 
-- ☁️ Deploy on Netlify, zero-config
+- ☁️ Deploy on Netlify, zero-config # not implemented
+
+- (icon) [Top Level Await](https://www.npmjs.com/package/vite-plugin-top-level-await) out of box
+
+- 🔎 Inspect code with - [Vite Inspect](https://github.com/antfu/vite-plugin-inspect), and UnoCSS, visit them at `/__inspect` and `__unocss`. also open compnents in editor with [Alt + Right-Click](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component)
+
+>for component preview add [Preview.js](https://marketplace.visualstudio.com/items?itemName=zenclabs.previewjs) to vscode
 
 <br>
-
 
 ## Pre-packed
 
@@ -91,45 +92,6 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - Use Composition API with [`<script setup>` SFC syntax](https://github.com/vuejs/rfcs/pull/227)
 - [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config), single quotes, no semi.
-
-### Dev tools
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [Vitest](https://github.com/vitest-dev/vitest) - Unit testing powered by Vite
-- [Cypress](https://cypress.io/) - E2E testing
-- [pnpm](https://pnpm.js.org/) - fast, disk space efficient package manager
-- [`vite-ssg`](https://github.com/antfu/vite-ssg) - Static-site generation
-  - [critters](https://github.com/GoogleChromeLabs/critters) - Critical CSS
-- [Netlify](https://www.netlify.com/) - zero-config deployment
-- [VS Code Extensions](./.vscode/extensions.json)
-  - [Vite](https://marketplace.visualstudio.com/items?itemName=antfu.vite) - Fire up Vite server automatically
-  - [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) - Vue 3 `<script setup>` IDE support
-  - [Iconify IntelliSense](https://marketplace.visualstudio.com/items?itemName=antfu.iconify) - Icon inline display and autocomplete
-  - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally) - All in one i18n support
-  - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-
-## Variations
-
-As this template is strongly opinionated, the following provides a curated list for community-maintained variations with different preferences and feature sets. Check them out as well. PR to add yours is also welcome!
-
-###### Official
-
-- [vitesse-lite](https://github.com/antfu/vitesse-lite) - Lightweight version of Vitesse
-- [vitesse-nuxt3](https://github.com/antfu/vitesse-nuxt3) - Vitesse for Nuxt 3
-- [vitesse-nuxt-bridge](https://github.com/antfu/vitesse-nuxt-bridge) - Vitesse for Nuxt 2 with Bridge
-- [vitesse-webext](https://github.com/antfu/vitesse-webext) - WebExtension Vite starter template
-
-###### Community
-
-- [vitesse-ssr-template](https://github.com/frandiox/vitesse-ssr-template) by [@frandiox](https://github.com/frandiox) - Vitesse with SSR
-- [vitailse](https://github.com/zynth17/vitailse) by [@zynth17](https://github.com/zynth17) - Like Vitesse but with TailwindCSS
-- [vitesse-modernized-chrome-ext](https://github.com/xiaoluoboding/vitesse-modernized-chrome-ext) by [@xiaoluoboding](https://github.com/xiaoluoboding) - ⚡️ Modernized Chrome Extension Manifest V3 Vite Starter Template
-- [vitesse-stackter-clean-architect](https://github.com/shamscorner/vitesse-stackter-clean-architect) by [@shamscorner](https://github.com/shamscorner) - A modular clean architecture pattern in vitesse template
-- [vitesse-enterprise](https://github.com/FranciscoKloganB/vitesse-enterprise) by [@FranciscoKloganB](https://github.com/FranciscoKloganB) - Consistent coding styles regardless of team-size.
-- [vitecamp](https://github.com/nekobc1998923/vitecamp) by [@nekobc1998923](https://github.com/nekobc1998923) - Like Vitesse but without SSG/SSR/File based routing, includes Element Plus
-- [vitesse-h5](https://github.com/YunYouJun/vitesse-h5) by [@YunYouJun](https://github.com/YunYouJun) - Vitesse for Mobile
-- [bat](https://github.com/olgam4/bat) by [@olgam4](https://github.com/olgam4) - Vitesse for SolidJS
-- [vitesse-solid](https://github.com/xbmlz/vitesse-solid) by [@xbmlz](https://github.com/xbmlz) - Vitesse for SolidJS, build with [`SolidStart`](https://start.solidjs.com/), includes [UnoCSS](https://github.com/unocss/unocss) and [HopeUI](https://hope-ui.com/).
 
 ## Try it now!
 
@@ -209,29 +171,14 @@ So I made this starter template for myself to create apps more easily, along wit
 
 # React + TypeScript + Vite
 
-## libraries
-
->install devtools for every one later
->complete explain
-
-- react-router-dom
-
-- Vite Inspector
-- Auto Import (react, react-router, layouts, views and components dirs)
-- vite-plugin-top-level-await
-- unocss (icons and __unocss)
-
-- zustand
-- @tanstack/react-query
-- react-hook-form
-
 TODO:
 
-- configure router modals
-- configure linguijs
+- configure router unplugins
+- configure linguijs with unplugin
 - configure unplugin-images
 - configure linter and prettier with package.json scripts
-- configure testing frameworks
+- configure testing frameworks (preview, vitest, e2e)
+- ssg and markdown 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

@@ -3,6 +3,7 @@ import {
     presetIcons,
     presetTypography,
     presetUno,
+    presetWebFonts,
     transformerVariantGroup,
   } from 'unocss'
   
@@ -25,6 +26,12 @@ import {
         },
       }),
       presetTypography(),
+      presetWebFonts({
+        provider: 'google',
+        fonts: {
+          sans: 'Lato'
+        }
+      })
     ],
     transformers: [
       transformerVariantGroup(),
