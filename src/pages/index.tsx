@@ -3,6 +3,7 @@ import viteLogo from '/vite.svg'
 import { logger } from '@/utils/functions/logger'
 
 export default function Component() {
+  const [, setMode] = useMode()
   const [count, setCount] = useState(0)
   logger('render')
 
@@ -28,6 +29,10 @@ export default function Component() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
+      <button type='button' onClick={() => setMode('system')}>System</button>
+      <button type='button' onClick={() => setMode('light')}>Light</button>
+      <button type='button' onClick={() => setMode('dark')}>Dark</button>
     </>
   )
 }

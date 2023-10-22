@@ -12,7 +12,9 @@ import { I18nProvider } from '@lingui/react'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <I18nProvider i18n={i18n}>
-      <RouterProvider router={router} />
+      <ModeProvider>
+        <RouterProvider router={router} />
+      </ModeProvider>
     </I18nProvider>
-  </StrictMode>,
+  </StrictMode>
 )
