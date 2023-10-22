@@ -17,6 +17,7 @@ type Props = {
     children: React.ReactNode
 }
 
+
 export function ModeProvider({ children }: Props) {
     const [mode, setMode] = useState<Mode>(() => 'mode' in localStorage ? localStorage.mode : 'system');
     const [dark, setDark] = useState(false)
