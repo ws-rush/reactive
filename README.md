@@ -38,8 +38,6 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown) # not implemented
 
-- 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters) # not implemented
-
 - 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts)
 
 - 🦾 TypeScript, of course
