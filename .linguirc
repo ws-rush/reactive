@@ -1,0 +1,22 @@
+{
+    "locales": [
+        "ar",
+        "en"
+    ],
+    "catalogs": [
+        {
+            "path": "src/locales/{locale}",
+            "include": [
+                "src"
+            ],
+            "exclude": [
+                "src/locales"
+            ]
+        }
+    ],
+    "format": "po",
+    "sourceLocale": "en",
+    "fallbackLocales": {
+        "default": "en"
+    }
+}

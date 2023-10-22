@@ -1,11 +1,18 @@
+// css imports
 import 'virtual:uno.css'
-// import 'unfonts.css'
+import 'unfonts.css'
+import './index.css'
+
+// js imports
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import { RouterProvider } from 'react-router-dom'
+import { I18nProvider } from '@lingui/react' 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Routes />
+    <I18nProvider i18n={i18n}>
+      <RouterProvider router={router} />
+    </I18nProvider>
   </StrictMode>,
 )

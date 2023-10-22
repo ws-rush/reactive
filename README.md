@@ -1,5 +1,3 @@
->add ssr (ssr-react template) and ssg (vite-ssg) with RSCs
-
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/11247099/154486817-f86b8f20-5463-4122-b6e9-930622e757f2.png' alt='Vitesse - Opinionated Vite Starter Template' width='600'/>
 </p>
@@ -26,23 +24,23 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - 🍍 [State Management via zustand](https://github.com/pmndrs/zustand)
 
-- 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) # not implemented
-
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
 
 - 😃 [Use icons from any icon sets with classes](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
 
-- 🌍 [I18n ready](./locales) # not implemented need unplugin
+- 🌍 [I18n ready](./locales)
 
-- 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown) # not implemented
+- 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) # not supported yet
 
 - 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import)
 
 - 🖨 Static-site generation (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg) # not implemeted
 
+- 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown) # not implemented
+
 - 🦔 Critical CSS via [critters](https://github.com/GoogleChromeLabs/critters) # not implemented
 
-- 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts)  # not implemented, see unplugin 
+- 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts)
 
 - 🦾 TypeScript, of course
 
@@ -58,46 +56,9 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 <br>
 
-## Pre-packed
-
-### UI Frameworks
-
-- [UnoCSS](https://github.com/antfu/unocss) - The instant on-demand atomic CSS engine.
-
-### Icons
-
-- [Iconify](https://iconify.design) - use icons from any icon sets [🔍Icônes](https://icones.netlify.app/)
-- [Pure CSS Icons via UnoCSS](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
-
-### Plugins
-
-- [Vue Router](https://github.com/vuejs/router)
-  - [`vite-plugin-pages`](https://github.com/hannoeru/vite-plugin-pages) - file system based routing
-  - [`vite-plugin-vue-layouts`](https://github.com/JohnCampionJr/vite-plugin-vue-layouts) - layouts for pages
-- [Pinia](https://pinia.vuejs.org) - Intuitive, type safe, light and flexible Store for Vue using the composition api
-- [`unplugin-vue-components`](https://github.com/antfu/unplugin-vue-components) - components auto import
-- [`unplugin-auto-import`](https://github.com/antfu/unplugin-auto-import) - Directly use Vue Composition API and others without importing
-- [`unplugin-vue-macros`](https://github.com/sxzz/unplugin-vue-macros) - Explore and extend more macros and syntax sugar to Vue.
-- [`vite-plugin-pwa`](https://github.com/antfu/vite-plugin-pwa) - PWA
-- [`vite-plugin-vue-component-preview`](https://github.com/johnsoncodehk/vite-plugin-vue-component-preview) - Preview single component in VSCode
-- [`vite-plugin-vue-markdown`](https://github.com/antfu/vite-plugin-vue-markdown) - Markdown as components / components in Markdown
-  - [`markdown-it-shiki`](https://github.com/antfu/markdown-it-shiki) - [Shiki](https://github.com/shikijs/shiki) for syntax highlighting
-- [Vue I18n](https://github.com/intlify/vue-i18n-next) - Internationalization
-  - [`unplugin-vue-i18n`](https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n) - unplugin for Vue I18n
-- [VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
-- [`vite-ssg-sitemap`](https://github.com/jbaubree/vite-ssg-sitemap) - Sitemap generator
-- [`@vueuse/head`](https://github.com/vueuse/head) - manipulate document head reactively
-- [`vite-plugin-webfont-dl`](https://github.com/feat-agency/vite-plugin-webfont-dl) - Zero-config webfont (Google Fonts) downloader and injector to improve website's performance.
-- [`vite-plugin-vue-devtools`](https://github.com/webfansplz/vite-plugin-vue-devtools) - Designed to enhance the Vue developer experience.
-
-### Coding Style
-
-- Use Composition API with [`<script setup>` SFC syntax](https://github.com/vuejs/rfcs/pull/227)
-- [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config), single quotes, no semi.
-
 ## Try it now!
 
-> Vitesse requires Node >=14.18
+> Reactive requires Node >=14.18
 
 ### GitHub Template
 
@@ -175,16 +136,11 @@ So I made this starter template for myself to create apps more easily, along wit
 
 TODO:
 
-- configure router unplugins
-- configure linguijs with unplugin
-- configure unplugin-images
 - configure linter and prettier with package.json scripts
-- configure testing frameworks (preview, vitest, e2e)
-- ssg and markdown 
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
+- consider router unplugins
+- consider linguijs with unplugin
+- consider self-hosted unplugin  fonts
+- add unplugin-images
 
 ## vite config
 
