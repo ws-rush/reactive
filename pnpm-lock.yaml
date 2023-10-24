@@ -103,6 +103,9 @@ devDependencies:
   unocss:
     specifier: ^0.56.5
     version: 0.56.5(postcss@8.4.31)(rollup@2.79.1)(vite@4.4.9)
+  unocss-preset-theme:
+    specifier: ^0.10.1
+    version: 0.10.1(@unocss/core@0.56.5)
   unplugin-auto-import:
     specifier: ^0.16.6
     version: 0.16.6(rollup@2.79.1)
@@ -6566,6 +6569,15 @@ packages:
   /universalify@2.0.0:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
+
+  /unocss-preset-theme@0.10.1(@unocss/core@0.56.5):
+    resolution: {integrity: sha512-h0hBH/jVDHdJDqV0btZcctVnG7qetD4vsgp9RMNsFcXsALzn7TnF0lj/YzsFs3X+YjOojZfaQYcD3FXjZce85w==}
+    peerDependencies:
+      '@unocss/core': '>= 0.52.0'
+    dependencies:
+      '@unocss/core': 0.56.5
+      '@unocss/rule-utils': 0.56.5
+    dev: true
 
   /unocss@0.56.5(postcss@8.4.31)(rollup@2.79.1)(vite@4.4.9):
     resolution: {integrity: sha512-tO+9St4CntSjHpLXZqBo0/etS06MtvFF1NEny/qFJCL9sCopWwmDKuzW6/LIb4wfqZLdMpVFoEACMNv8nP849A==}

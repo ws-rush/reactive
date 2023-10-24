@@ -37,12 +37,12 @@ export default function Component() {
         <Trans>Click on the Vite and React logos to learn more</Trans>
       </p>
 
-      <button type='button' onClick={() => setMode('system')}>System</button>
-      <button type='button' onClick={() => setMode('light')}>Light</button>
-      <button type='button' onClick={() => setMode('dark')}>Dark</button>
+      <button className='btn' type='button' onClick={() => setMode('system')}>System</button>
+      <button className='btn' type='button' onClick={() => setMode('light')}>Light</button>
+      <button className='btn' type='button' onClick={() => setMode('dark')}>Dark</button>
 
-      <button type='button' onClick={() => changeLocale('ar')}>change arabic</button>
-      <button type='button' onClick={() => changeLocale('en')}>change english</button>
+      <button className='btn' type='button' onClick={() => changeLocale('ar')}>change arabic</button>
+      <button className='btn' type='button' onClick={() => changeLocale('en')}>change english</button>
 
     </>
   )

@@ -49,6 +49,7 @@
     "happy-dom": "^12.9.0",
     "typescript": "^5.2.2",
     "unocss": "^0.56.5",
+    "unocss-preset-theme": "^0.10.1",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-fonts": "^1.0.3",
     "vite": "^4.4.9",
