@@ -221,7 +221,6 @@ export default defineConfig({
 # TODO:
 
 - configure linter and prettier with package.json scripts, docker, pipline
-- single store
 - SSG with Markdown
 - SSR
 - PWA
