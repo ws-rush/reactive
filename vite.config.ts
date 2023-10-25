@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react'
 import generouted from '@generouted/react-router/plugin'
 import UnoCSS from 'unocss/vite'
 import Unfonts from 'unplugin-fonts/vite'
+import { imagetools } from 'vite-imagetools'
 // import { VitePWA } from 'vite-plugin-pwa'
 import Inspect from 'vite-plugin-inspect'
 import topLevelAwait from 'vite-plugin-top-level-await'
@@ -25,6 +26,8 @@ export default defineConfig({
       },
     }),
     lingui(),
+    // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
+    imagetools(),
     reactClickToComponent(),
     generouted(),
     UnoCSS(),

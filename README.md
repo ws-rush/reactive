@@ -38,6 +38,8 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown) # not implemented
 
+- 🖼 [Transform and Optmize images](https://github.com/JonasKruckenberg/imagetools/tree/main/packages/vite)
+
 - 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts)
 
 - 🦾 TypeScript, of course
@@ -46,7 +48,7 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - ☁️ Deploy on Netlify, zero-config # not implemented
 
-- (icon) [Top Level Await](https://www.npmjs.com/package/vite-plugin-top-level-await) out of box
+- 🔗 [Top Level Await](https://www.npmjs.com/package/vite-plugin-top-level-await) out of box
 
 - 🔎 Inspect code with - [Vite Inspect](https://github.com/antfu/vite-plugin-inspect), and UnoCSS, visit them at `/__inspect` and `__unocss`. also open compnents in editor with [Alt + Right-Click](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component)
 
@@ -218,10 +220,13 @@ export default defineConfig({
 
 # TODO:
 
-- configure linter and prettier with package.json scripts
-- add unplugin-images
-- consider self-hosted unplugin fonts
+- configure linter and prettier with package.json scripts, docker, pipline
 - consider router unplugins
+- single store
+- SSG with Markdown
+- SSR
+- PWA
+- consider self-hosted unplugin fonts
 - consider linguijs with unplugin
 
 ## Expanding the ESLint configuration

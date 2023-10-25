@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
+import reactLogo from '@/assets/react.svg'
+import viteLogo from '@/assets/vite.jpg?w=400&h=300&format=webp'
 import { logger } from '@/utils/functions/logger'
 
 export default function Component() {
