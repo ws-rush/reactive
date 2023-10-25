@@ -46,6 +46,9 @@ devDependencies:
   '@lingui/cli':
     specifier: ^4.5.0
     version: 4.5.0(typescript@5.2.2)
+  '@lingui/conf':
+    specifier: ^4.5.0
+    version: 4.5.0(typescript@5.2.2)
   '@lingui/vite-plugin':
     specifier: ^4.5.0
     version: 4.5.0(typescript@5.2.2)(vite@4.4.9)
@@ -1382,7 +1385,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
-    dev: false
 
   /@babel/template@7.22.15:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
@@ -2070,7 +2072,7 @@ packages:
     resolution: {integrity: sha512-OBm4RQQtbpvmuazLWVpvpaOpt/xvu1PBv8WUX8QoW1vsROe/3P5BpRHRYFyMeZz5mhORJgis9lQtDTq145Ruug==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      '@babel/runtime': 7.23.1
+      '@babel/runtime': 7.23.2
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.2.2)
       jest-validate: 29.7.0

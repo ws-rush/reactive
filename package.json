@@ -30,6 +30,7 @@
     "@fontsource/lato": "^5.0.12",
     "@iconify/json": "^2.2.113",
     "@lingui/cli": "^4.5.0",
+    "@lingui/conf": "^4.5.0",
     "@lingui/vite-plugin": "^4.5.0",
     "@testing-library/react": "^14.0.0",
     "@types/node": "^20.6.0",

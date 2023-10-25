@@ -4,15 +4,8 @@ import viteLogo from '/vite.svg'
 import { logger } from '@/utils/functions/logger'
 
 export default function Component() {
-  const [, setMode] = useMode()
   const [count, setCount] = useState(0)
   logger('render')
-
-  const changeLocale = async (locale: string) => {
-    const { messages } = await import(`../locales/${locale}.po`)
-    i18n.load(locale, messages)
-    i18n.activate(locale)
-  }
 
   return (
     <>
@@ -37,12 +30,12 @@ export default function Component() {
         <Trans>Click on the Vite and React logos to learn more</Trans>
       </p>
 
-      <button className='btn' type='button' onClick={() => setMode('system')}>System</button>
-      <button className='btn' type='button' onClick={() => setMode('light')}>Light</button>
-      <button className='btn' type='button' onClick={() => setMode('dark')}>Dark</button>
+      <button className='btn' type='button' onClick={() => mode.set('system')}>System</button>
+      <button className='btn' type='button' onClick={() => mode.set('light')}>Light</button>
+      <button className='btn' type='button' onClick={() => mode.set('dark')}>Dark</button>
 
-      <button className='btn' type='button' onClick={() => changeLocale('ar')}>change arabic</button>
-      <button className='btn' type='button' onClick={() => changeLocale('en')}>change english</button>
+      <button className='btn' type='button' onClick={() => setLocale('ar')}>change arabic</button>
+      <button className='btn' type='button' onClick={() => setLocale('en')}>change english</button>
 
     </>
   )
