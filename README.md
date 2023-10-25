@@ -60,15 +60,15 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 ### GitHub Template
 
-[Create a repo from this template on GitHub](https://github.com/antfu/vitesse/generate).
+[Create a repo from this template on GitHub](https://github.com/wusaby-rush/reactive/generate).
 
 ### Clone to local
 
 If you prefer to do it manually with the cleaner git history
 
 ```bash
-npx degit antfu/vitesse my-vitesse-app
-cd my-vitesse-app
+npx degit wusaby-rush/reactive my-reactive-app
+cd my-reactive-app
 pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 ```
 
@@ -76,11 +76,7 @@ pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 
 When you use this template, try follow the checklist to update your info properly
 
-- [ ] Change the author name in `LICENSE`
-- [ ] Change the title in `App.vue`
-- [ ] Change the hostname in `vite.config.ts`
-- [ ] Change the favicon in `public`
-- [ ] Remove the `.github` folder which contains the funding info
+- [ ] Remove the `.github` folder
 - [ ] Clean up the READMEs and remove routes
 
 And, enjoy :)
@@ -89,7 +85,7 @@ And, enjoy :)
 
 ### Development
 
-Just run and visit http://localhost:3333
+Just run and visit http://localhost:5173
 
 ```bash
 pnpm dev
@@ -125,20 +121,7 @@ docker run --rm -it -p 8080:80 vitesse:latest
 
 ## Why
 
-I have created several Vite apps recently. Setting the configs up is kinda the bottleneck for me to make the ideas simply come true within a very short time.
-
-So I made this starter template for myself to create apps more easily, along with some good practices that I have learned from making those apps. It's strongly opinionated, but feel free to tweak it or even maintain your own forks. [(see community maintained variation forks)](#variations)
-
-
-# React + TypeScript + Vite
-
-TODO:
-
-- configure linter and prettier with package.json scripts
-- consider router unplugins
-- consider linguijs with unplugin
-- consider self-hosted unplugin  fonts
-- add unplugin-images
+Configure apps is a headeach, I loved vitesse template for vue, so I decided do one for react.
 
 ## vite config
 
@@ -233,8 +216,13 @@ export default defineConfig({
 })
 ```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# TODO:
+
+- configure linter and prettier with package.json scripts
+- add unplugin-images
+- consider self-hosted unplugin fonts
+- consider router unplugins
+- consider linguijs with unplugin
 
 ## Expanding the ESLint configuration
 
