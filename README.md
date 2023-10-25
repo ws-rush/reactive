@@ -221,7 +221,6 @@ export default defineConfig({
 # TODO:
 
 - configure linter and prettier with package.json scripts, docker, pipline
-- consider router unplugins
 - single store
 - SSG with Markdown
 - SSR
