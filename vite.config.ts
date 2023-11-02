@@ -10,7 +10,6 @@ import { imagetools } from 'vite-imagetools'
 import Inspect from 'vite-plugin-inspect'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import AutoImport from 'unplugin-auto-import/vite'
-import { reactClickToComponent } from "vite-plugin-react-click-to-component";
 import { lingui } from "@lingui/vite-plugin";
 
 // https://vitejs.dev/config/
@@ -28,7 +27,6 @@ export default defineConfig({
     lingui(),
     // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
     imagetools(),
-    reactClickToComponent(),
     generouted(),
     UnoCSS(),
     Inspect(),

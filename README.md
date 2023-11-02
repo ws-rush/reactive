@@ -133,6 +133,7 @@ Configure apps is a headeach, I loved vitesse template for vue, so I decided do 
 - PWA
 - consider self-hosted unplugin fonts
 - consider linguijs with unplugin
+- consider upgrade remix router to v2
 
 ## Expanding the ESLint configuration
 

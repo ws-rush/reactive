@@ -1,5 +1,3 @@
-// import { Dispatch, createContext } from "react";
-
 export type Mode = 'system' | 'light' | 'dark'
 
 export const mode = {
