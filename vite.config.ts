@@ -25,8 +25,6 @@ export default defineConfig({
       },
     }),
     lingui(),
-    // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
-    imagetools(),
     generouted(),
     UnoCSS(),
     Inspect(),
@@ -40,6 +38,9 @@ export default defineConfig({
         }] 
       } 
     }),
+
+    // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
+    imagetools(),
 
     AutoImport({
       imports: [

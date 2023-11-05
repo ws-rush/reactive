@@ -34,8 +34,8 @@ export default function Component() {
       <button className='btn' type='button' onClick={() => mode.set('light')}>Light</button>
       <button className='btn' type='button' onClick={() => mode.set('dark')}>Dark</button>
 
-      <button className='btn' type='button' onClick={() => setLocale('ar')}>change arabic</button>
-      <button className='btn' type='button' onClick={() => setLocale('en')}>change english</button>
+      <button className='btn' type='button' onClick={() => locale.set('ar')}>change arabic</button>
+      <button className='btn' type='button' onClick={() => locale.set('en')}>change english</button>
 
     </>
   )
