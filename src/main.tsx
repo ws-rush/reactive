@@ -11,15 +11,11 @@ import { RouterProvider } from 'react-router-dom'
 import { I18nProvider } from '@lingui/react'
 import { ClickToComponent } from 'click-to-react-component'
 
-// TODO:
-// remove this line it should autoimport from config I think
-import { i18n } from '@lingui/core'
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {/* <I18nProvider i18n={i18n}> */}
+    <I18nProvider i18n={i18n}>
         <RouterProvider router={router} />
         <ClickToComponent />
-    {/* </I18nProvider> */}
+    </I18nProvider>
   </StrictMode>
 )
