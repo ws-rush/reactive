@@ -1,3 +1,3 @@
 export default function Component() {
-  return <h1>login</h1>
+  return <h1>login</h1>;
 }

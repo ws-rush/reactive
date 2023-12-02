@@ -3,13 +3,13 @@
 </p>
 
 <p align='center'>
-Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
+Mocking up web app with <b>Reactive</b><sup><em>(speed)</em></sup><br>
 </p>
 
 <br>
 
 <p align='center'>
-<a href="https://vitesse.netlify.app/">Live Demo</a>
+<a href="https://reactive.netlify.app/">Live Demo</a>
 </p>
 
 <br>
@@ -40,7 +40,7 @@ Mocking up web app with <b>Vitesse</b><sup><em>(speed)</em></sup><br>
 
 - 🖼 [Transform and Optmize images](https://github.com/JonasKruckenberg/imagetools/tree/main/packages/vite)
 
-- 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts)
+- 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts) # miss self-hosting
 
 - 🦾 TypeScript, of course
 
@@ -126,14 +126,8 @@ docker run --rm -it -p 8080:80 vitesse:latest
 Configure apps is a headeach, I loved vitesse template for vue, so I decided do one for react.
 
 # TODO:
+- upgrade remix router to v2
 
-- configure linter and prettier with package.json scripts, docker, pipline
-- SSG with Markdown
-- SSR
-- PWA
-- consider self-hosted unplugin fonts
-- consider linguijs with unplugin
-- consider upgrade remix router to v2
 
 ## Expanding the ESLint configuration
 

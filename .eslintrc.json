@@ -2,17 +2,35 @@
   "root": true,
   "env": { "browser": true, "es2020": true, "cypress/globals": true },
   "extends": [
+    "canonical/auto",
+    "plugin:sonarjs/recommended",
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "./.eslintrc-auto-import.json"
   ],
-  "ignorePatterns": ["dist", ".eslintrc.cjs"],
+  "ignorePatterns": [
+    "dist",
+    "*.config.ts",
+    "*.d.ts",
+    "*.json",
+    "pnpm-lock.yaml",
+    "src/router.ts"
+  ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-refresh", "cypress"],
+  "plugins": ["react-refresh", "cypress", "@mizdra/layout-shift", "sonarjs", "deprecate"],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",
       { "allowConstantExport": true }
-    ]
+    ],
+    
+    // Don't like
+    "canonical/filename-match-exported": "off",
+    "func-style": "off",
+    "canonical/filename-match-regex": "off",
+    "react/function-component-definition": "off",
+    "canonical/id-match": "off",
+    "react/jsx-no-undef": "off",
+    "import/no-unassigned-import": "off"
   }
 }
