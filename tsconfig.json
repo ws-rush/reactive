@@ -30,6 +30,7 @@
     "types": ["vite/client"],
   },
   "include": [
+    "vite.config.ts",
     ".eslintrc.json",
     "auto-imports.d.ts",
     "src"

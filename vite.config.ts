@@ -13,6 +13,181 @@ import AutoImport from 'unplugin-auto-import/vite'
 import { lingui } from "@lingui/vite-plugin";
 import { readdirSync } from 'fs'
 
+// get files in pattern
+import { promises as fs } from 'fs';
+import path from 'path';
+import { normalizePath  } from 'vite'
+
+async function getFiles(directory, pattern) {
+  try {
+    const files = await fs.readdir(directory);
+    let matchingFiles = [];
+
+    for (const file of files) {
+      const filePath = path.join(directory, file);
+      const stat = await fs.stat(filePath);
+
+      if (stat.isDirectory()) {
+        // If it's a directory, recursively search for files
+        matchingFiles = matchingFiles.concat(await getFiles(filePath, pattern));
+      } else if (pattern.test(file)) {
+        // If it's a file and matches the pattern, add it to the result
+        matchingFiles.push(filePath);
+      }
+    }
+
+    return matchingFiles;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
+async function main() {
+  const baseDirectory = 'src/routes';
+
+  // Define the patterns for matching files
+  const topLevelPattern = /\.tsx$/;
+  const subdirectoryPattern = /^route\.tsx$/;
+
+  let result = []
+
+  try {
+    const topLevelFiles = await getFiles(baseDirectory, topLevelPattern);
+    const subdirectoryFiles = await getFiles(baseDirectory, subdirectoryPattern);
+
+    result.push(...topLevelFiles)
+    result.push(...subdirectoryFiles)
+  } catch (error) {
+    console.error('Error:', error);
+  }
+
+  return result.map(path => normalizePath(path).replace('src/routes/', ''))
+}
+
+// convert files to routes
+// function convertInputToOutput(list) {
+//   const result = {
+//     path: '/',
+//     lazy: 'import(src/routes/root.tsx)',
+//     children: []
+//   };
+
+//   // Sort the list based on paths
+//   list.sort();
+
+//   list.forEach(element => {
+//     const tree = element.split('.').slice(0, -1);
+//     let current = result;
+
+//     tree.forEach((child, index) => {
+//       const isLastChild = index === tree.length - 1;
+
+//       if (isLastChild) {
+//         if (element.startsWith('_index')) {
+//           current.children.push({
+//             index: true,
+//             lazy: `import(src/routes/${element})`
+//           });
+//         } else {
+//           const item_name = child.replace('/route', '');
+//           const existingChild = current.children.find(c => c.path === item_name);
+
+//           if (existingChild) {
+//             current = existingChild;
+//           } else {
+//             current.children.push({
+//               path: item_name,
+//               lazy: `import(src/routes/${element})`,
+//               // children: []  // Initialize the children array for the leaf node
+//             });
+//             current = current.children[current.children.length - 1];
+//           }
+//         }
+//       } else {
+//         let foundChild = current.children.find(c => c.path === child);
+
+//         if (!foundChild) {
+//           foundChild = {
+//             path: child,
+//             children: []
+//           };
+//           current.children.push(foundChild);
+//         }
+
+//         current = foundChild;
+//       }
+//     });
+//   });
+
+//   return result;
+// }
+
+function convertInputToOutput(list) {
+  const result = {
+    path: '/',
+    lazy: 'import(src/routes/root.tsx)',
+    children: []
+  };
+
+  // Sort the list based on paths
+  list.sort();
+
+  list.forEach(element => {
+    const tree = element.split('.').slice(0, -1);
+    let current = result;
+
+    tree.forEach((child, index) => {
+      const isLastChild = index === tree.length - 1;
+
+      if (isLastChild) {
+        const lazyImport = `import(src/routes/${element})`;
+
+        if (element.startsWith('_index')) {
+          const existingChild = current.children.find(c => c.index);
+
+          if (existingChild) {
+            existingChild.lazy = lazyImport;
+          } else {
+            current.children.push({
+              index: true,
+              lazy: lazyImport
+            });
+          }
+        } else {
+          const item_name = child.replace('/route', '');
+          const existingChild = current.children.find(c => c.path === item_name);
+
+          if (existingChild) {
+            existingChild.lazy = lazyImport;
+          } else {
+            current.children.push({
+              path: item_name,
+              lazy: lazyImport,
+              // children: []  // Initialize the children array for the leaf node
+            });
+          }
+        }
+      } else {
+        let foundChild = current.children.find(c => c.path === child);
+
+        if (!foundChild) {
+          foundChild = {
+            path: child,
+            children: []
+          };
+          current.children.push(foundChild);
+        }
+
+        current = foundChild;
+      }
+    });
+  });
+
+  return result;
+}
+
+
 function remixRouter() {
 
   const remixRouterGenerator = (element: string, path: string) => {
@@ -32,8 +207,8 @@ function remixRouter() {
       })
     }
 
-    console.log(routes)
-    console.log(imports)
+    // console.log(routes)
+    // console.log(imports)
 
     // console.log(routes)
     return {
@@ -51,10 +226,14 @@ function remixRouter() {
         return source
       }
     },
-    load(id) {
+    async load(id) {
+      const files = await main()
+      console.log(files)
+      const routesObject = convertInputToOutput(files);
+      console.log(JSON.stringify(routesObject, null, 2));
       // generate router from routes
       if (id === 'router:routes') {
-        console.log('loading')
+        // console.log('loading')
         const { routes, imports } = remixRouterGenerator('root.lazy.tsx', './src')
         const objectString = JSON.stringify(routes)
           .replace(/"importStart/g, '() => import(')
@@ -67,7 +246,7 @@ function remixRouter() {
     },
     transform(code, id) {
       if (id === 'router:routes') {
-        console.log('transforming', code)
+        // console.log('transforming', code)
         return code
       }
 
