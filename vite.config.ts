@@ -74,7 +74,7 @@ function buildRoutesMap(baseDirectorry, list) {
 
   list.forEach(element => {
     let current = result;
-    
+
     // split file name to array without extension
     const tree = element.split('.').slice(0, -1);
     
@@ -104,7 +104,7 @@ function buildRoutesMap(baseDirectorry, list) {
             });
           }
         } else {
-          const item_name = child.replace('/route', '');
+          const item_name = child.replace('/route', '').replace('$', ':');
           const existingChild = current.children.find(c => c.path === item_name);
 
           if (existingChild) {
