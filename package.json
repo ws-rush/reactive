@@ -15,7 +15,6 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@generouted/react-router": "^1.15.8",
     "@lingui/core": "^4.5.0",
     "@lingui/macro": "^4.5.0",
     "@lingui/react": "^4.5.0",
