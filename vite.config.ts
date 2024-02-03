@@ -2,7 +2,6 @@
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import generouted from '@generouted/react-router/plugin'
 import UnoCSS from 'unocss/vite'
 import Unfonts from 'unplugin-fonts/vite'
 import { imagetools } from 'vite-imagetools'
@@ -43,9 +42,7 @@ async function getFiles(directory, pattern) {
   }
 }
 
-async function main() {
-  const baseDirectory = 'src/routes';
-
+async function listFiles(baseDirectory: string) {
   // Define the patterns for matching files
   const topLevelPattern = /\.tsx$/;
   const subdirectoryPattern = /^route\.tsx$/;
@@ -65,83 +62,35 @@ async function main() {
   return result.map(path => normalizePath(path).replace('src/routes/', ''))
 }
 
-// convert files to routes
-// function convertInputToOutput(list) {
-//   const result = {
-//     path: '/',
-//     lazy: 'import(src/routes/root.tsx)',
-//     children: []
-//   };
-
-//   // Sort the list based on paths
-//   list.sort();
-
-//   list.forEach(element => {
-//     const tree = element.split('.').slice(0, -1);
-//     let current = result;
-
-//     tree.forEach((child, index) => {
-//       const isLastChild = index === tree.length - 1;
-
-//       if (isLastChild) {
-//         if (element.startsWith('_index')) {
-//           current.children.push({
-//             index: true,
-//             lazy: `import(src/routes/${element})`
-//           });
-//         } else {
-//           const item_name = child.replace('/route', '');
-//           const existingChild = current.children.find(c => c.path === item_name);
-
-//           if (existingChild) {
-//             current = existingChild;
-//           } else {
-//             current.children.push({
-//               path: item_name,
-//               lazy: `import(src/routes/${element})`,
-//               // children: []  // Initialize the children array for the leaf node
-//             });
-//             current = current.children[current.children.length - 1];
-//           }
-//         }
-//       } else {
-//         let foundChild = current.children.find(c => c.path === child);
-
-//         if (!foundChild) {
-//           foundChild = {
-//             path: child,
-//             children: []
-//           };
-//           current.children.push(foundChild);
-//         }
-
-//         current = foundChild;
-//       }
-//     });
-//   });
-
-//   return result;
-// }
-
-function convertInputToOutput(list) {
+function buildRoutesMap(baseDirectorry, list) {
   const result = {
     path: '/',
-    lazy: 'import(src/routes/root.tsx)',
+    lazy: `ImportStart'@/${'root'}.lazy.tsx'ImportEnd`,
     children: []
   };
 
   // Sort the list based on paths
-  list.sort();
+  // list.sort();
 
   list.forEach(element => {
-    const tree = element.split('.').slice(0, -1);
     let current = result;
+    
+    // split file name to array without extension
+    const tree = element.split('.').slice(0, -1);
+    
+    // handle lazy routes
+    let isLazyRoute = false
+    if (tree.at(-1) === 'lazy') {
+      tree.pop()
+      isLazyRoute = true
+    }
+    console.log(tree)
 
     tree.forEach((child, index) => {
       const isLastChild = index === tree.length - 1;
 
       if (isLastChild) {
-        const lazyImport = `import(src/routes/${element})`;
+        const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
 
         if (element.startsWith('_index')) {
           const existingChild = current.children.find(c => c.index);
@@ -164,7 +113,7 @@ function convertInputToOutput(list) {
             current.children.push({
               path: item_name,
               lazy: lazyImport,
-              // children: []  // Initialize the children array for the leaf node
+              children: []  // Initialize the children array for the leaf node
             });
           }
         }
@@ -187,37 +136,7 @@ function convertInputToOutput(list) {
   return result;
 }
 
-
-function remixRouter() {
-
-  const remixRouterGenerator = (element: string, path: string) => {
-    const hasLazy = element.includes(".lazy.");
-    const imports = !hasLazy ? `import * as ${element.slice(0, element.lastIndexOf("."))} from '${path}/${element}';` : ''
-    const routes = []
-
-    if (hasLazy) {
-      routes.push({
-        path: element.includes("root") ? '/' : element.slice(0, element.lastIndexOf(".")),
-        lazy: `importStart'${path}/${element}'importEnd`,
-      })
-    } else {
-      routes.push({
-        path: element.includes("root") ? '/' : element.slice(0, element.lastIndexOf(".")),
-        spread: `spreadStartrootspreadEnd`,
-      })
-    }
-
-    // console.log(routes)
-    // console.log(imports)
-
-    // console.log(routes)
-    return {
-      routes,
-      imports
-    }
-
-    // const files = readdirSync(`${path}/routes`)
-  }
+function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
   return {
     name: 'vite-plugin-remix-router',
     enforce: 'pre',
@@ -227,34 +146,28 @@ function remixRouter() {
       }
     },
     async load(id) {
-      const files = await main()
-      console.log(files)
-      const routesObject = convertInputToOutput(files);
-      console.log(JSON.stringify(routesObject, null, 2));
-      // generate router from routes
       if (id === 'router:routes') {
-        // console.log('loading')
-        const { routes, imports } = remixRouterGenerator('root.lazy.tsx', './src')
-        const objectString = JSON.stringify(routes)
-          .replace(/"importStart/g, '() => import(')
-          .replace(/importEnd"/g, ')')
-          .replace(/"spread":"spreadStart/g, '...')
-          .replace(/spreadEnd"/g, '')
-        const test = `${imports} export const routes = ${objectString}`
-        return test
+        // generate router from routes
+        const files = await listFiles(baseDirectory)
+        const routesMap = buildRoutesMap(baseDirectory, files);
+        // console.log(JSON.stringify(routesMap, null, 2));
+
+        const routesObject = JSON.stringify([routesMap])
+          .replace(/"ImportStart/g, '() => import(')
+          .replace(/ImportEnd"/g, ')')
+          // .replace(/"spread":"spreadStart/g, '...')
+          // .replace(/spreadEnd"/g, '')
+
+        const routesCode = `export const routes = ${routesObject}`
+        return routesCode
       }
     },
-    transform(code, id) {
-      if (id === 'router:routes') {
-        // console.log('transforming', code)
-        return code
-      }
-
-      // if (id.endsWith('root.tsx')) {
-      //   console.log('transforming', code)
-      //   return code
-      // }
-    }
+    // transform(code, id) {
+    //   if (id === 'router:routes') {
+    //     console.log('transforming', code)
+    //     return code
+    //   }
+    // }
   }
 }
 
@@ -272,7 +185,6 @@ export default defineConfig({
     }),
     lingui(),
     remixRouter(),
-    // generouted(),
     UnoCSS(),
     Inspect(),
     topLevelAwait(),

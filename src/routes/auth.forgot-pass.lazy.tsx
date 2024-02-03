@@ -1,5 +1,5 @@
 import { Trans } from "@lingui/macro";
 
-export default function Component() {
+export function Component() {
   return <h1><Trans>forgot password</Trans></h1>
 }
