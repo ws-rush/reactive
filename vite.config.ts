@@ -92,7 +92,7 @@ function buildRoutesMap(baseDirectorry, list) {
       if (isLastChild) {
         const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
 
-        if (element.startsWith('_index')) {
+        if (child.startsWith('_index')) {
           const existingChild = current.children.find(c => c.index);
 
           if (existingChild) {
