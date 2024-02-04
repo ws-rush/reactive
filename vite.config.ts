@@ -104,7 +104,7 @@ function buildRoutesMap(baseDirectorry, list) {
             });
           }
         } else {
-          const item_name = child.replace('/route', '').replace('$', ':');
+          const item_name = child.replace('/route', '').replace(/\$+$/, '*').replace(/^\$/, ':');
           const existingChild = current.children.find(c => c.path === item_name);
 
           if (existingChild) {
