@@ -69,9 +69,6 @@ function buildRoutesMap(baseDirectorry, list) {
     children: []
   };
 
-  // Sort the list based on paths
-  // list.sort();
-
   list.forEach(element => {
     let current = result;
 
@@ -87,10 +84,24 @@ function buildRoutesMap(baseDirectorry, list) {
     console.log(tree)
 
     tree.forEach((child, index) => {
-      const isLastChild = index === tree.length - 1;
       const item_name = child.replace('/route', '').replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
-      console.log(child, item_name)
-      if (isLastChild) {
+
+      // isLastChild
+      const isLastChild = index === tree.length - 1;
+
+      if (!isLastChild) {
+        let foundChild = current.children.find(c => c.path === child);
+
+        if (!foundChild) {
+          foundChild = {
+            path: item_name,
+            children: []
+          };
+          current.children.push(foundChild);
+        }
+
+        current = foundChild;
+      } else {
         const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
 
         if (child.startsWith('_index')) {
@@ -105,7 +116,6 @@ function buildRoutesMap(baseDirectorry, list) {
             });
           }
         } else {
-          // const item_name = child.replace('/route', '').replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
           const existingChild = current.children.find(c => c.path === item_name);
 
           if (existingChild) {
@@ -118,19 +128,7 @@ function buildRoutesMap(baseDirectorry, list) {
             });
           }
         }
-      } else {
-        let foundChild = current.children.find(c => c.path === child);
-
-        if (!foundChild) {
-          foundChild = {
-            path: item_name,
-            children: []
-          };
-          current.children.push(foundChild);
-        }
-
-        current = foundChild;
-      }
+      }      
     });
   });
 
@@ -150,6 +148,7 @@ function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
       if (id === 'router:routes') {
         // generate router from routes
         const files = await listFiles(baseDirectory)
+        console.log(files)
         const routesMap = buildRoutesMap(baseDirectory, files);
         // console.log(JSON.stringify(routesMap, null, 2));
 
