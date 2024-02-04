@@ -88,7 +88,8 @@ function buildRoutesMap(baseDirectorry, list) {
 
     tree.forEach((child, index) => {
       const isLastChild = index === tree.length - 1;
-
+      const item_name = child.replace('/route', '').replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
+      console.log(child, item_name)
       if (isLastChild) {
         const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
 
@@ -104,7 +105,7 @@ function buildRoutesMap(baseDirectorry, list) {
             });
           }
         } else {
-          const item_name = child.replace('/route', '').replace(/\$+$/, '*').replace(/^\$/, ':');
+          // const item_name = child.replace('/route', '').replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
           const existingChild = current.children.find(c => c.path === item_name);
 
           if (existingChild) {
@@ -122,7 +123,7 @@ function buildRoutesMap(baseDirectorry, list) {
 
         if (!foundChild) {
           foundChild = {
-            path: child,
+            path: item_name,
             children: []
           };
           current.children.push(foundChild);
