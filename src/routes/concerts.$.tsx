@@ -1,3 +1,3 @@
 export function Component() {
-    return <h1>concerts new york or any city</h1>
+    return <h1>Splat</h1>
 }
