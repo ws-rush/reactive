@@ -83,9 +83,14 @@ function buildRoutesMap(baseDirectory, list) {
     children: []
   };
 
+  list.sort()
+
   list.forEach(element => {
     const tree = element.split('.').slice(0, -1).map(child => child.replace('/route', '').replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':'));
     let current = result;
+    // when need nested URL without nested layout, append to this variable
+    // empty it when you finish
+    let nestedURL = ''
 
     if (tree.at(-1) === 'lazy') {
       tree.pop();
@@ -95,14 +100,18 @@ function buildRoutesMap(baseDirectory, list) {
       const notLastChild = index !== tree.length - 1;
       const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
       
-      if (notLastChild) {
-        addChild(current, 'path', child, null);
+      if (notLastChild && child.startsWith('_')) {
+        nestedURL += `${child.substring(1)}/`;
+      } else if (notLastChild && !child.endsWith('_')) {
+        addChild(current, 'path', nestedURL + child, null);
+        nestedURL = ''
         current = current.children.find(c => c.path === child);
       } else {
         if (child.startsWith('_index')) {
           addChild(current, 'index', true, lazyImport);
         } else {
-          addChild(current, 'path', child, lazyImport);
+          addChild(current, 'path', nestedURL + child, lazyImport);
+          nestedURL = ''
         }
       }
     });
