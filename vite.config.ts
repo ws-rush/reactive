@@ -62,7 +62,21 @@ async function listFiles(baseDirectory: string) {
   return result.map(path => normalizePath(path).replace('src/routes/', ''))
 }
 
-function buildRoutesMap(baseDirectorry, list) {
+function addChild(current, key, value, lazyImport) {
+  let foundChild = current.children.find(c => c[key] === value);
+
+  if (foundChild) {
+    foundChild.lazy = lazyImport;
+  } else {
+    const child = { [key]: value, lazy: lazyImport };
+    if (key === 'path') {
+      child.children = [];
+    }
+    current.children.push(child);
+  }
+}
+
+function buildRoutesMap(baseDirectory, list) {
   const result = {
     path: '/',
     lazy: `ImportStart'@/${'root'}.lazy.tsx'ImportEnd`,
@@ -70,70 +84,101 @@ function buildRoutesMap(baseDirectorry, list) {
   };
 
   list.forEach(element => {
+    const tree = element.split('.').slice(0, -1);
     let current = result;
 
-    // split file name to array without extension
-    const tree = element.split('.').slice(0, -1);
-    
-    // handle lazy routes
-    let isLazyRoute = false
     if (tree.at(-1) === 'lazy') {
-      tree.pop()
-      isLazyRoute = true
+      tree.pop();
     }
-    console.log(tree)
 
     tree.forEach((child, index) => {
       const item_name = child.replace('/route', '').replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
-
-      // isLastChild
+      console.log(child, item_name)
       const isLastChild = index === tree.length - 1;
+      const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
 
       if (!isLastChild) {
-        let foundChild = current.children.find(c => c.path === child);
-
-        if (!foundChild) {
-          foundChild = {
-            path: item_name,
-            children: []
-          };
-          current.children.push(foundChild);
-        }
-
-        current = foundChild;
+        addChild(current, 'path', item_name, null); // Empty string for lazyImport for non-leaf nodes
+        current = current.children.find(c => c.path === item_name);
       } else {
-        const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
-
         if (child.startsWith('_index')) {
-          const existingChild = current.children.find(c => c.index);
-
-          if (existingChild) {
-            existingChild.lazy = lazyImport;
-          } else {
-            current.children.push({
-              index: true,
-              lazy: lazyImport
-            });
-          }
+          addChild(current, 'index', true, lazyImport);
         } else {
-          const existingChild = current.children.find(c => c.path === item_name);
-
-          if (existingChild) {
-            existingChild.lazy = lazyImport;
-          } else {
-            current.children.push({
-              path: item_name,
-              lazy: lazyImport,
-              children: []  // Initialize the children array for the leaf node
-            });
-          }
+          addChild(current, 'path', item_name, lazyImport);
         }
-      }      
+      }
     });
   });
 
   return result;
 }
+
+// function buildRoutesMap(baseDirectory, list) {
+//   const result = {
+//     path: '/',
+//     lazy: `ImportStart'@/${'root'}.lazy.tsx'ImportEnd`,
+//     children: []
+//   };
+
+//   list.forEach(element => {
+//     const tree = element.split('.').slice(0, -1);
+//     let current = result;
+
+//     if (tree.at(-1) === 'lazy') {
+//       tree.pop();
+//     }
+
+//     tree.forEach((child, index) => {
+//       const item_name = child.replace('/route', '').replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
+//       const isLastChild = index === tree.length - 1;
+
+//       let foundChild;
+
+//       if (!isLastChild) {
+//         foundChild = current.children.find(c => c.path === child);
+
+//         if (!foundChild) {
+//           foundChild = {
+//             path: item_name,
+//             children: []
+//           };
+//           current.children.push(foundChild);
+//         }
+
+//         current = foundChild;
+//       } else {
+//         const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
+
+//         if (child.startsWith('_index')) {
+//           foundChild = current.children.find(c => c.index);
+
+//           if (foundChild) {
+//             foundChild.lazy = lazyImport;
+//           } else {
+//             current.children.push({
+//               index: true,
+//               lazy: lazyImport
+//             });
+//           }
+//         } else {
+//           foundChild = current.children.find(c => c.path === item_name);
+
+//           if (foundChild) {
+//             foundChild.lazy = lazyImport;
+//           } else {
+//             current.children.push({
+//               path: item_name,
+//               lazy: lazyImport,
+//               children: []
+//             });
+//           }
+//         }
+//       }
+//     });
+//   });
+
+//   return result;
+// }
 
 function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
   return {
