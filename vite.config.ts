@@ -120,6 +120,42 @@ function buildRoutesMap(baseDirectory, list) {
   return result;
 }
 
+function generateObjectList(result, strings, level = 0) {
+  const firstSegments = new Set(strings.map(str => str.split('.')[level])
+    .filter(str => str !== undefined)
+    .filter(str => str !== 'tsx')
+    .filter(str => str !== 'lazy'));
+
+  if (firstSegments.size === 0) {
+    return;
+  }
+
+  const reversedSegments = Array.from(firstSegments).reverse();
+
+  for (const segment of reversedSegments) {
+    const filteredStrings = strings.filter(str => str.split('.')[level] === segment).reverse();
+
+    if (filteredStrings.length === 0) {
+      continue;
+    } else if (filteredStrings.length === 1 && (filteredStrings[0].endsWith(`${segment}.tsx`) || filteredStrings[0].endsWith(`${segment}.lazy.tsx`))) {
+      // leaf can be in format (segment)[/route][.lazy].tsx
+      console.log('---------------- leaf:', segment, filteredStrings);
+      const newNode = { path: segment, lazy: filteredStrings[0] };
+      result.push(newNode);
+    } else {
+      console.log('---------------- parent:', segment, filteredStrings);
+      const newNode = {}
+      if (!segment.startsWith('_')) newNode.path = segment;
+      newNode.lazy = filteredStrings[0];
+      newNode.children = [];
+      result.push(newNode);
+      generateObjectList(result.find(c => JSON.stringify(c) === JSON.stringify(newNode)).children, filteredStrings, level + 1);
+    }
+  }
+
+  return result;
+}
+
 function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
   return {
     name: 'vite-plugin-remix-router',
@@ -133,9 +169,10 @@ function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
       if (id === 'router:routes') {
         // generate router from routes
         const files = await listFiles(baseDirectory)
-        console.log(files)
         const routesMap = buildRoutesMap(baseDirectory, files);
-        // console.log(JSON.stringify([routesMap], null, 2));
+        const excludedKeys = ["tsx"];
+        const test = generateObjectList([], files)
+        console.log(JSON.stringify(test, null, 2));
 
         const routesObject = JSON.stringify([routesMap])
           .replace(/"ImportStart/g, '() => import(')
