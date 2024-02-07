@@ -10,7 +10,6 @@ import Inspect from 'vite-plugin-inspect'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import AutoImport from 'unplugin-auto-import/vite'
 import { lingui } from "@lingui/vite-plugin";
-import { readdirSync } from 'fs'
 
 // get files in pattern
 import { promises as fs } from 'fs';
@@ -62,66 +61,8 @@ async function listFiles(baseDirectory: string) {
   return result.map(path => normalizePath(path).replace('src/routes/', ''))
 }
 
-function addChild(current, key, value, lazyImport) {
-  let foundChild = current.children.find(c => c[key] === value);
-
-  if (foundChild) {
-    foundChild.lazy = lazyImport;
-  } else {
-    const child = { [key]: value, lazy: lazyImport };
-    if (key === 'path') {
-      child.children = [];
-    }
-    current.children.push(child);
-  }
-}
-
-function buildRoutesMap(baseDirectory, list) {
-  const result = {
-    path: '/',
-    lazy: `ImportStart'@/${'root'}.lazy.tsx'ImportEnd`,
-    children: []
-  };
-
-  list.sort()
-
-  list.forEach(element => {
-    const tree = element.split('.').slice(0, -1).map(child => child.replace('/route', '').replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':'));
-    let current = result;
-    // when need nested URL without nested layout, append to this variable
-    // empty it when you finish
-    let nestedURL = ''
-
-    if (tree.at(-1) === 'lazy') {
-      tree.pop();
-    }
-
-    tree.forEach((child, index) => {
-      const notLastChild = index !== tree.length - 1;
-      const lazyImport = `ImportStart'@/routes/${element}'ImportEnd`;
-      
-      if (notLastChild && child.startsWith('_')) {
-        nestedURL += `${child.substring(1)}/`;
-      } else if (notLastChild && !child.endsWith('_')) {
-        addChild(current, 'path', nestedURL + child, null);
-        nestedURL = ''
-        current = current.children.find(c => c.path === child);
-      } else {
-        if (child.startsWith('_index')) {
-          addChild(current, 'index', true, lazyImport);
-        } else {
-          addChild(current, 'path', nestedURL + child, lazyImport);
-          nestedURL = ''
-        }
-      }
-    });
-  });
-
-  return result;
-}
-
-function generateObjectList(result, strings, level = 0) {
-  const firstSegments = new Set(strings.map(str => str.split('.')[level])
+function buildRoutesMap(result, strings, level = 0) {
+  const firstSegments = new Set(strings.map(str => str.split('.')[level].replace('/route', ''))
     .filter(str => str !== undefined)
     .filter(str => str !== 'tsx')
     .filter(str => str !== 'lazy'));
@@ -133,23 +74,29 @@ function generateObjectList(result, strings, level = 0) {
   const reversedSegments = Array.from(firstSegments).reverse();
 
   for (const segment of reversedSegments) {
-    const filteredStrings = strings.filter(str => str.split('.')[level] === segment).reverse();
+    const filteredStrings = strings.filter(str => (str.split('.')[level] === segment || str.split('.')[level] === `${segment}/route`)).reverse();
+    const path = segment.replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':')
 
     if (filteredStrings.length === 0) {
       continue;
-    } else if (filteredStrings.length === 1 && (filteredStrings[0].endsWith(`${segment}.tsx`) || filteredStrings[0].endsWith(`${segment}.lazy.tsx`))) {
+    } else if (filteredStrings.length === 1 && (filteredStrings[0].endsWith(`${segment}.tsx`) || filteredStrings[0].endsWith(`${segment}.lazy.tsx`) || filteredStrings[0].endsWith(`${segment}/route.tsx`) || filteredStrings[0].endsWith(`${segment}/route.lazy.tsx`))) {
       // leaf can be in format (segment)[/route][.lazy].tsx
       console.log('---------------- leaf:', segment, filteredStrings);
-      const newNode = { path: segment, lazy: filteredStrings[0] };
+      const newNode = {};
+      if (path === '_index') newNode.index = true
+      else newNode.path = path
+      newNode.lazy = `ImportStart'@/routes/${filteredStrings[0]}'ImportEnd`
       result.push(newNode);
     } else {
+      // parent can be in format (segment)[/route][.lazy].tsx
       console.log('---------------- parent:', segment, filteredStrings);
       const newNode = {}
-      if (!segment.startsWith('_')) newNode.path = segment;
-      newNode.lazy = filteredStrings[0];
+      if (!segment.startsWith('_')) newNode.path = path;
+      const layout = filteredStrings.find(str => (str.endsWith(`${segment}.tsx`) || str.endsWith(`${segment}.lazy.tsx`) || str.endsWith(`${segment}/route.tsx`) || str.endsWith(`${segment}/route.lazy.tsx`)));
+      if (layout) newNode.lazy = `ImportStart'@/routes/${layout}'ImportEnd`;
       newNode.children = [];
       result.push(newNode);
-      generateObjectList(result.find(c => JSON.stringify(c) === JSON.stringify(newNode)).children, filteredStrings, level + 1);
+      buildRoutesMap(result.find(c => JSON.stringify(c) === JSON.stringify(newNode)).children, filteredStrings, level + 1);
     }
   }
 
@@ -169,12 +116,15 @@ function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
       if (id === 'router:routes') {
         // generate router from routes
         const files = await listFiles(baseDirectory)
-        const routesMap = buildRoutesMap(baseDirectory, files);
-        const excludedKeys = ["tsx"];
-        const test = generateObjectList([], files)
-        console.log(JSON.stringify(test, null, 2));
+        const tree = [{
+          path: '/',
+          lazy: `ImportStart'@/root.lazy.tsx'ImportEnd`,
+          children: []
+        }]
+        const routesMap = buildRoutesMap(tree[0].children, files)
+        console.log(JSON.stringify(routesMap, null, 2));
 
-        const routesObject = JSON.stringify([routesMap])
+        const routesObject = JSON.stringify(tree)
           .replace(/"ImportStart/g, '() => import(')
           .replace(/ImportEnd"/g, ')')
           // .replace(/"spread":"spreadStart/g, '...')
