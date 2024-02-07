@@ -26,8 +26,13 @@ async function getFiles(directory, pattern) {
       const stat = await fs.stat(filePath);
 
       if (stat.isDirectory()) {
-        // If it's a directory, recursively search for files
-        matchingFiles = matchingFiles.concat(await getFiles(filePath, pattern));
+        // If it's a directory, get the files in that directory
+        const subdirectoryFiles = await fs.readdir(filePath);
+        const matchingSubdirectoryFiles = subdirectoryFiles
+          .filter(subItem => pattern.test(subItem))
+          .map(subItem => path.join(filePath, subItem));
+
+        matchingFiles = matchingFiles.concat(matchingSubdirectoryFiles);
       } else if (pattern.test(file)) {
         // If it's a file and matches the pattern, add it to the result
         matchingFiles.push(filePath);
