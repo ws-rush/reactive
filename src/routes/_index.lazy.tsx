@@ -1,10 +1,16 @@
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import reactLogo from '@/assets/react.svg'
 import viteLogo from '@/assets/vite.jpg?w=400&h=300&format=webp'
 import { logger } from '@/utils/functions/logger'
+import { useLoaderData } from 'react-router-dom'
+
+export async function loader() {
+  return t`Vite + React 2`
+}
 
 export function Component() {
   const [count, setCount] = useState(0)
+  const data = useLoaderData() as string
   logger('render')
 
   return (
@@ -17,7 +23,7 @@ export function Component() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1><Trans>Vite + React</Trans></h1>
+      <h1>{ data }</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           <Trans>count is</Trans> {count} <i className='tabler-123' />
