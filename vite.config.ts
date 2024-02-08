@@ -122,39 +122,47 @@ function buildRoutesMap(strings, level = 0) {
 }
 
 export function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
+  let filesCache = null; // Cache the files to compare changes
+
   return {
     name: 'vite-plugin-remix-router',
     enforce: 'pre',
-    resolveId(source) {
+    async resolveId(source) {
       if (source === 'virtual:routes') {
-        return source
+        return source;
       }
     },
     async load(id) {
       if (id === 'virtual:routes') {
-        // generate router from routes
-        const files = await listFiles(baseDirectory)
-        const tree = [{
-          path: '/',
-          lazy: `ImportStart'@/root.lazy.tsx'ImportEnd`,
-          children: []
-        }]
-        const { routesMap } = buildRoutesMap(files)
-        tree[0].children = routesMap
-        // console.log(JSON.stringify(routesMap, null, 2));
+        const files = await listFiles(baseDirectory);
 
-        const routesObject = JSON.stringify(tree)
-          .replace(/"ImportStart/g, '() => import(')
-          .replace(/ImportEnd"/g, ')')
-          // .replace(/"spread":"spreadStart/g, '...')
-          // .replace(/spreadEnd"/g, '')
+        // Check if files have changed
+        if (!filesCache || JSON.stringify(files) !== JSON.stringify(filesCache)) {
+          filesCache = files;
 
-        const routesCode = `export const routes = ${routesObject}`
-        return routesCode
+          const tree = [{
+            path: '/',
+            lazy: `ImportStart'@/root.lazy.tsx'ImportEnd`,
+            children: []
+          }];
+          const { routesMap } = buildRoutesMap(files);
+          tree[0].children = routesMap;
+
+          const routesObject = JSON.stringify(tree)
+            .replace(/"ImportStart/g, '() => import(')
+            .replace(/ImportEnd"/g, ')');
+            // .replace(/"spread":"spreadStart/g, '...')
+            // .replace(/spreadEnd"/g, '')
+          // console.log(JSON.stringify(routesMap, null, 2));
+
+          const routesCode = `export const routes = ${routesObject}`;
+          return routesCode;
+        }
       }
     },
-  }
+  };
 }
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
