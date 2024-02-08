@@ -95,7 +95,7 @@ function buildRoutesMap(strings, appDirectory, level = 0,) {
 
   const reversedSegments = Array.from(firstSegments).reverse();
 
-  for (const segment of reversedSegments) {
+  for (let segment of reversedSegments) {
     const filteredStrings = strings
       .filter(str => str.split('.')[level] === segment || str.split('.')[level] === `${segment}/route`)
 
@@ -137,10 +137,16 @@ function buildRoutesMap(strings, appDirectory, level = 0,) {
 
     const { routesMap, imports } = buildRoutesMap(filteredStrings, appDirectory ,level + 1);
     if (routesMap.length > 0) newNode.children = routesMap;
-    // console.log(imports)
     if (imports) intenalImports += imports
 
-    result.push(newNode);
+    if (segment.endsWith('_')) {
+      const slicedSegment = segment.slice(0, -1)
+      routesMap.forEach(node => {
+        result.push({ ...node, path: node.index ? slicedSegment : `${slicedSegment}/${node.path}` })
+      })
+    } else {
+      result.push(newNode);
+    }
   }
 
   return { routesMap: result, imports: intenalImports };
