@@ -66,47 +66,62 @@ async function listFiles(baseDirectory: string) {
   return result.map(path => normalizePath(path).replace('src/routes/', ''))
 }
 
-function buildRoutesMap(result, strings, level = 0) {
-  const firstSegments = new Set(strings.map(str => str.split('.')[level].replace('/route', ''))
-    .filter(str => str !== undefined)
-    .filter(str => str !== 'tsx')
-    .filter(str => str !== 'lazy'));
+function buildRoutesMap(strings, level = 0) {
+  const result = [];
+
+  const firstSegments = new Set(
+    strings
+      .map(str => str.split('.')[level].replace('/route', ''))
+      .filter(str => str !== undefined && str !== 'tsx' && str !== 'lazy')
+  );
 
   if (firstSegments.size === 0) {
-    return;
+    return { routesMap: result };
   }
 
   const reversedSegments = Array.from(firstSegments).reverse();
 
   for (const segment of reversedSegments) {
-    const filteredStrings = strings.filter(str => (str.split('.')[level] === segment || str.split('.')[level] === `${segment}/route`)).reverse();
-    const path = segment.replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':')
+    const filteredStrings = strings
+      .filter(str => str.split('.')[level] === segment || str.split('.')[level] === `${segment}/route`)
+
+    const path = segment.replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
 
     if (filteredStrings.length === 0) {
       continue;
-    } else if (filteredStrings.length === 1 && (filteredStrings[0].endsWith(`${segment}.tsx`) || filteredStrings[0].endsWith(`${segment}.lazy.tsx`) || filteredStrings[0].endsWith(`${segment}/route.tsx`) || filteredStrings[0].endsWith(`${segment}/route.lazy.tsx`))) {
-      // leaf can be in format (segment)[/route][.lazy].tsx
-      console.log('---------------- leaf:', segment, filteredStrings);
-      const newNode = {};
-      if (path === '_index') newNode.index = true
-      else newNode.path = path
-      newNode.lazy = `ImportStart'@/routes/${filteredStrings[0]}'ImportEnd`
-      result.push(newNode);
-    } else {
-      // parent can be in format (segment)[/route][.lazy].tsx
-      console.log('---------------- parent:', segment, filteredStrings);
-      const newNode = {}
-      if (!segment.startsWith('_')) newNode.path = path;
-      const layout = filteredStrings.find(str => (str.endsWith(`${segment}.tsx`) || str.endsWith(`${segment}.lazy.tsx`) || str.endsWith(`${segment}/route.tsx`) || str.endsWith(`${segment}/route.lazy.tsx`)));
-      if (layout) newNode.lazy = `ImportStart'@/routes/${layout}'ImportEnd`;
-      newNode.children = [];
-      result.push(newNode);
-      buildRoutesMap(result.find(c => JSON.stringify(c) === JSON.stringify(newNode)).children, filteredStrings, level + 1);
     }
+
+    const newNode = {};
+
+    if (path === '_index') {
+      newNode.index = true;
+    } else if (!path.startsWith('_')) {
+      newNode.path = path;
+    }
+
+    const page = filteredStrings.find(str => 
+      str.endsWith(`${segment}.tsx`) ||
+      str.endsWith(`${segment}.lazy.tsx`) ||
+      str.endsWith(`${segment}/route.tsx`) ||
+      str.endsWith(`${segment}/route.lazy.tsx`)
+    );
+
+    if (page) {
+      newNode.lazy = `ImportStart'@/routes/${page}'ImportEnd`;
+    }
+
+    const { routesMap } = buildRoutesMap(filteredStrings, level + 1);
+    if (routesMap.length > 0) {
+      newNode.children = routesMap;
+    }
+
+    result.push(newNode);
   }
 
-  return result;
+  return { routesMap: result };
 }
+
+
 
 function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
   return {
@@ -126,8 +141,9 @@ function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
           lazy: `ImportStart'@/root.lazy.tsx'ImportEnd`,
           children: []
         }]
-        const routesMap = buildRoutesMap(tree[0].children, files)
-        console.log(JSON.stringify(routesMap, null, 2));
+        const { routesMap } = buildRoutesMap(files)
+        tree[0].children = routesMap
+        // console.log(JSON.stringify(routesMap, null, 2));
 
         const routesObject = JSON.stringify(tree)
           .replace(/"ImportStart/g, '() => import(')
@@ -139,12 +155,6 @@ function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
         return routesCode
       }
     },
-    // transform(code, id) {
-    //   if (id === 'router:routes') {
-    //     console.log('transforming', code)
-    //     return code
-    //   }
-    // }
   }
 }
 
