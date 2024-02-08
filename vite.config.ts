@@ -121,19 +121,17 @@ function buildRoutesMap(strings, level = 0) {
   return { routesMap: result };
 }
 
-
-
-function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
+export function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
   return {
     name: 'vite-plugin-remix-router',
     enforce: 'pre',
     resolveId(source) {
-      if (source === 'router:routes') {
+      if (source === 'virtual:routes') {
         return source
       }
     },
     async load(id) {
-      if (id === 'router:routes') {
+      if (id === 'virtual:routes') {
         // generate router from routes
         const files = await listFiles(baseDirectory)
         const tree = [{

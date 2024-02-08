@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { routes } from 'router:routes'
+import { routes } from 'virtual:routes'
 
 console.log(routes)
 
