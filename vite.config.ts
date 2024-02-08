@@ -68,6 +68,7 @@ async function listFiles(baseDirectory: string) {
 
 function buildRoutesMap(strings, level = 0) {
   const result = [];
+  let intenalImports = ""
 
   const firstSegments = new Set(
     strings
@@ -101,24 +102,33 @@ function buildRoutesMap(strings, level = 0) {
 
     const page = filteredStrings.find(str => 
       str.endsWith(`${segment}.tsx`) ||
+      str.endsWith(`${segment}/route.tsx`)
+    );
+
+    const lazyPage = filteredStrings.find(str => 
       str.endsWith(`${segment}.lazy.tsx`) ||
-      str.endsWith(`${segment}/route.tsx`) ||
       str.endsWith(`${segment}/route.lazy.tsx`)
     );
 
-    if (page) {
-      newNode.lazy = `ImportStart'@/routes/${page}'ImportEnd`;
+    if (lazyPage) {
+      newNode.lazy = `ImportStart'@/routes/${lazyPage}'ImportEnd`;
     }
 
-    const { routesMap } = buildRoutesMap(filteredStrings, level + 1);
-    if (routesMap.length > 0) {
-      newNode.children = routesMap;
+    if (page) {
+      const random = Math.floor(Math.random()*100000+1)
+      intenalImports += `import * as route${random} from '@/routes/${page}';\n`;
+      newNode.spread = `spreadStartroute${random}spreadEnd`;
     }
+
+    const { routesMap, imports } = buildRoutesMap(filteredStrings, level + 1);
+    if (routesMap.length > 0) newNode.children = routesMap;
+    // console.log(imports)
+    if (imports) intenalImports += imports
 
     result.push(newNode);
   }
 
-  return { routesMap: result };
+  return { routesMap: result, imports: intenalImports };
 }
 
 export function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
@@ -145,17 +155,18 @@ export function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' })
             lazy: `ImportStart'@/root.lazy.tsx'ImportEnd`,
             children: []
           }];
-          const { routesMap } = buildRoutesMap(files);
+          const { routesMap, imports } = buildRoutesMap(files);
           tree[0].children = routesMap;
-
+          
           const routesObject = JSON.stringify(tree)
             .replace(/"ImportStart/g, '() => import(')
-            .replace(/ImportEnd"/g, ')');
-            // .replace(/"spread":"spreadStart/g, '...')
-            // .replace(/spreadEnd"/g, '')
-          // console.log(JSON.stringify(routesMap, null, 2));
+            .replace(/ImportEnd"/g, ')')
+            .replace(/"spread":"spreadStart/g, '...')
+            .replace(/spreadEnd"/g, '')
+          console.log(JSON.stringify(routesObject, null, 2));
 
-          const routesCode = `export const routes = ${routesObject}`;
+          const routesCode = `${imports}\nexport const routes = ${routesObject}
+          `;
           return routesCode;
         }
       }
