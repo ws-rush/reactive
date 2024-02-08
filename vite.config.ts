@@ -16,6 +16,19 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { normalizePath  } from 'vite'
 
+async function isFileExist(filePath) {
+  try {
+    await fs.stat(filePath);
+    return true; // File exists
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      return false; // File does not exist
+    } else {
+      throw error; // Other error occurred
+    }
+  }
+}
+
 async function getFiles(directory, pattern) {
   try {
     const files = await fs.readdir(directory);
@@ -66,7 +79,7 @@ async function listFiles(baseDirectory: string) {
   return result.map(path => normalizePath(path).replace('src/routes/', ''))
 }
 
-function buildRoutesMap(strings, level = 0) {
+function buildRoutesMap(strings, appDirectory, level = 0,) {
   const result = [];
   let intenalImports = ""
 
@@ -86,7 +99,7 @@ function buildRoutesMap(strings, level = 0) {
     const filteredStrings = strings
       .filter(str => str.split('.')[level] === segment || str.split('.')[level] === `${segment}/route`)
 
-    const path = segment.replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
+    const routePath = segment.replace(/\(([^)]*)\)\??$/, '$1?').replace(/\$+$/, '*').replace(/^\$/, ':');
 
     if (filteredStrings.length === 0) {
       continue;
@@ -94,10 +107,10 @@ function buildRoutesMap(strings, level = 0) {
 
     const newNode = {};
 
-    if (path === '_index') {
+    if (routePath === '_index') {
       newNode.index = true;
-    } else if (!path.startsWith('_')) {
-      newNode.path = path;
+    } else if (!routePath.startsWith('_')) {
+      newNode.path = routePath;
     }
 
     const page = filteredStrings.find(str => 
@@ -111,16 +124,18 @@ function buildRoutesMap(strings, level = 0) {
     );
 
     if (lazyPage) {
-      newNode.lazy = `ImportStart'@/routes/${lazyPage}'ImportEnd`;
+      const absolutePath = path.resolve(__dirname, appDirectory, `routes/${lazyPage}`)
+      newNode.lazy = `ImportStart'${absolutePath}'ImportEnd`;
     }
 
     if (page) {
       const random = Math.floor(Math.random()*100000+1)
-      intenalImports += `import * as route${random} from '@/routes/${page}';\n`;
-      newNode.spread = `spreadStartroute${random}spreadEnd`;
+      const absolutePath = path.resolve(__dirname, appDirectory, `routes/${page}`)
+      intenalImports += `import * as route${random} from '${absolutePath}'\n`;
+      newNode.spread = `SpreadStartroute${random}SpreadEnd`;
     }
 
-    const { routesMap, imports } = buildRoutesMap(filteredStrings, level + 1);
+    const { routesMap, imports } = buildRoutesMap(filteredStrings, appDirectory ,level + 1);
     if (routesMap.length > 0) newNode.children = routesMap;
     // console.log(imports)
     if (imports) intenalImports += imports
@@ -131,8 +146,7 @@ function buildRoutesMap(strings, level = 0) {
   return { routesMap: result, imports: intenalImports };
 }
 
-export function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' }) {
-  let filesCache = null; // Cache the files to compare changes
+export function remixRouter({ appDirectory } = { appDirectory: './app' }) {
 
   return {
     name: 'vite-plugin-remix-router',
@@ -144,31 +158,35 @@ export function remixRouter({ baseDirectory } = { baseDirectory: 'src/routes' })
     },
     async load(id) {
       if (id === 'virtual:routes') {
-        const files = await listFiles(baseDirectory);
+        const files = await listFiles(appDirectory + '/routes')
+        let { routesMap, imports } = buildRoutesMap(files, appDirectory)
 
-        // Check if files have changed
-        if (!filesCache || JSON.stringify(files) !== JSON.stringify(filesCache)) {
-          filesCache = files;
-
-          const tree = [{
+        if (await isFileExist(appDirectory + '/root.lazy.tsx')) {
+          const absolutePath = path.resolve(__dirname, appDirectory, 'root.lazy.tsx')
+          routesMap = [{
             path: '/',
-            lazy: `ImportStart'@/root.lazy.tsx'ImportEnd`,
-            children: []
-          }];
-          const { routesMap, imports } = buildRoutesMap(files);
-          tree[0].children = routesMap;
-          
-          const routesObject = JSON.stringify(tree)
-            .replace(/"ImportStart/g, '() => import(')
-            .replace(/ImportEnd"/g, ')')
-            .replace(/"spread":"spreadStart/g, '...')
-            .replace(/spreadEnd"/g, '')
-          console.log(JSON.stringify(routesObject, null, 2));
-
-          const routesCode = `${imports}\nexport const routes = ${routesObject}
-          `;
-          return routesCode;
+            lazy: `ImportStart${absolutePath}ImportEnd`,
+            children: routesMap
+          }]
+        } else if (await isFileExist(appDirectory + '/root.tsx')) {
+          const absolutePath = path.resolve(__dirname, appDirectory, 'root.tsx')
+          imports += `import * as root from '${absolutePath}'\n`
+          routesMap = [{
+            path: '/',
+            spread: `SpreadStartrootSpreadEnd`,
+            children: routesMap
+          }]
         }
+  
+        const routesObject = JSON.stringify(routesMap)
+          .replace(/"ImportStart/g, '() => import(')
+          .replace(/ImportEnd"/g, ')')
+          .replace(/"spread":"SpreadStart/g, '...')
+          .replace(/SpreadEnd"/g, '')
+        console.log(JSON.stringify(routesObject, null, 2))
+
+        const routesCode = `${imports}\nexport const routes = ${routesObject}`
+        return routesCode
       }
     },
   };
@@ -188,7 +206,7 @@ export default defineConfig({
       },
     }),
     lingui(),
-    remixRouter(),
+    remixRouter({ appDirectory: './src' }),
     UnoCSS(),
     Inspect(),
     topLevelAwait(),
