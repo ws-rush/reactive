@@ -15,6 +15,7 @@ import { lingui } from "@lingui/vite-plugin";
 import { promises as fs } from 'fs';
 import path from 'path';
 import { normalizePath  } from 'vite'
+import { createUnplugin } from 'unplugin'
 
 async function isFileExist(filePath) {
   try {
@@ -79,7 +80,7 @@ async function listFiles(baseDirectory: string) {
   return result.map(path => normalizePath(path).replace('src/routes/', ''))
 }
 
-function buildRoutesMap(strings, appDirectory, level = 0,) {
+function buildRoutesMap(strings, appDirectory, level = 0) {
   const result = [];
   let intenalImports = ""
 
@@ -152,11 +153,9 @@ function buildRoutesMap(strings, appDirectory, level = 0,) {
   return { routesMap: result, imports: intenalImports };
 }
 
-export function remixRouter({ appDirectory } = { appDirectory: './app' }) {
-
+const unplugin = createUnplugin(({ appDirectory } = { appDirectory: './app' }) => {
   return {
-    name: 'vite-plugin-remix-router',
-    enforce: 'pre',
+    name: 'unplugin-remix-router',
     async resolveId(source) {
       if (source === 'virtual:routes') {
         return source;
@@ -189,15 +188,16 @@ export function remixRouter({ appDirectory } = { appDirectory: './app' }) {
           .replace(/ImportEnd"/g, ')')
           .replace(/"spread":"SpreadStart/g, '...')
           .replace(/SpreadEnd"/g, '')
-        console.log(JSON.stringify(routesObject, null, 2))
+        // console.log(JSON.stringify(routesObject, null, 2))
 
         const routesCode = `${imports}\nexport const routes = ${routesObject}`
         return routesCode
       }
     },
-  };
-}
+  }
+})
 
+const remixRouter = unplugin.vite
 
 // https://vitejs.dev/config/
 export default defineConfig({
