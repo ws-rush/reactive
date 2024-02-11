@@ -20,7 +20,7 @@ Mocking up web app with <b>Reactive</b><sup><em>(speed)</em></sup><br>
 
 - 🗂 [File based routing with layouts support](https://github.com/oedotme/generouted)
 
-- 📦 [Components auto importing](./src/components)
+- 📦 [Components auto importing](./app/components)
 
 - 🍍 [State Management via zustand](https://github.com/pmndrs/zustand)
 

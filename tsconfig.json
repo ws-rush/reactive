@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": { "@/*": ["src/*"] },
+    "paths": { "@/*": ["app/*"] },
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
@@ -32,7 +32,7 @@
   "include": [
     ".eslintrc.json",
     "auto-imports.d.ts",
-    "src"
+    "app"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

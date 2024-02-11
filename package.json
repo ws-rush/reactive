@@ -16,7 +16,6 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@generouted/react-router": "^1.15.8",
     "@lingui/core": "^4.5.0",
     "@lingui/macro": "^4.5.0",
     "@lingui/react": "^4.5.0",
@@ -59,6 +58,7 @@
     "unocss-preset-theme": "^0.10.1",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-fonts": "^1.0.3",
+    "unplugin-remix-router": "1.1.0-beta.2",
     "vite": "^4.4.9",
     "vite-imagetools": "^6.0.0",
     "vite-plugin-inspect": "^0.7.38",

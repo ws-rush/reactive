@@ -3,9 +3,9 @@ import { type LinguiConfig } from '@lingui/conf';
 const config: LinguiConfig = {
   catalogs: [
     {
-      exclude: ['src/locales'],
-      include: ['src'],
-      path: 'src/locales/{locale}',
+      exclude: ['app/locales'],
+      include: ['app'],
+      path: 'app/locales/{locale}',
     },
   ],
   fallbackLocales: {

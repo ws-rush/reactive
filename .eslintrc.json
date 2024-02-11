@@ -13,8 +13,7 @@
     "*.config.ts",
     "*.d.ts",
     "*.json",
-    "pnpm-lock.yaml",
-    "src/router.ts"
+    "pnpm-lock.yaml"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["react-refresh", "cypress", "@mizdra/layout-shift", "sonarjs", "deprecate"],
@@ -31,6 +30,7 @@
     "react/function-component-definition": "off",
     "canonical/id-match": "off",
     "react/jsx-no-undef": "off",
-    "import/no-unassigned-import": "off"
+    "import/no-unassigned-import": "off",
+    "import/extensions": "off"
   }
 }

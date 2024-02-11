@@ -3,7 +3,7 @@ import viteLogo from '@/assets/vite.jpg?w=400&h=300&format=webp';
 import { logger } from '@/utils/functions/logger';
 import { Trans } from '@lingui/macro';
 
-export default function Component() {
+export function Component() {
   const [count, setCount] = useState(0);
   logger('render');
 
@@ -38,14 +38,15 @@ export default function Component() {
       </h1>
       <div className="card">
         <button
-          onClick={() => setCount((previousCount) => previousCount + 1)}
+          // eslint-disable-next-line @typescript-eslint/no-shadow
+          onClick={() => setCount((count) => count + 1)}
           type="button"
         >
           <Trans>count is</Trans> {count} <i className="tabler-123" />
         </button>
         <p>
           <Trans>
-            Edit <code>src/App.tsx</code> and save to test HMR
+            Edit <code>app/routes/_index.tsx</code> and save to test HMR
           </Trans>
         </p>
       </div>

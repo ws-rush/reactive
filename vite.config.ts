@@ -1,6 +1,5 @@
 /// <reference types="vitest" />
 
-import generouted from '@generouted/react-router/plugin';
 import { lingui } from '@lingui/vite-plugin';
 import react from '@vitejs/plugin-react';
 import UnoCSS from 'unocss/vite';
@@ -11,6 +10,7 @@ import { imagetools } from 'vite-imagetools';
 // import { VitePWA } from 'vite-plugin-pwa'
 import Inspect from 'vite-plugin-inspect';
 import topLevelAwait from 'vite-plugin-top-level-await';
+import remixRouter from 'unplugin-remix-router/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,8 +20,8 @@ export default defineConfig({
         plugins: ['macros'],
       },
     }),
+    remixRouter(),
     lingui(),
-    generouted(),
     UnoCSS(),
     Inspect(),
     topLevelAwait(),
@@ -42,14 +42,14 @@ export default defineConfig({
 
     AutoImport({
       defaultExportByFilename: true,
-      dirs: ['src/components/**', 'src/config/**'],
+      dirs: ['app/components/**', 'app/config/**'],
       dts: true,
       eslintrc: { enabled: true },
       imports: ['react', 'react-router-dom'],
       injectAtEnd: true,
     }),
   ],
-  resolve: { alias: { '@': '/src' } },
+  resolve: { alias: { '@': '/app' } },
   test: {
     environment: 'happy-dom',
   },
