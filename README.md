@@ -28,19 +28,17 @@ Mocking up web app with <b>Reactive</b><sup><em>(speed)</em></sup><br>
 
 - 😃 [Use icons from any icon sets with classes](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
 
+- 🔤 [Self-hosted fonts]([https://github.com/cssninjaStudio/unplugin-fonts](https://github.com/unocss/unocss/tree/main/packages/preset-web-fonts) # miss self-hosting
+
 - 🌍 [I18n ready](./locales)
 
 - 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) # not supported yet
 
 - 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import)
 
-- 🖨 Static-site generation (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg) # not implemeted
-
 - 🗒 [Markdown Support](https://github.com/antfu/vite-plugin-vue-markdown) # not implemented
 
 - 🖼 [Transform and Optmize images](https://github.com/JonasKruckenberg/imagetools/tree/main/packages/vite)
-
-- 🔤 [Self-hosted fonts](https://github.com/cssninjaStudio/unplugin-fonts) # miss self-hosting
 
 - 🦾 TypeScript, of course
 
