@@ -123,10 +123,6 @@ docker run --rm -it -p 8080:80 vitesse:latest
 
 Configure apps is a headeach, I loved vitesse template for vue, so I decided do one for react.
 
-# TODO:
-- upgrade remix router to v2
-
-
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
