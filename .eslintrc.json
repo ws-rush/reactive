@@ -24,6 +24,7 @@
     ],
     
     // Don't like
+    "no-undef": "off", // disable coz typescript check it already
     "canonical/filename-match-exported": "off",
     "func-style": "off",
     "canonical/filename-match-regex": "off",
