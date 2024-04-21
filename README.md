@@ -28,7 +28,7 @@ Mocking up web app with <b>Reactive</b><sup><em>(speed)</em></sup><br>
 
 - 😃 [Use icons from any icon sets with classes](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
 
-- 🔤 [Self-hosted fonts]([https://github.com/cssninjaStudio/unplugin-fonts](https://github.com/unocss/unocss/tree/main/packages/preset-web-fonts) # miss self-hosting
+- 🔤 [Remote fonts](https://github.com/unocss/unocss/tree/main/packages/preset-web-fonts) (for self hosted fonts use `FontSource` [install](https://fontsource.org/fonts/red-hat-text/install))
 
 - 🌍 [I18n ready](./locales)
 

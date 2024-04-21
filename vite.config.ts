@@ -4,7 +4,6 @@ import { lingui } from '@lingui/vite-plugin';
 import react from '@vitejs/plugin-react';
 import UnoCSS from 'unocss/vite';
 import AutoImport from 'unplugin-auto-import/vite';
-import Unfonts from 'unplugin-fonts/vite';
 import { defineConfig } from 'vite';
 import { imagetools } from 'vite-imagetools';
 // import { VitePWA } from 'vite-plugin-pwa'
@@ -25,17 +24,6 @@ export default defineConfig({
     UnoCSS(),
     Inspect(),
     topLevelAwait(),
-
-    Unfonts({
-      fontsource: {
-        families: [
-          {
-            name: 'Lato',
-            weights: [100, 300, 400, 700, 900],
-          },
-        ],
-      },
-    }),
 
     // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
     imagetools(),
