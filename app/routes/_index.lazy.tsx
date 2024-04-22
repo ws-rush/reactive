@@ -53,6 +53,9 @@ export function Component() {
       <p className="read-the-docs">
         <Trans>Click on the Vite and React logos to learn more</Trans>
       </p>
+      <p className="read-the-docs">
+        <Link to="content/readme"><Trans>readme</Trans></Link>
+      </p>
 
       <button
         className="btn"
