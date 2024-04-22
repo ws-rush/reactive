@@ -7,6 +7,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import { defineConfig } from 'vite';
 import { imagetools } from 'vite-imagetools';
 import{ plugin, Mode } from 'vite-plugin-markdown'
+import jsonServer from "vite-plugin-json-server";
 // import { VitePWA } from 'vite-plugin-pwa'
 import Inspect from 'vite-plugin-inspect';
 import topLevelAwait from 'vite-plugin-top-level-await';
@@ -27,7 +28,9 @@ export default defineConfig({
     topLevelAwait(),
 
     plugin({ mode: [Mode.HTML, Mode.MARKDOWN, Mode.TOC, Mode.REACT] }),
-
+    jsonServer({
+      profile: './db'
+    }),
     // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
     imagetools(),
 
