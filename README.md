@@ -22,7 +22,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 📦 [Components auto importing](./app/components)
 
-- 🍍 [State Management via zustand](https://github.com/pmndrs/zustand)
+- 🐻 [State Management via zustand](https://github.com/pmndrs/zustand)
 
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
 
@@ -37,6 +37,8 @@ Mocking up web app with <b>Reactive</b><br>
 - 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import)
 
 - 🗒 [Markdown Support](https://github.com/hmsk/vite-plugin-markdown?tab=readme-ov-file)
+
+- 🏷️ [Manage meta tsgs](https://github.com/nfl/react-helmet)
 
 - 🖼 [Transform and Optmize images](https://github.com/JonasKruckenberg/imagetools/tree/main/packages/vite)
 
