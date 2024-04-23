@@ -32,7 +32,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🌍 [I18n ready](./locales)
 
-- 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) # not supported yet
+<!-- - 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) -->
 
 - 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import)
 
