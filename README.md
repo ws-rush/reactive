@@ -9,7 +9,7 @@ Mocking up web app with <b>Reactive</b><br>
 <br>
 
 <p align='center'>
-<a href="https://reactive.netlify.app/">Live Demo</a>
+<a href="https://reactive-template.netlify.app/">Live Demo</a>
 </p>
 
 <br>
@@ -48,7 +48,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest), E2E Testing with [Cypress](https://cypress.io/) on [GitHub Actions](https://github.com/features/actions) # miss ci piplines
 
-- ☁️ Deploy on Netlify, zero-config # not implemented
+- ☁️ Deploy on Netlify, zero-config
 
 - 🔗 [Top Level Await](https://www.npmjs.com/package/vite-plugin-top-level-await) out of box
 
