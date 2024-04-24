@@ -1,36 +1,20 @@
-import reactLogo from '@/assets/react.svg';
-import viteLogo from '@/assets/vite.jpg?w=400&h=300&format=webp';
-import { logger } from '@/utils/functions/logger';
-import { Trans } from '@lingui/macro';
+import reactLogo from "@/assets/react.svg";
+import viteLogo from "@/assets/vite.jpg?w=400&h=300&format=webp";
+import { logger } from "@/utils/functions/logger";
+import { Trans } from "@lingui/macro";
 
 export function Component() {
   const [count, setCount] = useState(0);
-  logger('render');
+  logger("render");
 
   return (
     <>
       <div className="font-sans">
-        <a
-          href="https://vitejs.dev"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <img
-            alt="Vite logo"
-            className="logo"
-            src={viteLogo}
-          />
+        <a href="https://vitejs.dev" rel="noreferrer" target="_blank">
+          <img alt="Vite logo" className="logo" src={viteLogo} />
         </a>
-        <a
-          href="https://react.dev"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <img
-            alt="React logo"
-            className="logo react"
-            src={reactLogo}
-          />
+        <a href="https://react.dev" rel="noreferrer" target="_blank">
+          <img alt="React logo" className="logo react" src={reactLogo} />
         </a>
       </div>
       <h1>
@@ -54,43 +38,25 @@ export function Component() {
         <Trans>Click on the Vite and React logos to learn more</Trans>
       </p>
       <p className="read-the-docs">
-        <Link to="content/readme"><Trans>readme</Trans></Link>
+        <Link to="content/readme">
+          <Trans>readme</Trans>
+        </Link>
       </p>
 
-      <button
-        className="btn"
-        onClick={() => mode.set('system')}
-        type="button"
-      >
+      <button className="btn" onClick={() => mode.set("system")} type="button">
         System
       </button>
-      <button
-        className="btn"
-        onClick={() => mode.set('light')}
-        type="button"
-      >
+      <button className="btn" onClick={() => mode.set("light")} type="button">
         Light
       </button>
-      <button
-        className="btn"
-        onClick={() => mode.set('dark')}
-        type="button"
-      >
+      <button className="btn" onClick={() => mode.set("dark")} type="button">
         Dark
       </button>
 
-      <button
-        className="btn"
-        onClick={() => locale.set('ar')}
-        type="button"
-      >
+      <button className="btn" onClick={() => locale.set("ar")} type="button">
         change arabic
       </button>
-      <button
-        className="btn"
-        onClick={() => locale.set('en')}
-        type="button"
-      >
+      <button className="btn" onClick={() => locale.set("en")} type="button">
         change english
       </button>
     </>

@@ -27,12 +27,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client"],
+    "types": ["vite/client"]
   },
-  "include": [
-    ".eslintrc.json",
-    "auto-imports.d.ts",
-    "app"
-  ],
+  "include": [".eslintrc.json", "auto-imports.d.ts", "app"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

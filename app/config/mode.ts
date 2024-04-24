@@ -1,23 +1,23 @@
-export type Mode = 'system' | 'light' | 'dark';
+export type Mode = "system" | "light" | "dark";
 
 export const mode = {
-  darkMedia: window.matchMedia('(prefers-color-scheme: dark)'),
+  darkMedia: window.matchMedia("(prefers-color-scheme: dark)"),
   set(_mode: Mode) {
-    if (_mode === 'system') {
-      localStorage.removeItem('mode');
+    if (_mode === "system") {
+      localStorage.removeItem("mode");
       this.toggleDark({ matches: this.darkMedia.matches });
-      this.darkMedia.addEventListener('change', this.toggleDark);
+      this.darkMedia.addEventListener("change", this.toggleDark);
     } else {
       localStorage.mode = _mode;
-      this.toggleDark({ matches: _mode === 'dark' });
-      this.darkMedia.removeEventListener('change', this.toggleDark);
+      this.toggleDark({ matches: _mode === "dark" });
+      this.darkMedia.removeEventListener("change", this.toggleDark);
     }
   },
   toggleDark({ matches }: { matches: boolean }) {
-    document.documentElement.classList.toggle('dark', matches);
+    document.documentElement.classList.toggle("dark", matches);
   },
   get value() {
-    return (localStorage.getItem('mode') || 'system') as Mode;
+    return (localStorage.getItem("mode") || "system") as Mode;
   },
 };
 

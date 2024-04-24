@@ -16,15 +16,22 @@
     "pnpm-lock.yaml"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-refresh", "cypress", "@mizdra/layout-shift", "sonarjs", "deprecate"],
+  "plugins": [
+    "react-refresh",
+    "cypress",
+    "@mizdra/layout-shift",
+    "sonarjs",
+    "deprecate"
+  ],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",
       { "allowConstantExport": true }
     ],
-    
+
     // Don't like
     "no-undef": "off", // disable coz typescript check it already
+    "prettier/prettier": "off",
     "canonical/filename-match-exported": "off",
     "func-style": "off",
     "canonical/filename-match-regex": "off",

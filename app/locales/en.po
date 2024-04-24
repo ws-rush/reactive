@@ -17,22 +17,30 @@ msgstr ""
 #~ msgid "<0><1><2/></1><3><4/></3></0><5>Vite + React</5><6><7>count is {count} <8/></7><9>Edit <10>src/App.tsx</10> and save to test HMR</9></6><11>Click on the Vite and React logos to learn more</11>"
 #~ msgstr "<0><1><2/></1><3><4/></3></0><5>Vite + React</5><6><7>count is {count} <8/></7><9>Edit <10>src/App.tsx</10> and save to test HMR</9></6><11>Click on the Vite and React logos to learn more</11>"
 
-#: src/pages/index.tsx:31
+#: app/routes/_index.lazy.tsx:38
 msgid "Click on the Vite and React logos to learn more"
 msgstr "Click on the Vite and React logos to learn more"
 
-#: src/pages/index.tsx:24
+#: app/routes/_index.lazy.tsx:29
 msgid "count is"
 msgstr "count is"
 
+#: app/routes/_index.lazy.tsx:32
+msgid "Edit <0>app/routes/_index.tsx</0> and save to test HMR"
+msgstr "Edit <0>app/routes/_index.tsx</0> and save to test HMR"
+
 #: src/pages/index.tsx:27
-msgid "Edit <0>src/App.tsx</0> and save to test HMR"
-msgstr "Edit <0>src/App.tsx</0> and save to test HMR"
+#~ msgid "Edit <0>src/App.tsx</0> and save to test HMR"
+#~ msgstr "Edit <0>src/App.tsx</0> and save to test HMR"
 
 #: src/pages/auth/forgot-pass.tsx:4
-msgid "forgot password"
-msgstr "forgot password"
+#~ msgid "forgot password"
+#~ msgstr "forgot password"
 
-#: src/pages/index.tsx:21
+#: app/routes/_index.lazy.tsx:42
+msgid "readme"
+msgstr "readme"
+
+#: app/routes/_index.lazy.tsx:21
 msgid "Vite + React"
 msgstr "Vite + React"

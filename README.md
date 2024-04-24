@@ -44,6 +44,8 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🦾 TypeScript, of course
 
+- 🐶 Git hooks with [husky](https://typicode.github.io/husky)
+
 - ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest), E2E Testing with [Cypress](https://cypress.io/) on [GitHub Actions](https://github.com/features/actions) # miss ci piplines
 
 - ☁️ Deploy on Netlify, zero-config # not implemented
@@ -54,7 +56,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 📝 Mocking Server API with [json-server](https://github.com/yracnet/vite-plugin-json-server/tree/main)
 
->for component preview add [Preview.js](https://marketplace.visualstudio.com/items?itemName=zenclabs.previewjs) to vscode
+> for component preview add [Preview.js](https://marketplace.visualstudio.com/items?itemName=zenclabs.previewjs) to vscode
 
 <br>
 

@@ -5,13 +5,13 @@ import {
   presetUno,
   presetWebFonts,
   transformerVariantGroup,
-} from 'unocss';
-import presetTheme from 'unocss-preset-theme';
+} from "unocss";
+import presetTheme from "unocss-preset-theme";
 
 export default defineConfig({
   presets: [
     presetUno({
-      dark: 'media',
+      dark: "media",
     }),
     presetTheme({
       theme: {
@@ -22,8 +22,8 @@ export default defineConfig({
     }),
     presetIcons({
       extraProperties: {
-        display: 'inline-block',
-        'vertical-align': 'middle',
+        display: "inline-block",
+        "vertical-align": "middle",
       },
       // prefix: '',
       // warn: true,
@@ -32,21 +32,21 @@ export default defineConfig({
     presetTypography(),
     presetWebFonts({
       fonts: {
-        sans: 'Lato',
+        sans: "Lato",
       },
-      provider: 'google',
+      provider: "google",
     }),
   ],
   shortcuts: [
     [
-      'btn',
-      'px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50',
+      "btn",
+      "px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50",
     ],
   ],
   theme: {
     fontFamily: {
-      sans: ['Lato', 'sans-serif'],
-      serif: ['Lato', 'serif'],
+      sans: ["Lato", "sans-serif"],
+      serif: ["Lato", "serif"],
     },
   },
   transformers: [transformerVariantGroup()],
