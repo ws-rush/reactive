@@ -1,5 +1,5 @@
-import { attributes, ReactComponent } from "@/content/readme.md";
-import { Helmet } from "react-helmet";
+import { attributes, ReactComponent } from '@/content/readme.md'
+import { Helmet } from 'react-helmet'
 
 export function Component() {
   return (
@@ -11,5 +11,5 @@ export function Component() {
         <ReactComponent />
       </div>
     </>
-  );
+  )
 }
