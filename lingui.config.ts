@@ -3,7 +3,7 @@ import { type LinguiConfig } from '@lingui/conf'
 const config: LinguiConfig = {
   catalogs: [
     {
-      exclude: ['app/locales'],
+      exclude: ['**/app/locales', '**/app/*-env.d.ts'],
       include: ['app'],
       path: 'app/locales/{locale}',
     },
