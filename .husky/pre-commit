@@ -2,3 +2,5 @@ pnpm messages:extract
 pnpm format
 pnpm lint
 pnpm build
+
+git add .
