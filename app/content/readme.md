@@ -13,7 +13,7 @@ Mocking up web app with <b>Reactive</b><br>
 <br>
 
 <p align='center'>
-<a href="https://reactive.netlify.app/">Live Demo</a>
+<a href="https://reactive-template.netlify.app/">Live Demo</a>
 </p>
 
 <br>
@@ -26,7 +26,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 📦 [Components auto importing](./app/components)
 
-- 🍍 [State Management via zustand](https://github.com/pmndrs/zustand)
+- 🐻 [State Management via zustand](https://github.com/pmndrs/zustand)
 
 - 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
 
@@ -40,13 +40,17 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🗒 [Markdown Support](https://github.com/hmsk/vite-plugin-markdown?tab=readme-ov-file)
 
+- 🏷️ [Manage meta tsgs](https://github.com/nfl/react-helmet)
+
 - 🖼 [Transform and Optmize images](https://github.com/JonasKruckenberg/imagetools/tree/main/packages/vite)
 
 - 🦾 TypeScript, of course
 
+- 🐶 Git hooks with [husky](https://typicode.github.io/husky)
+
 - ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest), E2E Testing with [Cypress](https://cypress.io/) on [GitHub Actions](https://github.com/features/actions) # miss ci piplines
 
-- ☁️ Deploy on Netlify, zero-config # not implemented
+- ☁️ Deploy on Netlify, zero-config
 
 - 🔗 [Top Level Await](https://www.npmjs.com/package/vite-plugin-top-level-await) out of box
 
@@ -114,13 +118,13 @@ Go to [Netlify](https://app.netlify.com/start) and select your clone, `OK` along
 First, build the vitesse image by opening the terminal in the project's root directory.
 
 ```bash
-docker buildx build . -t vitesse:latest
+docker buildx build . -t reactive:latest
 ```
 
 Run the image and specify port mapping with the `-p` flag.
 
 ```bash
-docker run --rm -it -p 8080:80 vitesse:latest
+docker run --rm -it -p 8080:80 reactive:latest
 ```
 
 ## Why
