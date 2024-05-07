@@ -1,4 +1,4 @@
-import viteLogo from '@/assets/vite.jpg?w=400&h=300&format=webp'
+import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
 import { useUserStore } from '@/stores/user'
 import { t } from '@lingui/macro'
 
@@ -16,7 +16,7 @@ export function Component() {
 
   return (
     <div>
-      <div className="font-sans">
+      <div className="font-sans flex gap-4 justify-center m-4">
         <a
           href="https://vitejs.dev"
           rel="noreferrer"
@@ -33,7 +33,7 @@ export function Component() {
           rel="noreferrer"
           target="_blank"
         >
-          <div className="text-4xl">
+          <div className="text-5xl">
             <div className="i-carbon-chart-radar inline-block" />
           </div>
         </a>
