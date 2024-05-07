@@ -26,27 +26,27 @@ msgstr ""
 #~ msgid "<0><1><2/></1><3><4/></3></0><5>Vite + React</5><6><7>count is {count} <8/></7><9>Edit <10>src/App.tsx</10> and save to test HMR</9></6><11>Click on the Vite and React logos to learn more</11>"
 #~ msgstr ""
 
-#: app/components/TheFooter.tsx:17
+#: app/components/TheFooter.tsx:32
 msgid "button.about"
 msgstr "حول"
 
-#: app/routes/_default.hi.$name.tsx:50
+#: app/routes/_default.hi.$name.tsx:61
 msgid "button.back"
-msgstr ""
+msgstr "رجوع"
 
-#: app/routes/_home._index.lazy.tsx:49
+#: app/routes/_home._index.lazy.tsx:73
 msgid "button.go"
 msgstr "تجربة"
 
-#: app/components/TheFooter.tsx:5
+#: app/components/TheFooter.tsx:7
 msgid "button.home"
 msgstr "الرئيسية"
 
-#: app/components/TheFooter.tsx:9
+#: app/components/TheFooter.tsx:16
 msgid "button.toggle_dark"
 msgstr "التغيير إلى الوضع المظلم"
 
-#: app/components/TheFooter.tsx:13
+#: app/components/TheFooter.tsx:25
 msgid "button.toggle_langs"
 msgstr "تغيير اللغة"
 
@@ -70,32 +70,24 @@ msgstr "تغيير اللغة"
 #~ msgid "forgot password"
 #~ msgstr ""
 
-#: app/routes/_default.hi.$name.tsx:35
+#: app/routes/_default.hi.$name.tsx:37
 msgid "intro.aka"
-msgstr ""
+msgstr "معروف أيضا بـ"
 
-#: app/routes/_home._index.lazy.tsx:31
+#: app/routes/_home._index.lazy.tsx:51
 msgid "intro.desc"
 msgstr "قالب رياكت مستوحى من vitesse"
 
-#: app/routes/_default.hi.$name.tsx:29
+#: app/routes/_default.hi.$name.tsx:30
 msgid "intro.dynamic-route"
-msgstr ""
-
-#: app/routes/_default.hi.$name.tsx:25
-#~ msgid "intro.hi {savedName}"
-#~ msgstr ""
-
-#: app/routes/_default.hi.$name.tsx:25
-#~ msgid "intro.hi, {savedName}"
-#~ msgstr ""
+msgstr "استعراض الروابط المتغيرة"
 
 #: app/routes/_default.hi.$name.tsx:25
 msgid "intro.hi, {savedName}!"
-msgstr ""
+msgstr "حياك {savedName}!"
 
-#: app/components/TheInput.tsx:19
-#: app/routes/_home._index.lazy.tsx:41
+#: app/components/TheInput.tsx:21
+#: app/routes/_home._index.lazy.tsx:64
 msgid "intro.whats-your-name"
 msgstr "ما اسمك؟"
 
