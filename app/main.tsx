@@ -1,7 +1,7 @@
 // css imports
 import '@unocss/reset/tailwind.css'
+import './styles/main.css'
 import 'virtual:uno.css'
-import './index.css'
 import { I18nProvider } from '@lingui/react'
 import { ClickToComponent } from 'click-to-react-component'
 // js imports

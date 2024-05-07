@@ -1,5 +1,5 @@
 <p align='center'>
-  <img src='https://user-images.githubusercontent.com/11247099/154486817-f86b8f20-5463-4122-b6e9-930622e757f2.png' alt='Vitesse - Opinionated Vite Starter Template' width='600'/>
+  <img src='https://api.iconify.design/carbon:chart-radar.svg?color=%23000000' alt='Reactive - Opinionated Vite Starter Template' width='80'/>
 </p>
 
 <p align='center'>
@@ -30,7 +30,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🔤 [Remote fonts](https://github.com/unocss/unocss/tree/main/packages/preset-web-fonts) (for self hosted fonts use `FontSource` [install](https://fontsource.org/fonts/red-hat-text/install))
 
-- 🌍 [I18n ready](./locales)
+- 🌍 [I18n ready](https://lingui.dev/)
 
 <!-- - 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) -->
 

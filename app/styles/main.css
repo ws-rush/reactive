@@ -1,0 +1,13 @@
+/* use it for dynamic themes */
+html.dark {
+  background: #121212;
+  color-scheme: dark;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
