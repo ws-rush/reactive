@@ -12,7 +12,7 @@ export function Component() {
       <Outlet />
       <TheFooter />
       <div className="mx-auto mt-5 text-center text-sm opacity-50">
-        <Trans>[Default Layout]</Trans>
+        <Trans>[Home Layout]</Trans>
       </div>
     </main>
   )
