@@ -7,7 +7,7 @@ export function Component() {
       <Helmet>
         <title>{attributes.title}</title>
       </Helmet>
-      <div className="text-base p-4 prose prose-truegray xl:text-xl dark:text-gray-50">
+      <div className="m-auto text-base prose">
         <div className="text-center">
           <div className="text-4xl -mb-6 m-auto i-carbon-dicom-overlay" />
           <h3>{attributes.title}</h3>

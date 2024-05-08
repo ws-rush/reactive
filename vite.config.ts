@@ -14,40 +14,44 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 import remixRouter from 'unplugin-remix-router/vite'
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        plugins: ['macros'],
-      },
-    }),
-    remixRouter(),
-    lingui(),
-    UnoCSS(),
-    Inspect(),
-    topLevelAwait(),
+export default defineConfig(async () => {
+  return {
+    plugins: [
+      react({
+        babel: {
+          plugins: ['macros'],
+        },
+      }),
+      remixRouter(),
+      lingui(),
+      UnoCSS(),
+      Inspect(),
+      topLevelAwait(),
 
-    // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
-    plugin({ mode: [Mode.HTML, Mode.MARKDOWN, Mode.TOC, Mode.REACT] }),
+      // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
+      plugin({
+        mode: [Mode.HTML, Mode.MARKDOWN, Mode.TOC, Mode.REACT],
+      }),
 
-    pluginJsonServer({
-      profile: './db',
-    }),
+      pluginJsonServer({
+        profile: './db',
+      }),
 
-    // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
-    imagetools(),
+      // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
+      imagetools(),
 
-    AutoImport({
-      defaultExportByFilename: true,
-      dirs: ['app/components/**', 'app/config/**'],
-      dts: true,
-      eslintrc: { enabled: true },
-      imports: ['react', 'react-router-dom'],
-      injectAtEnd: true,
-    }),
-  ],
-  resolve: { alias: { '@': '/app' } },
-  test: {
-    environment: 'happy-dom',
-  },
+      AutoImport({
+        defaultExportByFilename: true,
+        dirs: ['app/components/**', 'app/config/**'],
+        dts: true,
+        eslintrc: { enabled: true },
+        imports: ['react', 'react-router-dom'],
+        injectAtEnd: true,
+      }),
+    ],
+    resolve: { alias: { '@': '/app' } },
+    test: {
+      environment: 'happy-dom',
+    },
+  }
 })

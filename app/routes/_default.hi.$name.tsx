@@ -17,7 +17,7 @@ export function Component() {
   }, [name])
 
   return (
-    <div>
+    <div className="text-center">
       <div className="text-4xl">
         <div className="i-carbon-pedestrian inline-block" />
       </div>
