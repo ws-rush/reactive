@@ -1,5 +1,5 @@
 <p align='center'>
-  <img src='https://api.iconify.design/carbon:chart-radar.svg?color=%23000000' alt='Reactive - Opinionated Vite Starter Template' width='80'/>
+  <img src='https://api.iconify.design/carbon:chart-radar.svg?color=%23939598' alt='Reactive - Opinionated Vite Starter Template' width='80'/>
 </p>
 
 <p align='center'>
