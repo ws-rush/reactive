@@ -14,6 +14,8 @@ Mocking up web app with <b>Reactive</b><br>
 
 <br>
 
+> linguijs have issue with `t` macro, use `<Trans>` micro as much as possible instead, until [issue](https://github.com/lingui/js-lingui/issues/1933) solverd
+
 ## Features
 
 - ⚡️ [React 18](https://react.dev/), [Vite](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - born with fastness
