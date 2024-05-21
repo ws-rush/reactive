@@ -27,3 +27,5 @@ dist-ssr
 auto-imports.d.ts
 .eslintrc-auto-import.json
 coverage/
+
+pnpm-lock.yaml

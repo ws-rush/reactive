@@ -86,6 +86,7 @@ When you use this template, try follow the checklist to update your info properl
 
 - [ ] Remove the `.github` folder
 - [ ] Clean up the READMEs and remove routes
+- [ ] Remove tests and write your own
 
 And, enjoy :)
 
