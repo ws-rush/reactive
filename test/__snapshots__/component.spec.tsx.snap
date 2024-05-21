@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Counter component > should render 1`] = `
+<div>
+  10
+  <button
+    class="inc"
+    data-testid="inc-button"
+    type="button"
+  >
+    +
+  </button>
+  <button
+    class="dec"
+    data-testid="dec-button"
+    type="button"
+  >
+    -
+  </button>
+</div>
+`;

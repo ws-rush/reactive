@@ -50,7 +50,10 @@ export default defineConfig(async () => {
       }),
     ],
     resolve: { alias: { '@': '/app' } },
+
+    // https://github.com/vitest-dev/vitest
     test: {
+      include: ['test/**/*.{spec,test}.?(c|m)[jt]s?(x)'],
       environment: 'happy-dom',
     },
   }
