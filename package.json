@@ -16,6 +16,7 @@
     "test:once": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
+    "test:e2e": "cypress open",
     "prepare": "husky"
   },
   "dependencies": {
@@ -52,6 +53,7 @@
     "click-to-react-component": "^1.1.0",
     "cross-env": "^7.0.3",
     "cypress": "^13.8.0",
+    "cypress-vite": "^1.5.0",
     "eslint": "^8.57.0",
     "eslint-config-canonical": "^42.8.2",
     "eslint-plugin-cypress": "^2.15.2",

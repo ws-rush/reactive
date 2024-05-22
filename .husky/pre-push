@@ -1,1 +1,2 @@
 pnpm test:once
+pnpm test:e2e
