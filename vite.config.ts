@@ -12,10 +12,19 @@ import { pluginJsonServer } from 'vite-plugin-json-server'
 import Inspect from 'vite-plugin-inspect'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import remixRouter from 'unplugin-remix-router/vite'
+import { qrcode } from 'vite-plugin-qrcode'
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => {
   return {
+    resolve: { alias: { '@': '/app' } },
+
+    // https://github.com/vitest-dev/vitest
+    test: {
+      include: ['test/**/*.{spec,test}.?(c|m)[jt]s?(x)'],
+      environment: 'happy-dom',
+    },
+
     plugins: [
       react({
         babel: {
@@ -27,19 +36,15 @@ export default defineConfig(async () => {
       UnoCSS(),
       Inspect(),
       topLevelAwait(),
-
       // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
       plugin({
         mode: [Mode.HTML, Mode.MARKDOWN, Mode.TOC, Mode.REACT],
       }),
-
       pluginJsonServer({
         profile: './db',
       }),
-
       // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
       imagetools(),
-
       AutoImport({
         defaultExportByFilename: true,
         dirs: ['app/components/**', 'app/config/**', 'app/middlewares/**'],
@@ -48,13 +53,7 @@ export default defineConfig(async () => {
         imports: ['react', 'react-router-dom'],
         injectAtEnd: true,
       }),
+      qrcode(),
     ],
-    resolve: { alias: { '@': '/app' } },
-
-    // https://github.com/vitest-dev/vitest
-    test: {
-      include: ['test/**/*.{spec,test}.?(c|m)[jt]s?(x)'],
-      environment: 'happy-dom',
-    },
   }
 })

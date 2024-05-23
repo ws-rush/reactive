@@ -160,6 +160,9 @@ devDependencies:
   vite-plugin-markdown:
     specifier: ^2.2.0
     version: 2.2.0(vite@4.5.3)
+  vite-plugin-qrcode:
+    specifier: ^0.2.3
+    version: 0.2.3(vite@4.5.3)
   vite-plugin-top-level-await:
     specifier: ^1.4.1
     version: 1.4.1(rollup@2.79.1)(vite@4.5.3)
@@ -8587,6 +8590,11 @@ packages:
     engines: {node: '>=6.0.0'}
     dev: true
 
+  /qrcode-terminal@0.12.0:
+    resolution: {integrity: sha512-EXtzRZmC+YGmGlDFbXKxQiMZNwCLEO6BANKXG4iCtSIM0yqc/pappSx3RIKr4r0uh5JsBckOXeKrB3Iz7mdQpQ==}
+    hasBin: true
+    dev: true
+
   /qs@6.10.4:
     resolution: {integrity: sha512-OQiU+C+Ds5qiH91qh/mg0w+8nwQuLjM4F4M/PbmhDOoYehPh+Fb0bDjtR1sOvy7YKxvj28Y/M0PhP5uVX0kB+g==}
     engines: {node: '>=0.6'}
@@ -10203,6 +10211,16 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /vite-plugin-qrcode@0.2.3(vite@4.5.3):
+    resolution: {integrity: sha512-TFzhf20v29hnh2XEoZ2kxg8Ff/ui36pR7PGDaHaKEmsQaRagv31XacHxbw5O07HcC1Mkr4tKcYb+PFASSceHmw==}
+    engines: {node: ^14.13.1 || ^16.0.0 || >=18}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      qrcode-terminal: 0.12.0
+      vite: 4.5.3(@types/node@20.12.7)
+    dev: true
 
   /vite-plugin-top-level-await@1.4.1(rollup@2.79.1)(vite@4.5.3):
     resolution: {integrity: sha512-hogbZ6yT7+AqBaV6lK9JRNvJDn4/IJvHLu6ET06arNfo0t2IsyCaon7el9Xa8OumH+ESuq//SDf8xscZFE0rWw==}
