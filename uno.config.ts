@@ -32,7 +32,7 @@ export default defineConfig({
       fonts: {
         sans: 'Lato',
       },
-      provider: 'google',
+      provider: 'bunny',
     }),
   ],
   shortcuts: [
