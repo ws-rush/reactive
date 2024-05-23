@@ -36,7 +36,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 <!-- - 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) -->
 
-- 📥 [APIs auto importing](https://github.com/antfu/unplugin-auto-import)
+- 📥 [APIs auto importing](https://github.com/unjs/unimport)
 
 - 🗒 [Markdown Support](https://github.com/hmsk/vite-plugin-markdown?tab=readme-ov-file)
 
