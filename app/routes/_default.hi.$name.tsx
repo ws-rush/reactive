@@ -1,4 +1,3 @@
-import { setNewName, useUserStore } from '@/stores/user'
 import { Trans } from '@lingui/macro'
 
 export function Component() {

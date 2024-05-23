@@ -1,5 +1,4 @@
 import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
-import { useUserStore } from '@/stores/user'
 import { t } from '@lingui/macro'
 
 export function Component() {

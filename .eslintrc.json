@@ -5,8 +5,7 @@
     "canonical/auto",
     "plugin:sonarjs/recommended",
     "eslint:recommended",
-    "plugin:react-hooks/recommended",
-    "./.eslintrc-auto-import.json"
+    "plugin:react-hooks/recommended"
   ],
   "ignorePatterns": [
     "dist",

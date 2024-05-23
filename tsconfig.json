@@ -29,6 +29,6 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["vite/client"]
   },
-  "include": [".eslintrc.json", "auto-imports.d.ts", "app"],
+  "include": [".eslintrc.json", "unimport.d.ts", "app"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
