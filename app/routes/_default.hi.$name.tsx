@@ -1,6 +1,3 @@
-// import reactLogo from '@/assets/react.svg'
-// import viteLogo from '@/assets/vite.jpg?w=400&h=300&format=webp'
-// import { logger } from '@/utils/functions/logger'
 import { setNewName, useUserStore } from '@/stores/user'
 import { Trans } from '@lingui/macro'
 

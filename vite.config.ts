@@ -42,7 +42,7 @@ export default defineConfig(async () => {
 
       AutoImport({
         defaultExportByFilename: true,
-        dirs: ['app/components/**', 'app/config/**'],
+        dirs: ['app/components/**', 'app/config/**', 'app/middlewares/**'],
         dts: true,
         eslintrc: { enabled: true },
         imports: ['react', 'react-router-dom'],
