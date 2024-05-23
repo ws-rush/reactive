@@ -13,10 +13,12 @@
     "preview": "vite preview",
     "messages:extract": "lingui extract",
     "test": "vitest",
+    "test:unit": "vitest",
     "test:once": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "test:e2e": "cypress open",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky"
   },
   "dependencies": {
