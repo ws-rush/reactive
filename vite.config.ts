@@ -49,11 +49,11 @@ export default defineConfig(async () => {
       Unimport.vite({
         presets: ['react', 'react-router-dom', 'vitest'],
         dirs: [
-          './app/components/*',
-          './app/config/*',
-          './app/middlewares/*',
-          './app/stores/*',
-          './app/queries/*',
+          './app/components/**',
+          './app/config/**',
+          './app/middlewares/**',
+          './app/stores/**',
+          './app/queries/**',
         ],
         dts: true,
       }),

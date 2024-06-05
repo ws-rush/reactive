@@ -12,7 +12,8 @@
     "*.config.ts",
     "*.d.ts",
     "*.json",
-    "pnpm-lock.yaml"
+    "pnpm-lock.yaml",
+    "unimport.d.ts"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
