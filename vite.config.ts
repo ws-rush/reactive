@@ -1,9 +1,10 @@
 /// <reference types="vitest" />
 
+import { defineConfig } from 'vite'
 import { lingui } from '@lingui/vite-plugin'
 import react from '@vitejs/plugin-react'
 import UnoCSS from 'unocss/vite'
-import { defineConfig } from 'vite'
+import Icons from 'unplugin-icons/vite'
 import { imagetools } from 'vite-imagetools'
 import { plugin, Mode } from 'vite-plugin-markdown'
 import { pluginJsonServer } from 'vite-plugin-json-server'
@@ -34,6 +35,13 @@ export default defineConfig(async () => {
       remixRouter(),
       lingui(),
       UnoCSS(),
+      Icons({
+        autoInstall: true,
+        compiler: 'jsx',
+        jsx: 'react',
+        defaultStyle: 'vertical-align: middle;',
+        defaultClass: 'inline-block',
+      }),
       Inspect(),
       topLevelAwait(),
       // add `declare module "@/content/*"` to vite-env.d.ts to use with typescript

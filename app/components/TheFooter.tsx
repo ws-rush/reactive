@@ -1,4 +1,10 @@
 import { t } from '@lingui/macro'
+import CarbonChartRadar from '~icons/carbon/chart-radar'
+import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
+import CarbonLanguage from '~icons/carbon/language'
+import CarbonLogoGithub from '~icons/carbon/logo-github'
+import CarbonMoon from '~icons/carbon/moon'
+import CarbonSun from '~icons/carbon/sun'
 
 export function TheFooter() {
   return (
@@ -7,7 +13,7 @@ export function TheFooter() {
         title={t`button.home`}
         to="/"
       >
-        <div className="icon-btn i-carbon-chart-radar" />
+        <CarbonChartRadar className="icon-btn" />
       </Link>
 
       <button
@@ -16,7 +22,8 @@ export function TheFooter() {
         title={t`button.toggle_dark`}
         type="button"
       >
-        <div className="i-carbon-sun dark:i-carbon-moon" />
+        <CarbonSun className="dark:hidden" />
+        <CarbonMoon className="hidden dark:inline-block" />
       </button>
 
       <a
@@ -24,7 +31,7 @@ export function TheFooter() {
         onClick={() => locale.toggleLocales()}
         title={t`button.toggle_langs`}
       >
-        <div className="i-carbon-language" />
+        <CarbonLanguage />
       </a>
 
       <Link
@@ -32,7 +39,7 @@ export function TheFooter() {
         title={t`button.about`}
         to="/about"
       >
-        <div className=" icon-btn i-carbon-dicom-overlay" />
+        <CarbonDicomOverlay className=" icon-btn" />
       </Link>
 
       <a
@@ -42,7 +49,7 @@ export function TheFooter() {
         target="_blank"
         title="GitHub"
       >
-        <div className="i-carbon-logo-github" />
+        <CarbonLogoGithub />
       </a>
     </nav>
   )

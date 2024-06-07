@@ -27,7 +27,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "unplugin-icons/types/react"]
   },
   "include": [".eslintrc.json", "unimport.d.ts", "app"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -1,5 +1,6 @@
 import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
 import { t } from '@lingui/macro'
+import CarbonChartRadar from '~icons/carbon/chart-radar'
 
 export function Component() {
   const { savedName } = useUserStore((state) => ({
@@ -33,7 +34,7 @@ export function Component() {
           target="_blank"
         >
           <div className="text-5xl">
-            <div className="i-carbon-chart-radar inline-block" />
+            <CarbonChartRadar />
           </div>
         </a>
       </div>

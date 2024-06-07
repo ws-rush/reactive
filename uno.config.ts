@@ -1,6 +1,5 @@
 import {
   defineConfig,
-  presetIcons,
   presetTypography,
   presetUno,
   presetWebFonts,
@@ -18,15 +17,6 @@ export default defineConfig({
     //     },
     //   },
     // }),
-    presetIcons({
-      extraProperties: {
-        display: 'inline-block',
-        'vertical-align': 'middle',
-      },
-      // prefix: '',
-      // warn: true,
-      scale: 1.2,
-    }),
     presetTypography(),
     presetWebFonts({
       fonts: {

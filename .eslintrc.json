@@ -39,6 +39,7 @@
     "canonical/id-match": "off",
     "react/jsx-no-undef": "off",
     "import/no-unassigned-import": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "react/forbid-component-props": "off"
   }
 }

@@ -1,4 +1,5 @@
 import { Trans } from '@lingui/macro'
+import CarbonPedestrian from '~icons/carbon/pedestrian'
 
 export function Component() {
   const navigate = useNavigate()
@@ -15,7 +16,7 @@ export function Component() {
   return (
     <div className="text-center">
       <div className="text-4xl">
-        <div className="i-carbon-pedestrian inline-block" />
+        <CarbonPedestrian />
       </div>
       <p>
         <Trans>intro.hi, {savedName}!</Trans>
