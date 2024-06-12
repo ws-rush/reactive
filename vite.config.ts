@@ -29,7 +29,7 @@ export default defineConfig(async () => {
     plugins: [
       react({
         babel: {
-          plugins: ['macros'],
+          plugins: ['babel-plugin-react-compiler', 'macros'],
         },
       }),
       remixRouter(),

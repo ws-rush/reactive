@@ -17,6 +17,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
+    "eslint-plugin-react-compiler",
     "react-refresh",
     "cypress",
     "@mizdra/layout-shift",
@@ -28,6 +29,7 @@
       "off",
       { "allowConstantExport": true }
     ],
+    "react-compiler/react-compiler": "error",
 
     // Don't like
     "no-undef": "off", // disable coz typescript check it already
