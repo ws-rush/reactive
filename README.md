@@ -18,7 +18,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 ## Features
 
-- ⚡️ [React 18](https://react.dev/), [Vite](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - born with fastness
+- ⚡️ [React 19](https://react.dev/), [Vite](https://github.com/vitejs/vite), [pnpm](https://pnpm.io/), [esbuild](https://github.com/evanw/esbuild) - born with fastness
 
 - 🗂 [File based routing with layouts support](https://github.com/ws-rush/unplugin-remix-router)
 
