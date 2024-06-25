@@ -40,7 +40,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🗒 [Markdown Support](https://github.com/hmsk/vite-plugin-markdown?tab=readme-ov-file)
 
-- 🏷️ [Manage meta tsgs](https://github.com/nfl/react-helmet)
+- 🏷️ [Manage meta tsgs](https://react.dev/blog/2024/04/25/react-19#support-for-metadata-tags)
 
 - 🖼 [Transform and Optmize images](https://github.com/JonasKruckenberg/imagetools/tree/main/packages/vite)
 

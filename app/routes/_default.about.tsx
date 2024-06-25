@@ -1,13 +1,10 @@
 import { attributes, ReactComponent } from '@/content/about.md'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
-import { Helmet } from 'react-helmet'
 
 export function Component() {
   return (
     <>
-      <Helmet>
-        <title>{attributes.title}</title>
-      </Helmet>
+      <title>{attributes.title}</title>
       <div className="m-auto text-base prose">
         <div className="text-center">
           <CarbonDicomOverlay className="text-4xl -mb-6 m-auto" />

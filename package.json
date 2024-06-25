@@ -28,7 +28,6 @@
     "@unocss/reset": "^0.56.5",
     "react": "19.0.0-beta-26f2496093-20240514",
     "react-dom": "19.0.0-beta-26f2496093-20240514",
-    "react-helmet": "^6.1.0",
     "react-router-dom": "^6.23.1",
     "vite-plugin-pwa": "^0.16.7",
     "zustand": "^4.5.2"
@@ -47,7 +46,6 @@
     "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@types/react-helmet": "^6.1.11",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.3.0",
