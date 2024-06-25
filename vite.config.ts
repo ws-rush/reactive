@@ -22,7 +22,7 @@ export default defineConfig(async () => {
 
     // https://github.com/vitest-dev/vitest
     test: {
-      include: ['test/**/*.{spec,test}.?(c|m)[jt]s?(x)'],
+      include: ['tests/**/*.{spec,test}.?(c|m)[jt]s?(x)'],
       environment: 'happy-dom',
     },
 
