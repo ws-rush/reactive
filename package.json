@@ -12,6 +12,7 @@
     "lint:fix": "npm run lint -- --fix",
     "preview": "vite preview",
     "messages:extract": "lingui extract",
+    "messages:compile": "lingui compile",
     "test": "vitest",
     "test:unit": "vitest",
     "test:once": "vitest run",

@@ -1,5 +1,5 @@
 import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
-import { t } from '@lingui/macro'
+import { Trans } from '@lingui/macro'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 
 export function Component() {
@@ -48,7 +48,9 @@ export function Component() {
         </a>
       </p>
       <p>
-        <em className="text-sm opacity-75">{t`intro.desc`}</em>
+        <em className="text-sm opacity-75">
+          <Trans>intro.desc</Trans>
+        </em>
       </p>
 
       <div className="py-4" />
@@ -61,7 +63,9 @@ export function Component() {
       <label
         className="hidden"
         htmlFor="input"
-      >{t`intro.whats-your-name`}</label>
+      >
+        <Trans>intro.whats-your-name</Trans>
+      </label>
 
       <div>
         <button
@@ -70,7 +74,7 @@ export function Component() {
           onClick={() => go()}
           type="button"
         >
-          {t`button.go`}
+          <Trans>button.go</Trans>
         </button>
       </div>
     </div>
