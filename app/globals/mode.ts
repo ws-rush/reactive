@@ -46,6 +46,3 @@ export const mode = {
     return (localStorage.getItem('mode') || 'system') as Mode
   },
 }
-
-// initial mode load
-mode.set(mode.value)

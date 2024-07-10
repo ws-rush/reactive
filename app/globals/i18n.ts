@@ -58,7 +58,3 @@ export const locale: LocaleInteface = {
     )
   },
 }
-
-// load default language
-await locale.set(locale.value)
-export { i18n } from '@lingui/core'

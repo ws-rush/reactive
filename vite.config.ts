@@ -58,7 +58,7 @@ export default defineConfig(async () => {
         presets: ['react', 'react-router-dom', 'vitest'],
         dirs: [
           './app/components/**',
-          './app/config/**',
+          './app/globals/**',
           './app/middlewares/**',
           './app/stores/**',
           './app/queries/**',
