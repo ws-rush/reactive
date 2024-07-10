@@ -1,9 +1,22 @@
+// css imports
+import '@unocss/reset/tailwind.css'
+import './styles/main.css'
+import 'virtual:uno.css'
+// js imports
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
+import { I18nProvider } from '@lingui/react'
+import { ClickToComponent } from 'click-to-react-component'
 import { useRouteError } from 'react-router-dom'
+
+// load default language
+await locale.set(locale.value)
+// initial mode load
+mode.set(mode.value)
 
 export function Component() {
   return (
-    <>
+    <I18nProvider i18n={i18n}>
       <title>Reactive</title>
       <meta
         content="Opinionated React Starter Template, ispired by vitesse"
@@ -19,7 +32,8 @@ export function Component() {
         type="image/svg+xml"
       />
       <Outlet />
-    </>
+      <ClickToComponent />
+    </I18nProvider>
   )
 }
 
