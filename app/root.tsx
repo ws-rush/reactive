@@ -9,10 +9,14 @@ import { I18nProvider } from '@lingui/react'
 import { ClickToComponent } from 'click-to-react-component'
 import { useRouteError } from 'react-router-dom'
 
-// load default language
-await locale.set(locale.value)
-// initial mode load
-mode.set(mode.value)
+export async function loader() {
+  // load default language
+  await locale.set(locale.value)
+  // initial mode load
+  mode.set(mode.value)
+
+  return null
+}
 
 export function Component() {
   return (
