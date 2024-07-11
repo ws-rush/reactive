@@ -2,7 +2,7 @@ import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
 import { Trans } from '@lingui/macro'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 
-export function Component() {
+export default function Component() {
   const { savedName } = useUserStore((state) => ({
     savedName: state.savedName,
   }))

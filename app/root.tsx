@@ -9,7 +9,7 @@ import { I18nProvider } from '@lingui/react'
 import { ClickToComponent } from 'click-to-react-component'
 import { useRouteError } from 'react-router-dom'
 
-export async function loader() {
+export async function clientLoader() {
   // load default language
   await locale.set(locale.value)
   // initial mode load
@@ -18,7 +18,7 @@ export async function loader() {
   return null
 }
 
-export function Component() {
+export default function Component() {
   return (
     <I18nProvider i18n={i18n}>
       <title>Reactive</title>

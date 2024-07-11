@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/macro'
 import CarbonPedestrian from '~icons/carbon/pedestrian'
 
-export function Component() {
+export default function Component() {
   const navigate = useNavigate()
   const { name } = useParams()
   const { otherNames, savedName } = useUserStore((state) => ({

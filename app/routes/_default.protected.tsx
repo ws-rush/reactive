@@ -1,5 +1,5 @@
-export const loader = authGuard('admin')
+export const clientLoader = authGuard('admin')
 
-export function Component() {
+export default function Component() {
   return <h1>For admins only</h1>
 }

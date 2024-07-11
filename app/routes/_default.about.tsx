@@ -1,7 +1,7 @@
 import { attributes, ReactComponent } from '@/content/about.md'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
 
-export function Component() {
+export default function Component() {
   return (
     <>
       <title>{attributes.title}</title>
