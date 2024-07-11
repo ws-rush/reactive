@@ -1,3 +1,6 @@
 dist
+build
+pnpm-lock.yaml
+unimport.d.ts
 
 app/assets

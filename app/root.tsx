@@ -4,6 +4,7 @@ import './styles/main.css'
 import 'virtual:uno.css'
 // js imports
 import { Trans } from '@lingui/macro'
+import { ClickToComponent } from 'click-to-react-component'
 import { useRouteError } from 'react-router-dom'
 
 export default function Component() {
@@ -24,6 +25,7 @@ export default function Component() {
         type="image/svg+xml"
       />
       <Outlet />
+      <ClickToComponent />
     </>
   )
 }

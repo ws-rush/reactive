@@ -74,7 +74,7 @@
     "unocss-preset-theme": "^0.10.1",
     "unplugin-icons": "^0.19.0",
     "unplugin-remix-router": "^2.0.1",
-    "vite": "^4.5.3",
+    "vite": "^5.1.0",
     "vite-imagetools": "^6.2.9",
     "vite-plugin-inspect": "^0.7.42",
     "vite-plugin-json-server": "^0.1.1",
