@@ -29,7 +29,7 @@
     "@unocss/reset": "^0.56.5",
     "react": "19.0.0-beta-26f2496093-20240514",
     "react-dom": "19.0.0-beta-26f2496093-20240514",
-    "react-router-dom": "^6.23.1",
+    "react-router-dom": "^6.25.1",
     "vite-plugin-pwa": "^0.16.7",
     "zustand": "^4.5.2"
   },
