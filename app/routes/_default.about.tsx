@@ -7,7 +7,7 @@ export default function Component() {
       <title>{attributes.title}</title>
       <div className="m-auto text-base prose">
         <div className="text-center">
-          <CarbonDicomOverlay className="text-4xl -mb-6 m-auto" />
+          <CarbonDicomOverlay className="text-4xl mb-6 m-auto" />
           <h3>{attributes.title}</h3>
         </div>
         <ReactComponent />

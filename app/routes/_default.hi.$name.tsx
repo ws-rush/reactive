@@ -15,9 +15,7 @@ export default function Component() {
 
   return (
     <div className="text-center">
-      <div className="text-4xl">
-        <CarbonPedestrian />
-      </div>
+      <CarbonPedestrian className="text-4xl mx-auto" />
       <p>
         <Trans>intro.hi, {savedName}!</Trans>
       </p>

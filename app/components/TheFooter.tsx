@@ -8,7 +8,7 @@ import CarbonSun from '~icons/carbon/sun'
 
 export function TheFooter() {
   return (
-    <nav className="flex gap-4 mt-6 justify-center text-xl">
+    <nav className="flex gap-4 mt-6 justify-center items-center text-xl">
       <Link
         title={t`button.home`}
         to="/"
@@ -39,7 +39,7 @@ export function TheFooter() {
         title={t`button.about`}
         to="/about"
       >
-        <CarbonDicomOverlay className=" icon-btn" />
+        <CarbonDicomOverlay className="icon-btn" />
       </Link>
 
       <a

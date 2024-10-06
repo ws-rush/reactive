@@ -1,8 +1,3 @@
-// css imports
-import '@unocss/reset/tailwind.css'
-import './styles/main.css'
-import 'virtual:uno.css'
-// js imports
 import { Trans } from '@lingui/macro'
 import { ClickToComponent } from 'click-to-react-component'
 import { useRouteError } from 'react-router-dom'

@@ -26,11 +26,11 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🐻 [State Management via zustand](https://github.com/pmndrs/zustand)
 
-- 🎨 [UnoCSS](https://github.com/antfu/unocss) - the instant on-demand atomic CSS engine
+- 🎨 [Tailwindcss](https://tailwindcss.com/) - A utility-first CSS framework packed with classes
 
-- 😃 [Use icons from any icon sets with classes](https://github.com/antfu/unocss/tree/main/packages/preset-icons)
+- 😃 [Use icons from any icon sets with components](https://github.com/unplugin/unplugin-icons)
 
-- 🔤 [Remote fonts](https://github.com/unocss/unocss/tree/main/packages/preset-web-fonts) (for self hosted fonts use `FontSource` [install](https://fontsource.org/fonts/red-hat-text/install))
+- 🔤 [Self-hosted fonts](https://fontsource.org/fonts/red-hat-text/install).
 
 - 🌍 [I18n ready](https://lingui.dev/)
 
@@ -55,7 +55,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🔗 [Top Level Await](https://www.npmjs.com/package/vite-plugin-top-level-await) out of box
 
-- 🔎 Inspect code with - [Vite Inspect](https://github.com/antfu/vite-plugin-inspect), and UnoCSS, visit them at `/__inspect` and `__unocss`. also open compnents in editor with [Alt + Right-Click](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component)
+- 🔎 Inspect code with - [Vite Inspect](https://github.com/antfu/vite-plugin-inspect), visit it at `/__inspect`. also open components in editor with [Alt + Right-Click](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component), and use [Tailwind CSS Devtools](https://chromewebstore.google.com/detail/tailwind-css-devtools/pgamkpjkbfldnmemhcbekimfdnjcgkco) for tailwind inspecting
 
 - 📝 Mocking Server API with [json-server](https://github.com/yracnet/vite-plugin-json-server/tree/main)
 
