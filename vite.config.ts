@@ -7,7 +7,7 @@ import Icons from 'unplugin-icons/vite'
 import { imagetools } from 'vite-imagetools'
 import { plugin, Mode } from 'vite-plugin-markdown'
 import { pluginJsonServer } from 'vite-plugin-json-server'
-// import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa'
 import Inspect from 'vite-plugin-inspect'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import remixRouter from 'unplugin-remix-router/vite'
@@ -26,6 +26,18 @@ export default defineConfig(async () => {
     },
 
     plugins: [
+      VitePWA({
+        devOptions: {
+          enabled: true,
+        },
+        strategies: 'injectManifest',
+        srcDir: 'app',
+        filename: 'sw.ts',
+        registerType: 'autoUpdate',
+        injectManifest: {
+          swDest: 'dist/sw.js',
+        },
+      }),
       react({
         babel: {
           plugins: ['babel-plugin-react-compiler', 'macros'],
