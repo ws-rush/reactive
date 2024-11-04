@@ -1,7 +1,6 @@
 import { fixupConfigRules, fixupPluginRules } from '@eslint/compat'
 import reactCompiler from 'eslint-plugin-react-compiler'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import cypress from 'eslint-plugin-cypress'
 import mizdraLayoutShift from '@mizdra/eslint-plugin-layout-shift'
 import sonarjs from 'eslint-plugin-sonarjs'
 import deprecate from 'eslint-plugin-deprecate'
@@ -48,7 +47,6 @@ export default [
     plugins: {
       'react-compiler': reactCompiler,
       'react-refresh': reactRefresh,
-      cypress,
       '@mizdra/layout-shift': mizdraLayoutShift,
       sonarjs: fixupPluginRules(sonarjs),
       deprecate,
@@ -57,7 +55,6 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...cypress.environments.globals.globals,
       },
 
       parser: tsParser,
