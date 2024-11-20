@@ -2,12 +2,11 @@ import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
 import { Trans } from '@lingui/macro'
 import { useNavigate } from '@remix-run/react'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
+import { useSnapshot } from 'tawr-state'
 
 export default function Component() {
-  const { savedName } = useUserStore((state) => ({
-    savedName: state.savedName,
-  }))
-  const [name, setName] = useState<string>(savedName)
+  const user = useSnapshot(userStore)
+  const [name, setName] = useState<string>(user.savedName)
 
   const navigate = useNavigate()
 

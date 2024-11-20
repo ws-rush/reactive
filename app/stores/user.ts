@@ -1,38 +1,30 @@
-import { create } from 'zustand'
+/* eslint-disable canonical/sort-keys */
 
-export type UserStore = {
-  actions: {
-    setNewName: (name: string) => void
-  }
-  filters: {
-    otherNames: () => string[]
-    usedNames: () => string[]
-  }
-  previousNames: Set<string>
-  savedName: string
-}
+import { defineStore } from 'tawr-state'
 
-export const useUserStore = create<UserStore>((set, get) => ({
+export const userStore = defineStore({
+  state() {
+    return {
+      previousNames: new Set<string>(),
+      savedName: '',
+    }
+  },
+  getters: {
+    otherNames: (state) =>
+      Array.from(state.previousNames).filter(
+        (name) => name !== state.savedName
+      ),
+    usedNames: (state) => Array.from(state.previousNames),
+  },
   actions: {
     setNewName(name) {
-      if (get().savedName) {
-        set((state) => ({
-          previousNames: new Set([...state.previousNames, name]),
-        }))
+      if (userStore.savedName) {
+        userStore.previousNames.add(userStore.savedName)
       }
 
-      set({ savedName: name })
+      userStore.savedName = name
     },
   },
-  filters: {
-    otherNames: () =>
-      Array.from(get().previousNames).filter(
-        (name) => name !== get().savedName
-      ),
-    usedNames: () => Array.from(get().previousNames),
-  },
-  previousNames: new Set(),
-  savedName: '',
-}))
+})
 
-export const { setNewName } = useUserStore.getState().actions
+export const { setNewName } = userStore.actions

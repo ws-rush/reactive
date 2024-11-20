@@ -1,14 +1,12 @@
 import { Trans } from '@lingui/macro'
 import { Link, useNavigate, useParams } from '@remix-run/react'
 import CarbonPedestrian from '~icons/carbon/pedestrian'
+import { useSnapshot } from 'tawr-state'
 
 export default function Component() {
   const navigate = useNavigate()
   const { name } = useParams()
-  const { otherNames, savedName } = useUserStore((state) => ({
-    otherNames: state.filters.otherNames(),
-    savedName: state.savedName,
-  }))
+  const user = useSnapshot(userStore)
 
   useEffect(() => {
     if (name) setNewName(name)
@@ -18,7 +16,7 @@ export default function Component() {
     <div className="text-center">
       <CarbonPedestrian className="text-4xl mx-auto" />
       <p>
-        <Trans>intro.hi, {savedName}!</Trans>
+        <Trans>intro.hi, {user.savedName}!</Trans>
       </p>
 
       <p className="text-sm opacity-75">
@@ -27,13 +25,13 @@ export default function Component() {
         </em>
       </p>
 
-      {(otherNames.length && (
+      {(user.otherNames.length && (
         <p className="mt-4 text-sm">
           <span className="opacity-75">
             <Trans>intro.aka</Trans>:
           </span>
           <ul>
-            {otherNames.map((otherName) => (
+            {user.otherNames.map((otherName: string) => (
               <li key={otherName}>
                 <Link
                   replace
