@@ -13,8 +13,11 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 import { vitePlugin as remix } from '@remix-run/dev'
 import { qrcode } from 'vite-plugin-qrcode'
 import Unimport from 'unimport/unplugin'
-import macrosPlugin from 'vite-plugin-babel-macros'
 import babel from 'vite-plugin-babel'
+
+const ReactCompilerConfig = {
+  /* ... */
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -38,7 +41,18 @@ export default defineConfig({
         v3_throwAbortReason: true,
       },
     }),
-    macrosPlugin(),
+    babel({
+      filter: /\.[jt]sx?$/,
+      babelConfig: {
+        presets: ['@babel/preset-typescript'], // if you use TypeScript
+        plugins: [
+          '@babel/plugin-syntax-jsx',
+          ['babel-plugin-react-compiler', ReactCompilerConfig],
+          'macros',
+        ],
+      },
+    }),
+    // macrosPlugin(),
     lingui(),
     Icons({
       autoInstall: true,
