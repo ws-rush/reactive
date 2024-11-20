@@ -1,4 +1,5 @@
 import { t } from '@lingui/macro'
+import { Link } from '@remix-run/react'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
 import CarbonLanguage from '~icons/carbon/language'

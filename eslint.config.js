@@ -23,6 +23,7 @@ export default [
   {
     ignores: [
       '**/dist',
+      '**/build',
       '**/app/locales',
       '**/*.config.ts',
       '**/*.d.ts',

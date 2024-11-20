@@ -1,28 +1,68 @@
+import './styles/main.css'
 import { Trans } from '@lingui/macro'
-import { ClickToComponent } from 'click-to-react-component'
-import { useRouteError } from 'react-router-dom'
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useNavigate,
+  useRouteError,
+} from '@remix-run/react'
 
-export default function Component() {
+export const links = () => [
+  {
+    href:
+      typeof window !== 'undefined' && mode.isPreferdDark
+        ? '/favicon-dark.svg'
+        : '/favicon.svg',
+    rel: 'icon',
+    type: 'image/svg+xml',
+  },
+]
+
+export function meta() {
+  return [
+    { title: 'Reactive' },
+    {
+      content: 'Reactive',
+      property: 'og:title',
+    },
+    {
+      content: 'Opinionated React Starter Template, ispired by vitesse',
+      name: 'description',
+    },
+    {
+      content:
+        typeof window !== 'undefined' && mode.isDark ? '#00aba9' : '#ffffff',
+      name: 'theme-color',
+    },
+  ]
+}
+
+export function Layout({ children }: { readonly children: React.ReactNode }) {
   return (
-    <>
-      <title>Reactive</title>
-      <meta
-        content="Opinionated React Starter Template, ispired by vitesse"
-        name="description"
-      />
-      <meta
-        content={mode.isDark ? '#00aba9' : '#ffffff'}
-        name="theme-color"
-      />
-      <link
-        href={mode.isPreferdDark ? '/favicon-dark.svg' : '/favicon.svg'}
-        rel="icon"
-        type="image/svg+xml"
-      />
-      <Outlet />
-      <ClickToComponent />
-    </>
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta
+          content="width=device-width, initial-scale=1"
+          name="viewport"
+        />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
   )
+}
+
+export default function App() {
+  return <Outlet />
 }
 
 export function HydrateFallback() {

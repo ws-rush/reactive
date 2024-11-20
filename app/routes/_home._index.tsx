@@ -1,5 +1,6 @@
 import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
 import { Trans } from '@lingui/macro'
+import { useNavigate } from '@remix-run/react'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 
 export default function Component() {

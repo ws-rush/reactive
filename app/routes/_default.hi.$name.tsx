@@ -1,4 +1,5 @@
 import { Trans } from '@lingui/macro'
+import { Link, useNavigate, useParams } from '@remix-run/react'
 import CarbonPedestrian from '~icons/carbon/pedestrian'
 
 export default function Component() {
