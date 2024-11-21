@@ -1,5 +1,7 @@
 import './styles/main.css'
+import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
+import { I18nProvider } from '@lingui/react'
 import {
   Links,
   Meta,
@@ -61,8 +63,21 @@ export function Layout({ children }: { readonly children: React.ReactNode }) {
   )
 }
 
+export async function clientLoader() {
+  // load default language
+  await locale.set(locale.value)
+  // initial mode load
+  mode.set(mode.value)
+
+  return true
+}
+
 export default function App() {
-  return <Outlet />
+  return (
+    <I18nProvider i18n={i18n}>
+      <Outlet />
+    </I18nProvider>
+  )
 }
 
 export function HydrateFallback() {
