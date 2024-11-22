@@ -42,7 +42,7 @@ importers:
         specifier: 19.0.0-beta-26f2496093-20240514
         version: 19.0.0-beta-26f2496093-20240514(react@19.0.0-beta-26f2496093-20240514)
       tawr-state:
-        specifier: ^0.1.0
+        specifier: 0.1.0
         version: 0.1.0
       vite-plugin-pwa:
         specifier: ^0.16.7

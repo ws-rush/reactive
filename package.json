@@ -34,7 +34,7 @@
     "isbot": "^4.4.0",
     "react": "19.0.0-beta-26f2496093-20240514",
     "react-dom": "19.0.0-beta-26f2496093-20240514",
-    "tawr-state": "^0.1.0",
+    "tawr-state": "0.1.0",
     "vite-plugin-pwa": "^0.16.7"
   },
   "devDependencies": {

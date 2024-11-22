@@ -17,7 +17,7 @@ export const userStore = defineStore({
     usedNames: (state) => Array.from(state.previousNames),
   },
   actions: {
-    setNewName(name) {
+    setNewName(name: string) {
       if (userStore.savedName) {
         userStore.previousNames.add(userStore.savedName)
       }
