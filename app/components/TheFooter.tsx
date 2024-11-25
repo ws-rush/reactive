@@ -1,21 +1,26 @@
+import { LocalizedLink } from '../globals/i18n/localized-link'
 import { t } from '@lingui/macro'
-import { Link } from '@remix-run/react'
+import { Link, useLocation, useNavigate, useParams } from '@remix-run/react'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
-import CarbonLanguage from '~icons/carbon/language'
+// import CarbonLanguage from '~icons/carbon/language'
 import CarbonLogoGithub from '~icons/carbon/logo-github'
 import CarbonMoon from '~icons/carbon/moon'
 import CarbonSun from '~icons/carbon/sun'
 
 export function TheFooter() {
+  const lang = useParams()?.lang ?? ''
+  let path = useLocation().pathname
+  const navigate = useNavigate()
+
   return (
     <nav className="flex gap-4 mt-6 justify-center items-center text-xl">
-      <Link
+      <LocalizedLink
         title={t`button.home`}
         to="/"
       >
         <CarbonChartRadar className="icon-btn" />
-      </Link>
+      </LocalizedLink>
 
       <button
         className="icon-btn"
@@ -27,13 +32,44 @@ export function TheFooter() {
         <CarbonMoon className="hidden dark:inline-block" />
       </button>
 
-      <a
+      {/* change url with spa mode */}
+      {/* <a
         className="icon-btn"
         onClick={() => locale.toggleLocales()}
         title={t`button.toggle_langs`}
       >
         <CarbonLanguage />
-      </a>
+      </a> */}
+
+      {/* change language with url localization */}
+      <select
+        className="icon-btn"
+        onChange={(event) => {
+          const nextLang = event.currentTarget.value
+          if (lang === nextLang) return
+
+          // check if path has a lang prefix, if so remove it
+          if (lang) {
+            path = path.replace(`/${lang}`, '')
+          }
+
+          // Ensure path starts with /
+          if (!path.startsWith('/')) {
+            path = '/' + path
+          }
+
+          // Add new language prefix if selected
+          const newPath = nextLang ? `/${nextLang}${path}` : path
+
+          // Navigate to new path preserving search params and hash
+          navigate(`${newPath}${location.search}${location.hash}`)
+        }}
+        value={lang}
+      >
+        <option value="">Default</option>
+        <option value="en">English</option>
+        <option value="ar">Arabic</option>
+      </select>
 
       <Link
         data-test-id="about"

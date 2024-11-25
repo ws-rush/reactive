@@ -1,7 +1,13 @@
 export default {
   '*.{js,jsx,ts,tsx}': [
-    'pnpm format:check',
-    'pnpm lint',
-    () => 'tsc --noEmit', // notice the empty function parameters and not passing the file list to the command
+    (files) => {
+      const filesString = files.map((file) => `'${file}'`).join(' ')
+      return `prettier ${filesString} --check`
+    },
+    (files) => {
+      const filesString = files.map((file) => `'${file}'`).join(' ')
+      return `eslint ${filesString}`
+    },
+    () => 'tsc --noEmit',
   ],
 }

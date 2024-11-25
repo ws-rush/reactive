@@ -32,7 +32,7 @@ export const locale: LocaleInteface = {
   },
   async set(value: string) {
     // load and activate locale
-    const { messages } = await import(`../locales/${value}.po`)
+    const { messages } = await import(`../../locales/${value}.po`)
     i18n.load(value, messages)
     i18n.activate(value)
 

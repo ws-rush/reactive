@@ -1,10 +1,10 @@
 import { Trans } from '@lingui/macro'
-import { Link, useNavigate, useParams } from '@remix-run/react'
+import { Link, useParams } from '@remix-run/react'
 import CarbonPedestrian from '~icons/carbon/pedestrian'
 import { useSnapshot } from 'tawr-state'
 
 export default function Component() {
-  const navigate = useNavigate()
+  const navigate = useLocalizedNavigate()
   const { name } = useParams()
   const user = useSnapshot(userStore)
 

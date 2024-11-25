@@ -2,13 +2,14 @@ import './styles/main.css'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { I18nProvider } from '@lingui/react'
+import { type LoaderFunctionArgs } from '@remix-run/node'
 import {
   Links,
   Meta,
   Outlet,
+  redirect,
   Scripts,
   ScrollRestoration,
-  useNavigate,
   useRouteError,
 } from '@remix-run/react'
 
@@ -63,13 +64,25 @@ export function Layout({ children }: { readonly children: React.ReactNode }) {
   )
 }
 
-export async function clientLoader() {
-  // load default language
-  await locale.set(locale.value)
-  // initial mode load
+export async function clientLoader({ params, request }: LoaderFunctionArgs) {
+  const lang = params?.lang
+  const fallbackLang = 'en' // or whatever your fallback language is
+
+  // If lang param exists but not in available locales, redirect to URL without lang
+  if (lang && !locale.availableLocales.includes(lang)) {
+    const url = new URL(request.url)
+    const pathWithoutLang = url.pathname.replace(`/${lang}`, '')
+    return redirect(pathWithoutLang + url.search)
+  }
+
+  // Set language - use provided lang or fallback
+  const languageToUse = lang || fallbackLang
+  await locale.set(languageToUse)
+
+  // Set initial mode
   mode.set(mode.value)
 
-  return true
+  return { lang: languageToUse }
 }
 
 export default function App() {
@@ -89,7 +102,7 @@ export function HydrateFallback() {
 }
 
 export function ErrorBoundray() {
-  const navigate = useNavigate()
+  const navigate = useLocalizedNavigate()
   const error = useRouteError()
 
   // log error in sentry or other log service

@@ -2,7 +2,6 @@
 
 import { defineConfig } from 'vite'
 import { lingui } from '@lingui/vite-plugin'
-import react from '@vitejs/plugin-react'
 import Icons from 'unplugin-icons/vite'
 import { imagetools } from 'vite-imagetools'
 import { plugin, Mode } from 'vite-plugin-markdown'
