@@ -1,12 +1,12 @@
 import { LocalizedLink } from '../globals/i18n/localized-link'
 import { t } from '@lingui/macro'
-import { Link, useLocation, useNavigate, useParams } from '@remix-run/react'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
 // import CarbonLanguage from '~icons/carbon/language'
 import CarbonLogoGithub from '~icons/carbon/logo-github'
 import CarbonMoon from '~icons/carbon/moon'
 import CarbonSun from '~icons/carbon/sun'
+import { Link, useLocation, useNavigate, useParams } from 'react-router'
 
 export function TheFooter() {
   const lang = useParams()?.lang ?? ''

@@ -9,10 +9,12 @@ import { pluginJsonServer } from 'vite-plugin-json-server'
 // import { VitePWA } from 'vite-plugin-pwa'
 import Inspect from 'vite-plugin-inspect'
 import topLevelAwait from 'vite-plugin-top-level-await'
-import { vitePlugin as remix } from '@remix-run/dev'
+import { reactRouter } from '@react-router/dev/vite'
 import { qrcode } from 'vite-plugin-qrcode'
 import Unimport from 'unimport/unplugin'
-import babel from 'vite-plugin-babel'
+import macrosPlugin from 'vite-plugin-babel-macros'
+
+// import babel from 'vite-plugin-babel'
 
 const ReactCompilerConfig = {
   /* ... */
@@ -29,29 +31,19 @@ export default defineConfig({
   },
 
   plugins: [
-    remix({
-      ssr: false,
-      future: {
-        unstable_routeConfig: true,
-        v3_fetcherPersist: true,
-        v3_lazyRouteDiscovery: true,
-        v3_relativeSplatPath: true,
-        v3_singleFetch: true,
-        v3_throwAbortReason: true,
-      },
-    }),
-    babel({
-      filter: /\.[jt]sx?$/,
-      babelConfig: {
-        presets: ['@babel/preset-typescript'], // if you use TypeScript
-        plugins: [
-          '@babel/plugin-syntax-jsx',
-          ['babel-plugin-react-compiler', ReactCompilerConfig],
-          'macros',
-        ],
-      },
-    }),
-    // macrosPlugin(),
+    reactRouter(),
+    // babel({
+    //   filter: /\.[jt]sx?$/,
+    //   babelConfig: {
+    //     presets: ['@babel/preset-typescript'], // if you use TypeScript
+    //     plugins: [
+    //       '@babel/plugin-syntax-jsx',
+    //       ['babel-plugin-react-compiler', ReactCompilerConfig],
+    //       'macros',
+    //     ],
+    //   },
+    // }),
+    macrosPlugin(),
     lingui(),
     Icons({
       autoInstall: true,

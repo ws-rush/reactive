@@ -9,7 +9,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -27,8 +27,18 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client", "unplugin-icons/types/react"]
+    "types": [
+      "@react-router/node",
+      "vite/client",
+      "unplugin-icons/types/react"
+    ],
+    "rootDirs": [".", "./.react-router/types"]
   },
-  "include": [".eslintrc.json", "unimport.d.ts", "app"],
+  "include": [
+    ".eslintrc.json",
+    "unimport.d.ts",
+    "app",
+    ".react-router/types/**/*"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

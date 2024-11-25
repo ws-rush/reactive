@@ -25,6 +25,7 @@ export default [
       '**/dist',
       '**/build',
       '**/app/locales',
+      '**/.react-router',
       '**/*.config.ts',
       '**/*.d.ts',
       '**/*.json',

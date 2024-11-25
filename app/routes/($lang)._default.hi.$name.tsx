@@ -1,6 +1,6 @@
 import { Trans } from '@lingui/macro'
-import { Link, useParams } from '@remix-run/react'
 import CarbonPedestrian from '~icons/carbon/pedestrian'
+import { Link, useParams } from 'react-router'
 import { useSnapshot } from 'tawr-state'
 
 export default function Component() {

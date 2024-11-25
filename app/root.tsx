@@ -2,16 +2,16 @@ import './styles/main.css'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
 import { I18nProvider } from '@lingui/react'
-import { type LoaderFunctionArgs } from '@remix-run/node'
 import {
   Links,
+  type LoaderFunctionArgs,
   Meta,
   Outlet,
   redirect,
   Scripts,
   ScrollRestoration,
   useRouteError,
-} from '@remix-run/react'
+} from 'react-router'
 
 export const links = () => [
   {

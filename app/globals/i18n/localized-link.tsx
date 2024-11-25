@@ -1,5 +1,5 @@
-import { Link, type LinkProps, useParams } from '@remix-run/react'
 import { type ReactNode } from 'react'
+import { Link, type LinkProps, useParams } from 'react-router'
 
 type LocalizedLinkProps = {
   readonly children: ReactNode

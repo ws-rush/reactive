@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from '@remix-run/react'
+import { useNavigate, useParams } from 'react-router'
 
 type RouteParameters = {
   [key: string]: string | undefined
