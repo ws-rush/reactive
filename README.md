@@ -53,8 +53,6 @@ Mocking up web app with <b>Reactive</b><br>
 
 - ☁️ Deploy on Netlify, zero-config
 
-- 🔗 [Top Level Await](https://www.npmjs.com/package/vite-plugin-top-level-await) out of box
-
 - 🔎 Inspect code with - [Vite Inspect](https://github.com/antfu/vite-plugin-inspect), visit it at `/__inspect`. also open components in editor with React DevTools, and use [Tailwind CSS Devtools](https://chromewebstore.google.com/detail/tailwind-css-devtools/pgamkpjkbfldnmemhcbekimfdnjcgkco) for tailwind inspecting
 
 - 📝 Mocking Server API with [json-server](https://github.com/yracnet/vite-plugin-json-server/tree/main)
