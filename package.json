@@ -88,7 +88,6 @@
     "vite-plugin-babel": "^1.2.0",
     "vite-plugin-babel-macros": "^1.0.6",
     "vite-plugin-inspect": "^0.7.42",
-    "vite-plugin-json-server": "^0.1.1",
     "vite-plugin-markdown": "^2.2.0",
     "vite-plugin-qrcode": "^0.2.3",
     "vite-plugin-top-level-await": "^1.4.4",
