@@ -30,18 +30,7 @@ export default defineConfig({
   },
 
   plugins: [
-    reactRouter(),
-    // babel({
-    //   filter: /\.[jt]sx?$/,
-    //   babelConfig: {
-    //     presets: ['@babel/preset-typescript'], // if you use TypeScript
-    //     plugins: [
-    //       '@babel/plugin-syntax-jsx',
-    //       ['babel-plugin-react-compiler', ReactCompilerConfig],
-    //       'macros',
-    //     ],
-    //   },
-    // }),
+    !process.env.VITEST && reactRouter(),
     macrosPlugin(),
     lingui(),
     Icons({
