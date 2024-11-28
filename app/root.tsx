@@ -1,8 +1,8 @@
 import './styles/main.css'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/macro'
-import { I18nProvider } from '@lingui/react'
 import {
+  type ClientLoaderFunctionArgs,
   Links,
   Meta,
   Outlet,
@@ -63,9 +63,9 @@ export function Layout({ children }: { readonly children: React.ReactNode }) {
   )
 }
 
-export async function clientLoader() {
+export async function clientLoader({ params }: ClientLoaderFunctionArgs) {
   // set initial locale
-  locale.set(locale.value)
+  locale.set(params?.lang || 'en')
 
   // Set initial mode
   mode.set(mode.value)
@@ -75,9 +75,12 @@ export async function clientLoader() {
 
 export default function App() {
   return (
-    <I18nProvider i18n={i18n}>
+    <ReactRouterI18nProvider
+      i18n={i18n}
+      mode="url"
+    >
       <Outlet />
-    </I18nProvider>
+    </ReactRouterI18nProvider>
   )
 }
 
