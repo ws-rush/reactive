@@ -1,4 +1,3 @@
-import { LocalizedLink } from '../globals/i18n/localized-link'
 import { t } from '@lingui/macro'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
@@ -15,12 +14,12 @@ export function TheFooter() {
 
   return (
     <nav className="flex gap-4 mt-6 justify-center items-center text-xl">
-      <LocalizedLink
+      <Link
         title={t`button.home`}
         to="/"
       >
         <CarbonChartRadar className="icon-btn" />
-      </LocalizedLink>
+      </Link>
 
       <button
         className="icon-btn"
@@ -62,7 +61,9 @@ export function TheFooter() {
           const newPath = nextLang ? `/${nextLang}${path}` : path
 
           // Navigate to new path preserving search params and hash
-          navigate(`${newPath}${location.search}${location.hash}`)
+          navigate(`${newPath}${location.search}${location.hash}`, {
+            replace: true,
+          })
         }}
         value={lang}
       >

@@ -1,13 +1,14 @@
 import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
 import { Trans } from '@lingui/macro'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
+import { useNavigate } from 'react-router'
 import { useSnapshot } from 'tawr-state'
 
 export default function Component() {
   const user = useSnapshot(userStore)
   const [name, setName] = useState<string>(user.savedName)
 
-  const navigate = useLocalizedNavigate()
+  const navigate = useNavigate()
 
   function go() {
     if (name) navigate(`/hi/${encodeURIComponent(name)}`)

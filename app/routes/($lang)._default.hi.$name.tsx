@@ -1,10 +1,10 @@
 import { Trans } from '@lingui/macro'
 import CarbonPedestrian from '~icons/carbon/pedestrian'
-import { Link, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
 import { useSnapshot } from 'tawr-state'
 
 export default function Component() {
-  const navigate = useLocalizedNavigate()
+  const navigate = useNavigate()
   const { name } = useParams()
   const user = useSnapshot(userStore)
 
