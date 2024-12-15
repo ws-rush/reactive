@@ -1,4 +1,4 @@
-import { t } from '@lingui/core/macro'
+import { useLingui } from '@lingui/react/macro'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
 // import CarbonLanguage from '~icons/carbon/language'
@@ -8,6 +8,7 @@ import CarbonSun from '~icons/carbon/sun'
 import { Link, useLocation, useNavigate, useParams } from 'react-router'
 
 export function TheFooter() {
+  const { t } = useLingui()
   const lang = useParams()?.lang ?? ''
   let path = useLocation().pathname
   const navigate = useNavigate()
