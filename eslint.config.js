@@ -82,6 +82,7 @@ export default [
       'import/no-unassigned-import': 'off',
       'import/extensions': 'off',
       'react/forbid-component-props': 'off',
+      'id-length': 'off',
     },
   },
 ]

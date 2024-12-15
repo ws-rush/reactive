@@ -1,4 +1,4 @@
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
 // import CarbonLanguage from '~icons/carbon/language'

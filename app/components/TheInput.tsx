@@ -1,4 +1,4 @@
-import { t } from '@lingui/macro'
+import { useLingui } from '@lingui/react/macro'
 
 type Props = {
   readonly onInput: React.ChangeEventHandler<HTMLInputElement>
@@ -7,6 +7,8 @@ type Props = {
 }
 
 export function TheInput({ onInput, onPressEnter, value }: Props) {
+  const { t } = useLingui()
+
   function onKeyDownHandler(evnt: React.KeyboardEvent<HTMLInputElement>) {
     if (evnt.keyCode === 13) onPressEnter(evnt)
   }
@@ -18,6 +20,7 @@ export function TheInput({ onInput, onPressEnter, value }: Props) {
       id="input"
       onInput={onInput}
       onKeyDown={(event) => onKeyDownHandler(event)}
+      // placeholder={i18n._(msg`intro.whats-your-name`)}
       placeholder={t`intro.whats-your-name`}
       type="text"
       value={value}

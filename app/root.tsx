@@ -1,6 +1,6 @@
 import './styles/main.css'
 import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import {
   type ClientLoaderFunctionArgs,
   Links,

@@ -9,7 +9,6 @@ export default function Component() {
         <div className="text-center">
           <CarbonDicomOverlay className="text-4xl mb-6 m-auto" />
           <h3>{attributes.title}</h3>
-          test
         </div>
         <ReactComponent />
       </div>

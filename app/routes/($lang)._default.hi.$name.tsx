@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import CarbonPedestrian from '~icons/carbon/pedestrian'
 import { Link, useNavigate, useParams } from 'react-router'
 import { useSnapshot } from 'tawr-state'

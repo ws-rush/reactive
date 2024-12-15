@@ -1,5 +1,5 @@
 import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import { useNavigate } from 'react-router'
 import { useSnapshot } from 'tawr-state'
@@ -60,12 +60,6 @@ export default function Component() {
         onPressEnter={() => go()}
         value={name}
       />
-      <label
-        className="hidden"
-        htmlFor="input"
-      >
-        <Trans>intro.whats-your-name</Trans>
-      </label>
 
       <div>
         <button
