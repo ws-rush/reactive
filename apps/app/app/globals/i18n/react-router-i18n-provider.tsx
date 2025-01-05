@@ -19,7 +19,7 @@ export function ReactRouterI18nProvider(
 
       const lang = dataRouter.state.matches[0].params?.lang
       const next =
-        locale.availableLocales.includes(to.split('/')[1]) || !lang
+        locale.availableLocale.includes(to.split('/')[1]) || !lang
           ? to
           : `/${lang}${to}`
 

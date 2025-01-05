@@ -7,7 +7,8 @@ export type Locale = {
 }
 
 type LocaleInteface = {
-  get availableLocales(): string[]
+  get availableLocale(): string[]
+  default: string
   locales: Record<string, Locale>
   set: (value: string) => Promise<void>
   toggleLocales: () => Promise<void>
@@ -15,9 +16,10 @@ type LocaleInteface = {
 }
 
 export const locale: LocaleInteface = {
-  get availableLocales() {
+  get availableLocale() {
     return Object.keys(this.locales)
   },
+  default: 'en',
   locales: {
     ar: {
       direction: 'rtl',
@@ -31,20 +33,25 @@ export const locale: LocaleInteface = {
     },
   },
   async set(value: string) {
+    const localeValue = !value || !this.locales[value] ? this.value : value
+
     // load and activate locale
-    const { messages } = await import(`../../locales/${value}.po`)
-    i18n.load(value, messages)
-    i18n.activate(value)
+    const { messages } = await import(`../../locales/${localeValue}.po`)
+    i18n.load(localeValue, messages)
+    i18n.activate(localeValue)
 
     // change page direction
-    document.documentElement.setAttribute('lang', value)
-    document.documentElement.setAttribute('dir', this.locales[value].direction)
+    document.documentElement.setAttribute('lang', localeValue)
+    document.documentElement.setAttribute(
+      'dir',
+      this.locales[localeValue].direction
+    )
 
     // set localStorage
-    localStorage.setItem('locale', value)
+    localStorage.setItem('locale', localeValue)
   },
   async toggleLocales() {
-    const locales = locale.availableLocales
+    const locales = locale.availableLocale
     const newLocale =
       locales[(locales.indexOf(locale.value) + 1) % locales.length]
 

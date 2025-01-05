@@ -64,8 +64,17 @@ export function Layout({ children }: { readonly children: React.ReactNode }) {
 }
 
 export async function clientLoader({ params }: ClientLoaderFunctionArgs) {
+  const currentLocale = params?.lang || locale.default
+
+  if (!locale.availableLocale.includes(currentLocale)) {
+    throw new Response(null, {
+      status: 404,
+      statusText: 'Not Found',
+    })
+  }
+
   // set initial locale
-  locale.set(params?.lang || 'en')
+  locale.set(currentLocale)
 
   // Set initial mode
   mode.set(mode.value)
