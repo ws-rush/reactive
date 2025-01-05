@@ -11,6 +11,7 @@ import { reactRouter } from '@react-router/dev/vite'
 import { qrcode } from 'vite-plugin-qrcode'
 import Unimport from 'unimport/unplugin'
 import macrosPlugin from 'vite-plugin-babel-macros'
+import { reactRouterDevTools } from 'react-router-devtools'
 
 // import babel from 'vite-plugin-babel'
 
@@ -29,6 +30,7 @@ export default defineConfig({
   },
 
   plugins: [
+    reactRouterDevTools(),
     !process.env.VITEST && reactRouter(),
     macrosPlugin(),
     lingui(),
