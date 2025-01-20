@@ -16,7 +16,7 @@ export default defineConfig({
         // text: 'Examples',
         items: [
           { text: 'Quick Start', link: '/quick-start' },
-          // { text: 'Internationalization', link: '/internationalization' },
+          { text: 'Internationalization', link: '/internationalization' },
         ]
       }
     ],
