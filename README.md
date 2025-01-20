@@ -61,7 +61,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 ## Try it now!
 
-> Reactive requires Node >=14.18
+> Reactive requires Node >=20.x
 
 ### GitHub Template
 
