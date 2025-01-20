@@ -4,7 +4,7 @@ outline: deep
 
 # Internationalization
 
-Reactive uses linguijs for internationalization (i18n) support, implemented through custom utilities in app/globals/i18n/.
+Reactive uses [lingui](https://lingui.dev/) for internationalization (i18n) support, implemented through custom utilities in app/globals/i18n/.
 
 ::: danger
 you should be carefull when change utilities in `app/globals`
