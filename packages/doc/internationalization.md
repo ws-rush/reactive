@@ -4,7 +4,7 @@ outline: deep
 
 # Internationalization
 
-Reactive uses [lingui](https://lingui.dev/) for internationalization (i18n) support, implemented through custom utilities in app/globals/i18n/.
+Reactive uses [lingui](https://lingui.dev/) for internationalization (i18n) support, implemented through custom utilities in `app/globals/i18n/`.
 
 ::: danger
 you should be carefull when change utilities in `app/globals`
@@ -41,7 +41,11 @@ Configure supported languages in app/globals/i18n/index.ts`
 
 ## Implementation Modes
 
-Locale data loading is handled in app/root.tsx through the clientLoader function. The implementation differs based on your chosen mode:
+Locale data loading is handled in `app/root.tsx` through the `clientLoader` function. The implementation differs based on your chosen mode:
+
+::: info
+Even when using React Router in SSR mode, locale data must be loaded in `clientLoader`. This is crucial for proper internationalization initialization
+:::
 
 ::: code-group
 
@@ -92,7 +96,7 @@ export async function clientLoader() {
 :::
 
 ::: warning
-in `url mode` you should prefix all routes with name `($lang).` to read `params.lang` correctly, in `localStorage` mode you should remove this prefix from all routes
+in URL mode you should prefix all routes with name `($lang).` to read `params?.lang` correctly, in LocalStorage mode you should remove this prefix from all routes
 :::
 
 ## Smart Locale Detection
