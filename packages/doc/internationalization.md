@@ -41,6 +41,8 @@ Configure supported languages in app/globals/i18n/index.ts`
 
 ## Implementation Modes
 
+### Load Messages
+
 Locale data loading is handled in `app/root.tsx` through the `clientLoader` function. The implementation differs based on your chosen mode:
 
 ::: info
@@ -97,6 +99,77 @@ export async function clientLoader() {
 
 ::: warning
 in URL mode you should prefix all routes with name `($lang).` to read `params?.lang` correctly, in LocalStorage mode you should remove this prefix from all routes
+:::
+
+### Toggling Locales
+
+The implementation of locale switching differs based on your chosen i18n mode. Here are examples for both approaches:
+
+::: code-group
+
+```tsx [url-mode.ts]
+// change language with url localization
+
+export function LocaleToggle() {
+  const lang = useParams()?.lang ?? ''
+  let path = useLocation().pathname
+  const navigate = useNavigate()
+
+  return (
+      <select
+        className="icon-btn"
+        onChange={(event) => {
+          const nextLang = event.currentTarget.value
+          if (lang === nextLang) return
+
+          // check if path has a lang prefix, if so remove it
+          if (lang) {
+            path = path.replace(`/${lang}`, '')
+          }
+
+          // Ensure path starts with /
+          if (!path.startsWith('/')) {
+            path = '/' + path
+          }
+
+          // Add new language prefix if selected
+          const newPath = nextLang ? `/${nextLang}${path}` : path
+
+          // Navigate to new path preserving search params and hash
+          navigate(`${newPath}${location.search}${location.hash}`, {
+            replace: true,
+          })
+        }}
+        value={lang}
+      >
+        <option value="">Default</option>
+        <option value="en">English</option>
+        <option value="ar">Arabic</option>
+      </select>
+  )
+}
+```
+
+```tsx [localStorage-mode.ts]
+// change url with spa mode
+
+export function LocaleToggle() {
+  return (
+    <a
+      className="icon-btn"
+      onClick={() => locale.toggleLocales()}
+      title={t`button.toggle_langs`}
+    >
+      <CarbonLanguage />
+    </a>
+  )
+}
+```
+
+:::
+
+::: tip
+See `app/components/TheFooter.tsx` for a complete implementation example in the Reactive codebase.
 :::
 
 ## Smart Locale Detection
