@@ -10,6 +10,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 <p align='center'>
 <a href="https://reactive-template.netlify.app/">Live Demo</a>
+<a href="https://reactive-docs.netlify.app/">Docs</a>
 </p>
 
 <br>
