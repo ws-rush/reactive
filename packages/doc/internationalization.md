@@ -12,7 +12,7 @@ you should be carefull when change utilities in `app/globals`
 
 The framework supports two i18n modes:
 
-* URL prefix mode (e.g., localhost:5173/en/products)
+* URL prefix mode (e.g., `localhost:5173/en/products`)
 * LocalStorage mode (for applications where URL should remain unaffected)
 
 ## Adding Languages
@@ -155,6 +155,8 @@ function Greeting() {
 }
 ```
 
+:::
+
 ### Extracting Messages
 
 After adding new messages, extract them to translation files:
@@ -175,7 +177,7 @@ You can edit the generated .po files using:
 * Any text editor
 * [Poedit](https://poedit.net/) (recommended for better translation management)
 
-Example .po file content:
+Example `.po` file content:
 
 ```po
 #: src/components/Welcome.tsx:5
