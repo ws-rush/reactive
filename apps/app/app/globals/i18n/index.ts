@@ -58,10 +58,6 @@ export const locale: LocaleInteface = {
     await locale.set(newLocale)
   },
   get value() {
-    return (
-      localStorage.getItem('locale') ||
-      navigator.language.slice(0, 2) ||
-      navigator.language[0].slice(0, 2)
-    )
+    return localStorage.getItem('locale') || this.default
   },
 }

@@ -31,3 +31,6 @@ coverage/
 
 unimport.d.ts
 .react-router
+
+dist
+cache

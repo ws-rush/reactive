@@ -1,0 +1,11 @@
+{
+  "name": "@reactive/doc",
+  "scripts": {
+    "dev": "vitepress dev .",
+    "build": "vitepress build .",
+    "preview": "vitepress preview ."
+  },
+  "dependencies": {
+    "vitepress": "^1.5.0"
+  }
+}
