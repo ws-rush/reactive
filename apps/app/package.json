@@ -44,6 +44,7 @@
     "@eslint/js": "9.14.0",
     "@fontsource/lato": "^5.1.1",
     "@iconify-json/carbon": "^1.2.5",
+    "@julr/vite-plugin-validate-env": "^1.3.0",
     "@lingui/cli": "^5.1.2",
     "@lingui/conf": "^5.1.2",
     "@lingui/vite-plugin": "^5.1.2",

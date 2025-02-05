@@ -12,6 +12,7 @@ import { qrcode } from 'vite-plugin-qrcode'
 import Unimport from 'unimport/unplugin'
 import macrosPlugin from 'vite-plugin-babel-macros'
 import { reactRouterDevTools } from 'react-router-devtools'
+import { Schema, ValidateEnv } from '@julr/vite-plugin-validate-env'
 
 // import babel from 'vite-plugin-babel'
 
@@ -30,6 +31,8 @@ export default defineConfig({
   },
 
   plugins: [
+    // valiafte .env variables, see https://github.com/Julien-R44/vite-plugin-validate-env
+    ValidateEnv({}),
     reactRouterDevTools(),
     !process.env.VITEST && reactRouter(),
     macrosPlugin(),
