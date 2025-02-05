@@ -31,7 +31,7 @@ export default defineConfig({
   },
 
   plugins: [
-    // valiafte .env variables, see https://github.com/Julien-R44/vite-plugin-validate-env
+    // valiadte .env variables, see https://github.com/Julien-R44/vite-plugin-validate-env
     ValidateEnv({}),
     reactRouterDevTools(),
     !process.env.VITEST && reactRouter(),
