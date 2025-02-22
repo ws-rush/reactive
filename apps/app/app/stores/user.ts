@@ -1,6 +1,6 @@
 /* eslint-disable canonical/sort-keys */
 
-import { defineStore } from 'tawr-state'
+import { defineStore } from '@tawr/state'
 
 export const userStore = defineStore({
   state() {
@@ -26,5 +26,3 @@ export const userStore = defineStore({
     },
   },
 })
-
-export const { setNewName } = userStore.actions

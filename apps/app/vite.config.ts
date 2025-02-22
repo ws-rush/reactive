@@ -7,12 +7,12 @@ import { imagetools } from 'vite-imagetools'
 import { plugin, Mode } from 'vite-plugin-markdown'
 // import { VitePWA } from 'vite-plugin-pwa'
 import Inspect from 'vite-plugin-inspect'
-import { reactRouter } from '@react-router/dev/vite'
+import reactRouter from 'unplugin-remix-router/vite'
 import { qrcode } from 'vite-plugin-qrcode'
 import Unimport from 'unimport/unplugin'
 import macrosPlugin from 'vite-plugin-babel-macros'
 import { reactRouterDevTools } from 'react-router-devtools'
-import { Schema, ValidateEnv } from '@julr/vite-plugin-validate-env'
+import { ValidateEnv } from '@julr/vite-plugin-validate-env'
 
 // import babel from 'vite-plugin-babel'
 
@@ -34,7 +34,7 @@ export default defineConfig({
     // valiadte .env variables, see https://github.com/Julien-R44/vite-plugin-validate-env
     ValidateEnv({}),
     reactRouterDevTools(),
-    !process.env.VITEST && reactRouter(),
+    reactRouter(),
     macrosPlugin(),
     lingui(),
     Icons({

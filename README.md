@@ -23,7 +23,7 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 📦 [Components auto importing](./app/components)
 
-- 🔮 [State Management via Tawr](https://www.npmjs.com/package/tawr-state)
+- 🔮 [State Management via Tawr](https://www.npmjs.com/package/@tawr/state)
 
 - 🎨 [Tailwindcss](https://tailwindcss.com/) - A utility-first CSS framework packed with classes
 

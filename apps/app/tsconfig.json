@@ -28,7 +28,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
-      "@react-router/node",
       "vite/client",
       "unplugin-icons/types/react"
     ],
@@ -38,7 +37,6 @@
     ".eslintrc.json",
     "unimport.d.ts",
     "app",
-    ".react-router/types/**/*"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

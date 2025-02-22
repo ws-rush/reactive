@@ -1,22 +1,25 @@
 import { Trans } from '@lingui/react/macro'
+import { useObserve } from '@tawr/state'
 import CarbonPedestrian from '~icons/carbon/pedestrian'
 import { Link, useNavigate, useParams } from 'react-router'
-import { useSnapshot } from 'tawr-state'
 
 export default function Component() {
   const navigate = useNavigate()
   const { name } = useParams()
-  const user = useSnapshot(userStore)
+  const [savedName, otherNames] = useObserve(() => [
+    userStore.savedName,
+    userStore.otherNames,
+  ])
 
   useEffect(() => {
-    if (name) setNewName(name)
+    if (name) userStore.setNewName(name)
   }, [name])
 
   return (
     <div className="text-center">
       <CarbonPedestrian className="text-4xl mx-auto" />
       <p>
-        <Trans>intro.hi, {user.savedName}!</Trans>
+        <Trans>intro.hi, {savedName}!</Trans>
       </p>
 
       <p className="text-sm opacity-75">
@@ -25,13 +28,13 @@ export default function Component() {
         </em>
       </p>
 
-      {(user.otherNames.length && (
+      {(otherNames.length && (
         <p className="mt-4 text-sm">
           <span className="opacity-75">
             <Trans>intro.aka</Trans>:
           </span>
           <ul>
-            {user.otherNames.map((otherName: string) => (
+            {otherNames.map((otherName: string) => (
               <li key={otherName}>
                 <Link
                   replace
