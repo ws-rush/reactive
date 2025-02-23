@@ -1,5 +1,5 @@
 import './styles/main.css'
-import { i18n } from '@lingui/core'
+import { I18nProvider } from '@lingui/react'
 import { Trans } from '@lingui/react/macro'
 import {
   type ClientLoaderFunctionArgs,
@@ -84,14 +84,13 @@ export async function clientLoader({ params }: ClientLoaderFunctionArgs) {
 
 export default function App() {
   return (
-    <ReactRouterI18nProvider
-      i18n={i18n}
-      mode="url"
-    >
+    <I18nProvider i18n={locale.i18n}>
       <Outlet />
-    </ReactRouterI18nProvider>
+    </I18nProvider>
   )
 }
+
+export const shouldRevalidate = locale.i18nRevalidate()
 
 export function HydrateFallback() {
   return (
