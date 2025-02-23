@@ -11,7 +11,6 @@ import reactRouter from 'unplugin-remix-router/vite'
 import { qrcode } from 'vite-plugin-qrcode'
 import Unimport from 'unimport/unplugin'
 import macrosPlugin from 'vite-plugin-babel-macros'
-import { reactRouterDevTools } from 'react-router-devtools'
 import { ValidateEnv } from '@julr/vite-plugin-validate-env'
 
 // import babel from 'vite-plugin-babel'
@@ -33,7 +32,6 @@ export default defineConfig({
   plugins: [
     // valiadte .env variables, see https://github.com/Julien-R44/vite-plugin-validate-env
     ValidateEnv({}),
-    reactRouterDevTools(),
     reactRouter(),
     macrosPlugin(),
     lingui(),
