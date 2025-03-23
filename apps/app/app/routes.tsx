@@ -5,9 +5,6 @@ import { routes } from 'virtual:routes'
 
 export const router = createBrowserRouter(routes)
 
-// @ts-expect-error fix later
-router.navigate = locale.navigateInterceptor(router)
-
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 createRoot(document.querySelector('#app')!).render(
   <StrictMode>
