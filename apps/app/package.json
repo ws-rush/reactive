@@ -29,7 +29,7 @@
     "@tawr/state": "^0.0.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-router": "^7.3.0",
+    "react-router": "^7.5.2",
     "vite-plugin-pwa": "^0.16.7"
   },
   "devDependencies": {
