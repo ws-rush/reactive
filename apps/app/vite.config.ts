@@ -1,5 +1,4 @@
 /// <reference types="vitest" />
-
 import { defineConfig } from 'vite'
 import { lingui } from '@lingui/vite-plugin'
 import Icons from 'unplugin-icons/vite'
@@ -12,6 +11,7 @@ import { qrcode } from 'vite-plugin-qrcode'
 import Unimport from 'unimport/unplugin'
 import macrosPlugin from 'vite-plugin-babel-macros'
 import { ValidateEnv } from '@julr/vite-plugin-validate-env'
+import tailwindcss from '@tailwindcss/vite'
 
 // import babel from 'vite-plugin-babel'
 
@@ -32,6 +32,7 @@ export default defineConfig({
   plugins: [
     // valiadte .env variables, see https://github.com/Julien-R44/vite-plugin-validate-env
     ValidateEnv({}),
+    tailwindcss(),
     reactRouter(),
     macrosPlugin(),
     lingui(),

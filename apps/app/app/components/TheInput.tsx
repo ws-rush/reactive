@@ -16,7 +16,7 @@ export function TheInput({ onInput, onPressEnter, value }: Props) {
   return (
     <input
       autoComplete="false"
-      className="px-4 py-2 w-[250px] text-center bg-transparent border rounded border-gray-200 dark:border-gray-700 outline-none active:outline-none"
+      className="px-4 py-2 w-[250px] text-center bg-transparent border rounded-sm border-gray-200 dark:border-gray-700 outline-hidden active:outline-hidden"
       id="input"
       onInput={onInput}
       onKeyDown={(event) => onKeyDownHandler(event)}
