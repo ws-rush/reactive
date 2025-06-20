@@ -27,7 +27,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client", "unplugin-icons/types/react"],
+    "types": ["vite/client", "vitest", "unplugin-icons/types/react"],
     "rootDirs": [".", "./.react-router/types"]
   },
   "include": [".eslintrc.json", "unimport.d.ts", "app"],

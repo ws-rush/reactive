@@ -1,6 +1,7 @@
-/// <reference types="vitest" />
-import { defineConfig } from 'vite'
+/// <reference types="vite/client" />
+
 import { lingui } from '@lingui/vite-plugin'
+import { defineConfig } from 'vite'
 import Icons from 'unplugin-icons/vite'
 import { imagetools } from 'vite-imagetools'
 import { plugin, Mode } from 'vite-plugin-markdown'
@@ -12,7 +13,6 @@ import Unimport from 'unimport/unplugin'
 import macrosPlugin from 'vite-plugin-babel-macros'
 import { ValidateEnv } from '@julr/vite-plugin-validate-env'
 import tailwindcss from '@tailwindcss/vite'
-
 // import babel from 'vite-plugin-babel'
 
 const ReactCompilerConfig = {
@@ -22,12 +22,6 @@ const ReactCompilerConfig = {
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: { alias: { '@': '/app' } },
-
-  // https://github.com/vitest-dev/vitest
-  test: {
-    include: ['tests/**/*.{spec,test}.?(c|m)[jt]s?(x)'],
-    environment: 'happy-dom',
-  },
 
   plugins: [
     // valiadte .env variables, see https://github.com/Julien-R44/vite-plugin-validate-env

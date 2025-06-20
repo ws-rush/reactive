@@ -12,7 +12,8 @@
       "!**/*.config.ts",
       "!**/*.d.ts",
       "!**/*.json",
-      "!**/unimport.d.ts"
+      "!**/unimport.d.ts",
+      "!**/pnpm-lock.yaml"
     ]
   },
   "formatter": {
