@@ -12,7 +12,6 @@
       "!**/*.config.ts",
       "!**/*.d.ts",
       "!**/*.json",
-      "!**/pnpm-lock.yaml",
       "!**/unimport.d.ts"
     ]
   },
