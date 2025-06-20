@@ -1,7 +1,7 @@
-import TheCounter from '../app/components/TheCounter'
 import { cleanup, fireEvent, render } from '@testing-library/react'
 import React from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
+import TheCounter from '../app/components/TheCounter'
 
 describe('Counter component', () => {
   afterEach(() => {

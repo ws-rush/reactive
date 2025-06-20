@@ -1,8 +1,8 @@
-import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
 import { Trans } from '@lingui/react/macro'
 import { useObserve } from '@tawr/state'
-import CarbonChartRadar from '~icons/carbon/chart-radar'
 import { useNavigate } from 'react-router'
+import viteLogo from '@/assets/vite.jpg?w=75&h=75&format=webp'
+import CarbonChartRadar from '~icons/carbon/chart-radar'
 
 export default function Component() {
   const savedName = useObserve(() => userStore.savedName)
@@ -17,16 +17,8 @@ export default function Component() {
   return (
     <div>
       <div className="font-sans flex gap-4 justify-center m-4">
-        <a
-          href="https://vitejs.dev"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <img
-            alt="Vite logo"
-            className="logo"
-            src={viteLogo}
-          />
+        <a href="https://vitejs.dev" rel="noreferrer" target="_blank">
+          <img alt="Vite logo" className="logo" src={viteLogo} />
         </a>
         <a
           href="https://github.com/ws-rush/reactive"

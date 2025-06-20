@@ -1,7 +1,7 @@
+import { routes } from 'virtual:routes'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
-import { routes } from 'virtual:routes'
 
 export const router = createBrowserRouter(routes)
 

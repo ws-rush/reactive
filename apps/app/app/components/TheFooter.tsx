@@ -1,11 +1,11 @@
 import { useLingui } from '@lingui/react/macro'
+import { Link, useLocation, useNavigate, useParams } from 'react-router'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
 // import CarbonLanguage from '~icons/carbon/language'
 import CarbonLogoGithub from '~icons/carbon/logo-github'
 import CarbonMoon from '~icons/carbon/moon'
 import CarbonSun from '~icons/carbon/sun'
-import { Link, useLocation, useNavigate, useParams } from 'react-router'
 
 export function TheFooter() {
   const { t } = useLingui()
@@ -15,10 +15,7 @@ export function TheFooter() {
 
   return (
     <nav className="flex gap-4 mt-6 justify-center items-center text-xl">
-      <Link
-        title={t`button.home`}
-        to="/"
-      >
+      <Link title={t`button.home`} to="/">
         <CarbonChartRadar className="icon-btn" />
       </Link>
 
@@ -73,11 +70,7 @@ export function TheFooter() {
         <option value="ar">Arabic</option>
       </select>
 
-      <Link
-        data-test-id="about"
-        title={t`button.about`}
-        to="/about"
-      >
+      <Link data-test-id="about" title={t`button.about`} to="/about">
         <CarbonDicomOverlay className="icon-btn" />
       </Link>
 

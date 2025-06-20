@@ -47,10 +47,7 @@ export function Layout({ children }: { readonly children: React.ReactNode }) {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta
-          content="width=device-width, initial-scale=1"
-          name="viewport"
-        />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <Meta />
         <Links />
       </head>
@@ -119,16 +116,10 @@ export function ErrorBoundray() {
         <Trans>Sorry, there is an error.</Trans>
       </h1>
       <div className="flex gap-3">
-        <button
-          onClick={() => navigate('/')}
-          type="button"
-        >
+        <button onClick={() => navigate('/')} type="button">
           <Trans>Go to Home</Trans>
         </button>
-        <button
-          onClick={() => logout()}
-          type="button"
-        >
+        <button onClick={() => logout()} type="button">
           <Trans>Logout</Trans>
         </button>
       </div>

@@ -2,5 +2,8 @@
   "scripts": {
     "app": "pnpm --filter @reactive/app",
     "doc": "pnpm --filter @reactive/doc"
+  },
+  "devDependencies": {
+    "lefthook": "^1.11.14"
   }
 }

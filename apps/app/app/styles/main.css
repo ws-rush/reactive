@@ -1,8 +1,8 @@
 /* Import the Lato font from Bunny Fonts */
-@import url('https://fonts.bunny.net/css?family=lato:400,700&display=swap')
-layer(base);
+@import url("https://fonts.bunny.net/css?family=lato:400,700&display=swap")
+  layer(base);
 
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin '@tailwindcss/typography';
 

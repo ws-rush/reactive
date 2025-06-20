@@ -1,7 +1,7 @@
 import { Trans } from '@lingui/react/macro'
 import { useObserve } from '@tawr/state'
-import CarbonPedestrian from '~icons/carbon/pedestrian'
 import { Link, useNavigate, useParams } from 'react-router'
+import CarbonPedestrian from '~icons/carbon/pedestrian'
 
 export default function Component() {
   const navigate = useNavigate()
@@ -36,10 +36,7 @@ export default function Component() {
           <ul>
             {otherNames.map((otherName: string) => (
               <li key={otherName}>
-                <Link
-                  replace
-                  to={`/hi/${otherName}`}
-                >
+                <Link replace to={`/hi/${otherName}`}>
                   {otherName}
                 </Link>
               </li>
