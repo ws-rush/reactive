@@ -11,6 +11,7 @@ import {
   useNavigate,
   useRouteError,
 } from 'react-router'
+import { GlobalBusHandler } from './globals/bus'
 
 export const links = () => [
   {
@@ -83,6 +84,7 @@ export default function App() {
   return (
     <I18nProvider i18n={locale.i18n}>
       <Outlet />
+      <GlobalBusHandler />
     </I18nProvider>
   )
 }
