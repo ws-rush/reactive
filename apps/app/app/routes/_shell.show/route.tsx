@@ -1,55 +1,6 @@
-import { NavLink } from 'react-router'
-import { formatTimeAgo, getStories } from '@/lib/hacker-news-api'
-import type { Route } from './+types/show'
-
-interface StoryItemProps {
-  story: any
-  index: number
-}
-
-function StoryItem({ story, index }: StoryItemProps) {
-  return (
-    <div className="flex items-start space-x-2 p-2 hover:bg-gray-50 rounded">
-      <span className="text-sm text-gray-500 mt-1 w-6 text-right">
-        {index + 1}.
-      </span>
-
-      <div className="flex-1 min-w-0">
-        <NavLink
-          to={`/item/${story.id}`}
-          prefetch="intent"
-          viewTransition
-          className="text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors leading-tight"
-        >
-          {story.title}
-        </NavLink>
-
-        <div className="flex items-center space-x-2 text-xs text-gray-500 mt-1">
-          <span>{story.score} points</span>
-          <span>by</span>
-          <NavLink
-            to={`/user/${story.by}`}
-            prefetch="intent"
-            viewTransition
-            className="hover:text-blue-600 transition-colors"
-          >
-            {story.by}
-          </NavLink>
-          <span>{formatTimeAgo(story.time)}</span>
-          <span>|</span>
-          <NavLink
-            to={`/item/${story.id}`}
-            prefetch="intent"
-            viewTransition
-            className="hover:text-blue-600 transition-colors"
-          >
-            {story.descendants || 0} comments
-          </NavLink>
-        </div>
-      </div>
-    </div>
-  )
-}
+import { getStories } from '@/lib/hacker-news-api'
+import type { Route } from './+types/route'
+import { StoryItem } from './components/StoryItem'
 
 export async function clientLoader({ request }: Route.ClientLoaderArgs) {
   const url = new URL(request.url)
@@ -92,12 +43,16 @@ export default function ShowStories({ loaderData }: Route.ComponentProps) {
 
       <div className="flex justify-center space-x-4 mt-6">
         <button
+          type="button"
           className="px-4 py-2 bg-white border border-gray-300 rounded text-sm hover:bg-gray-50 transition-colors"
           disabled
         >
           Previous
         </button>
-        <button className="px-4 py-2 bg-white border border-gray-300 rounded text-sm hover:bg-gray-50 transition-colors">
+        <button
+          type="button"
+          className="px-4 py-2 bg-white border border-gray-300 rounded text-sm hover:bg-gray-50 transition-colors"
+        >
           Next
         </button>
       </div>

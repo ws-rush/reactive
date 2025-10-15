@@ -1,67 +1,9 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router'
+import { NavLink } from 'react-router'
 import type { Story } from '@/lib/hacker-news-api'
-import { getStories } from '@/lib/hacker-news-api'
+import type { StorySidebarProps } from '../types'
 
-interface ShellLayoutProps {
-  children: React.ReactNode
-}
-
-function MainHeader() {
-  return (
-    <header className="sticky top-0 left-80 right-0 z-30 bg-white border-b border-gray-100 backdrop-blur-xl bg-opacity-95">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="flex items-center justify-between h-12">
-          <nav className="hidden lg:flex items-center space-x-1 text-sm">
-            {[
-              { to: '/', label: 'top' },
-              { to: '/new', label: 'new' },
-              { to: '/best', label: 'best' },
-              { to: '/ask', label: 'ask' },
-              { to: '/show', label: 'show' },
-              { to: '/jobs', label: 'jobs' },
-            ].map(({ to, label }) => (
-              <NavLink
-                key={to}
-                to={to}
-                prefetch="viewport"
-                viewTransition
-                className={({ isPending, isActive }) => `
-                  px-3 py-1.5 rounded text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200 font-medium
-                  ${isActive ? 'text-gray-900 bg-gray-100' : ''}
-                  ${isPending ? 'opacity-60' : ''}
-                `}
-              >
-                {label}
-              </NavLink>
-            ))}
-          </nav>
-
-          <div className="flex items-center space-x-2">
-            <NavLink
-              to="/submit"
-              prefetch="viewport"
-              viewTransition
-              className={({ isPending }) => `
-                px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded transition-all duration-200
-                ${isPending ? 'opacity-60' : ''}
-              `}
-            >
-              submit
-            </NavLink>
-          </div>
-        </div>
-      </div>
-    </header>
-  )
-}
-
-interface StorySidebarProps {
-  stories: Story[]
-  isLoading?: boolean
-}
-
-function StorySidebar({ stories, isLoading }: StorySidebarProps) {
+export function StorySidebar({ stories, isLoading }: StorySidebarProps) {
   const [searchQuery, setSearchQuery] = React.useState('')
   const [filteredStories, setFilteredStories] = React.useState<Story[]>([])
   const [currentPage, setCurrentPage] = React.useState(0)
@@ -227,66 +169,5 @@ function StorySidebar({ stories, isLoading }: StorySidebarProps) {
         )}
       </div>
     </aside>
-  )
-}
-
-function MobileNav() {
-  return (
-    <nav className="lg:hidden bg-white border-t border-gray-100 sticky bottom-0 z-40 backdrop-blur-xl bg-opacity-95">
-      <div className="flex justify-around py-1">
-        {[
-          { to: '/', label: 'top' },
-          { to: '/new', label: 'new' },
-          { to: '/ask', label: 'ask' },
-          { to: '/show', label: 'show' },
-        ].map(({ to, label }) => (
-          <NavLink
-            key={to}
-            to={to}
-            prefetch="viewport"
-            viewTransition
-            className={({ isPending, isActive }) => `
-              flex flex-col items-center p-2 text-xs font-medium transition-all duration-200
-              ${isActive ? 'text-gray-900' : 'text-gray-500'}
-              ${isPending ? 'opacity-60' : ''}
-            `}
-          >
-            {label}
-          </NavLink>
-        ))}
-      </div>
-    </nav>
-  )
-}
-
-export default function ShellLayout() {
-  // We'll get stories from the child routes instead
-  const [stories, setStories] = React.useState<any[]>([])
-  const [isLoading, setIsLoading] = React.useState(true)
-
-  // Load top stories by default for the sidebar
-  React.useEffect(() => {
-    getStories('top', 20)
-      .then(setStories)
-      .catch(console.error)
-      .finally(() => setIsLoading(false))
-  }, [])
-
-  return (
-    <div className="min-h-screen bg-gray-50 flex">
-      <StorySidebar stories={stories} isLoading={isLoading} />
-
-      <div className="flex-1 flex flex-col">
-        <MainHeader />
-
-        <main className="flex-1 px-4 py-4 pb-16 lg:pb-4 flex items-start justify-center">
-          <div className="w-full max-w-2xl">
-            <Outlet />
-          </div>
-        </main>
-      </div>
-
-      <MobileNav />
-    </div>
   )
 }
