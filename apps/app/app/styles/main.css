@@ -40,6 +40,102 @@
   @apply inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600;
 }
 
+/* Hacker News specific styles */
+.hn-link {
+  @apply text-blue-600 hover:text-blue-800 underline decoration-dotted hover:decoration-solid transition-all duration-150;
+}
+
+.hn-story-title {
+  @apply text-sm font-normal text-gray-900 leading-tight hover:text-blue-600 transition-colors;
+}
+
+.hn-meta {
+  @apply text-xs text-gray-500 leading-tight;
+}
+
+.hn-sidebar-item {
+  @apply block p-2 bg-white hover:bg-gray-50 border-b border-gray-100 transition-colors;
+}
+
+.hn-sidebar-item:hover .hn-story-title {
+  @apply text-blue-600;
+}
+
+/* Loading animations */
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Subtle fade-in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Elegant scrollbar */
+.scrollbar-elegant::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-elegant::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-elegant::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 3px;
+}
+
+.scrollbar-elegant::-webkit-scrollbar-thumb:hover {
+  background: #d1d5db;
+}
+
+/* Custom scrollbar for sidebar */
+.hn-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.hn-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.hn-scrollbar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.hn-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
 /* use it for dynamic themes */
 html.dark {
   background: #121212;
