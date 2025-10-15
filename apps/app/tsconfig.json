@@ -23,6 +23,7 @@
     "noFallthroughCasesInSwitch": true,
 
     /* unknown */
+    "verbatimModuleSyntax": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -30,6 +31,6 @@
     "types": ["vite/client", "vitest", "unplugin-icons/types/react"],
     "rootDirs": [".", "./.react-router/types"]
   },
-  "include": [".eslintrc.json", "unimport.d.ts", "app"],
+  "include": [".eslintrc.json", "unimport.d.ts", "app", ".react-router/types/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
