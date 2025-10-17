@@ -1,5 +1,6 @@
 import { useLingui } from '@lingui/react/macro'
 import { Link, useLocation, useNavigate, useParams } from 'react-router'
+import { mode } from '@/lib/mode.client'
 import CarbonChartRadar from '~icons/carbon/chart-radar'
 import CarbonDicomOverlay from '~icons/carbon/dicom-overlay'
 // import CarbonLanguage from '~icons/carbon/language'

@@ -11,6 +11,8 @@ import {
   ScrollRestoration,
   useNavigate,
 } from 'react-router'
+import { locale } from '@/lib/i18n'
+import { mode } from '@/lib/mode.client'
 import type { Route } from './+types/root'
 import { GlobalBusHandler } from './lib/bus'
 
