@@ -12,7 +12,7 @@ import {
   useNavigate,
 } from 'react-router'
 import type { Route } from './+types/root'
-import { GlobalBusHandler } from './globals/bus'
+import { GlobalBusHandler } from './lib/bus'
 
 export const links = () => [
   {

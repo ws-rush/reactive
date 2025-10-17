@@ -215,7 +215,7 @@ export default function TestLoaderErrorRoute() {
       {/* Navigation */}
       <div className="flex justify-center space-x-4 mt-6">
         <NavLink
-          to="/test-error"
+          to="/test/error"
           className={({ isPending }) =>
             `px-4 py-2 bg-white border border-gray-300 rounded text-sm hover:bg-gray-50 transition-colors ${
               isPending ? 'opacity-60' : ''
@@ -225,7 +225,7 @@ export default function TestLoaderErrorRoute() {
           ← Back to Error Tests
         </NavLink>
         <NavLink
-          to="/test-action-error"
+          to="/test/action-error"
           className={({ isPending }) =>
             `px-4 py-2 bg-white border border-gray-300 rounded text-sm hover:bg-gray-50 transition-colors ${
               isPending ? 'opacity-60' : ''

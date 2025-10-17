@@ -192,7 +192,7 @@ try {
         {/* Navigation */}
         <div className="flex justify-center space-x-4 pt-4">
           <NavLink
-            to="/test-error"
+            to="/test/error"
             className={({ isPending }) =>
               `px-6 py-3 bg-white border border-gray-300 rounded-lg text-sm hover:bg-gray-50 transition-colors ${
                 isPending ? 'opacity-60' : ''

@@ -17,7 +17,7 @@ export default function TestErrorRoute() {
 
   const triggerReactRouterError = () => {
     // Navigate to a route that will trigger a loader error
-    window.location.href = '/test-loader-error'
+    window.location.href = '/test/loader-error'
   }
 
   return (
@@ -177,7 +177,7 @@ export default function TestErrorRoute() {
                   error.
                 </p>
                 <NavLink
-                  to="/test-action-error"
+                  to="/test/action-error"
                   className="inline-block px-4 py-2 text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-lg transition-colors"
                 >
                   Go to Form Error Test
