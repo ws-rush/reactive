@@ -1,0 +1,24 @@
+FROM node:20-alpine AS build-stage
+
+ENV NODE_ENV=development
+
+WORKDIR /app
+RUN corepack enable
+
+COPY package.json ./
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+    pnpm install
+
+COPY . .
+RUN pnpm build
+
+FROM caddy:alpine AS production-stage
+
+RUN printf ":80 {\n\
+    root * /usr/share/caddy\n\
+    encode zstd gzip\n\
+    try_files {path} /index.html\n\
+    file_server\n\
+}" > /etc/caddy/Caddyfile
+
+COPY --from=build-stage /app/build/client /usr/share/caddy
