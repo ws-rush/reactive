@@ -13,6 +13,9 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { Button } from "@/components/ui/button"
+import { Languages } from "lucide-react"
+import { locale } from "@/lib/i18n"
 
 export default function Page() {
     return (
@@ -38,6 +41,15 @@ export default function Page() {
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
+                    <div className="ml-auto">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => locale.toggleLocales()}
+                        >
+                            <Languages />
+                        </Button>
+                    </div>
                 </header>
                 <div className="flex flex-1 flex-col gap-4 p-4">
                     <div className="grid auto-rows-min gap-4 md:grid-cols-3">

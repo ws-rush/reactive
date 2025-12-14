@@ -69,10 +69,11 @@ class Locale {
 
   public async toggleLocales() {
     const locales = this.availableLocale
-    const newLocale =
-      this.locales[(locales.indexOf(this.value) + 1) % locales.length]
+    const currentIndex = locales.indexOf(this.value)
+    const nextIndex = (currentIndex + 1) % locales.length
+    const newLocale = locales[nextIndex]
 
-    await this.set(newLocale.locale)
+    await this.set(newLocale)
   }
 
   public i18nRevalidate() {
