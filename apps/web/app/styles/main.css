@@ -1,6 +1,5 @@
 /* Import the Lato font from Bunny Fonts */
-@import url('https://fonts.bunny.net/css?family=lato:400,700&display=swap')
-layer(base);
+@import url('https://fonts.bunny.net/css?family=lato:400,700|inter:400,500,600,700&display=swap') layer(base);
 
 @import 'tailwindcss';
 
@@ -9,19 +8,49 @@ layer(base);
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: Lato, sans-serif;
+  --font-sans: Inter, Lato, sans-serif;
   --font-serif: Lato, serif;
+
+  --color-hn-orange: #ff6600;
+  --color-hn-orange-50: #fff5eb;
+  --color-hn-orange-100: #ffe8d6;
+  --color-hn-orange-200: #ffd1ad;
+  --color-hn-orange-300: #ffb070;
+  --color-hn-orange-400: #ff8533;
+  --color-hn-orange-500: #ff6600;
+  --color-hn-orange-600: #cc5200;
+  --color-hn-orange-700: #993d00;
+  --color-hn-orange-800: #662900;
+  --color-hn-orange-900: #331400;
+
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-slide-up: slide-up 0.4s ease-out;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -29,123 +58,53 @@ layer(base);
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 transition-colors duration-200;
+  }
+
+  html.dark body {
+    @apply bg-gray-950 text-gray-100;
+  }
+
+  /* Modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full dark:bg-gray-700;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400 dark:bg-gray-600;
+  }
 }
 
-/* Define your custom utility classes using @apply */
-.btn {
-  @apply px-4 py-1 rounded-sm inline-block bg-teal-700 text-white cursor-pointer outline-hidden hover:bg-teal-800 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
+@utility container-page {
+  @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-.icon-btn {
-  @apply inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600;
+@utility card-hover {
+  @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md;
 }
 
-/* Hacker News specific styles */
+/* HN Specific Utilities */
 .hn-link {
-  @apply text-blue-600 hover:text-blue-800 underline decoration-dotted hover:decoration-solid transition-all duration-150;
+  @apply text-gray-900 hover:text-hn-orange transition-colors dark:text-gray-100;
 }
 
-.hn-story-title {
-  @apply text-sm font-normal text-gray-900 leading-tight hover:text-blue-600 transition-colors;
-}
-
-.hn-meta {
-  @apply text-xs text-gray-500 leading-tight;
-}
-
-.hn-sidebar-item {
-  @apply block p-2 bg-white hover:bg-gray-50 border-b border-gray-100 transition-colors;
-}
-
-.hn-sidebar-item:hover .hn-story-title {
-  @apply text-blue-600;
-}
-
-/* Loading animations */
-@keyframes pulse-subtle {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Subtle fade-in animation */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.4s ease-out;
-}
-
-/* Line clamp utility */
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Elegant scrollbar */
-.scrollbar-elegant::-webkit-scrollbar {
-  width: 6px;
-}
-
-.scrollbar-elegant::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scrollbar-elegant::-webkit-scrollbar-thumb {
-  background: #e5e7eb;
-  border-radius: 3px;
-}
-
-.scrollbar-elegant::-webkit-scrollbar-thumb:hover {
-  background: #d1d5db;
-}
-
-/* Custom scrollbar for sidebar */
-.hn-scrollbar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.hn-scrollbar::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.hn-scrollbar::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
-}
-
-.hn-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
-}
-
-/* use it for dynamic themes */
-html.dark {
-  background: #121212;
-  color-scheme: dark;
-}
-
-html,
-body,
-#app {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+.hn-meta-link {
+  @apply text-xs text-gray-500 hover:text-gray-700 hover:underline dark:text-gray-400 dark:hover:text-gray-300;
 }

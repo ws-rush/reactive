@@ -1,67 +1,74 @@
-export default function ShellIndex() {
+import { Link } from 'react-router'
+import { getStories } from '@/lib/hacker-news-api'
+import type { Route } from './+types/route'
+import { StoryCard } from '@/components/StoryCard'
+import { cn } from '@/lib/utils'
+
+export async function clientLoader({ request }: Route.ClientLoaderArgs) {
+  const url = new URL(request.url)
+  const page = parseInt(url.searchParams.get('page') || '1', 10)
+  const limit = 30
+  const offset = (page - 1) * limit
+
+  try {
+    const stories = await getStories('top', limit, offset)
+    return { stories, page }
+  } catch (error) {
+    console.error('Failed to load top stories:', error)
+    return { stories: [], page }
+  }
+}
+
+export default function TopStories({ loaderData }: Route.ComponentProps) {
+  const { stories, page } = loaderData
+
   return (
-    <div className="flex items-center justify-center h-full p-8">
-      <div className="text-center space-y-8 max-w-md">
-        {/* Empty State */}
-        <div className="space-y-4">
-          <div className="w-12 h-12 bg-gray-100 rounded-lg mx-auto flex items-center justify-center">
-            <svg
-              className="w-6 h-6 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-              />
-            </svg>
-          </div>
-
-          <div className="space-y-2">
-            <h2 className="text-lg font-medium text-gray-900">
-              No story selected
-            </h2>
-            <p className="text-sm text-gray-500">
-              Choose a story from the sidebar to start reading
-            </p>
-          </div>
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          Top Stories
+        </h1>
+        <div className="text-sm text-gray-500">
+          Page {page}
         </div>
+      </div>
 
-        {/* Simple Instructions */}
-        <div className="bg-white rounded-lg border border-gray-100 p-4 text-left">
-          <div className="space-y-3">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-xs font-medium text-orange-600">1</span>
-              </div>
-              <div className="text-sm text-gray-700">
-                Browse stories in the sidebar
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-xs font-medium text-orange-600">2</span>
-              </div>
-              <div className="text-sm text-gray-700">
-                Click on any story to read
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-xs font-medium text-orange-600">3</span>
-              </div>
-              <div className="text-sm text-gray-700">
-                Join the discussion with comments
-              </div>
-            </div>
-          </div>
+      {stories.length === 0 ? (
+        <div className="text-center py-12 bg-white dark:bg-gray-900 rounded-lg border border-dashed border-gray-300 dark:border-gray-700">
+          <p className="text-gray-500">No stories found or failed to load.</p>
         </div>
+      ) : (
+        <div className="grid gap-3">
+          {stories.map((story, index) => (
+            <StoryCard
+              key={story.id}
+              story={story}
+              index={(page - 1) * 30 + index}
+            />
+          ))}
+        </div>
+      )}
+
+      <div className="flex justify-center space-x-4 pt-6">
+        <Link
+          to={`?page=${page - 1}`}
+          className={cn(
+            "px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors",
+            page <= 1 && "pointer-events-none opacity-50"
+          )}
+          preventScrollReset={false}
+        >
+          Previous
+        </Link>
+        <Link
+          to={`?page=${page + 1}`}
+          className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+          preventScrollReset={false}
+        >
+          Next
+        </Link>
       </div>
     </div>
   )
 }
+

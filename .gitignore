@@ -40,6 +40,6 @@ cache
 
 stats.html
 
-locales/
+locales/*.js
 
 __screenshots__/
