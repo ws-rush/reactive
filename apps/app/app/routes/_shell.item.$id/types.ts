@@ -1,5 +1,7 @@
+import type { Comment, Story } from '@/lib/hacker-news-api'
+
 export interface CommentItemProps {
-  comment: any
+  comment: Comment
   depth: number
 }
 
@@ -9,6 +11,6 @@ export interface CommentTreeProps {
 }
 
 export interface StoryDetailProps {
-  story: any
-  comments: any[]
+  story: Story
+  comments: Comment[]
 }

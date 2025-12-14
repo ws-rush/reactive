@@ -7,7 +7,7 @@ export default function TestErrorRoute() {
 
   if (shouldError) {
     throw new Error(
-      'This is a test error to demonstrate the ErrorBoundary component'
+      'This is a test error to demonstrate the ErrorBoundary component',
     )
   }
 
@@ -294,7 +294,7 @@ export async function loader({ params }) {
                 <span className="text-xs font-medium text-blue-600">4</span>
               </div>
               <div className="text-sm text-blue-800">
-                Try the "Report this issue" functionality
+                Try the &quot;Report this issue&quot; functionality
               </div>
             </div>
             <div className="flex items-start space-x-4">

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Outlet } from 'react-router'
-import { getStories } from '@/lib/hacker-news-api'
+import { type Story, getStories } from '@/lib/hacker-news-api'
 import { MainHeader } from './components/MainHeader'
 import { MobileNav } from './components/MobileNav'
 import { StorySidebar } from './components/StorySidebar'
 
 export default function ShellLayout() {
   // We'll get stories from the child routes instead
-  const [stories, setStories] = React.useState<any[]>([])
+  const [stories, setStories] = React.useState<Story[]>([])
   const [isLoading, setIsLoading] = React.useState(true)
 
   // Load top stories by default for the sidebar

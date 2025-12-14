@@ -13,7 +13,7 @@ export function StorySidebar({ stories, isLoading }: StorySidebarProps) {
   const totalPages = Math.ceil(filteredStories.length / storiesPerPage)
   const paginatedStories = filteredStories.slice(
     currentPage * storiesPerPage,
-    (currentPage + 1) * storiesPerPage
+    (currentPage + 1) * storiesPerPage,
   )
 
   // Initialize all stories when stories prop changes
@@ -29,7 +29,7 @@ export function StorySidebar({ stories, isLoading }: StorySidebarProps) {
       const filtered = allStories.filter(
         (story) =>
           story.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          story.by.toLowerCase().includes(searchQuery.toLowerCase())
+          story.by.toLowerCase().includes(searchQuery.toLowerCase()),
       )
       setFilteredStories(filtered)
       setCurrentPage(0)

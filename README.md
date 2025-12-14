@@ -35,8 +35,6 @@ Mocking up web app with <b>Reactive</b><br>
 
 <!-- - 📲 [PWA](https://github.com/antfu/vite-plugin-pwa) -->
 
-- 📥 [APIs auto importing](https://github.com/unjs/unimport)
-
 - 🗒 [Markdown Support](https://github.com/hmsk/vite-plugin-markdown?tab=readme-ov-file)
 
 - 🏷️ [Manage meta tsgs](https://react.dev/blog/2024/04/25/react-19#support-for-metadata-tags)
@@ -45,18 +43,12 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🦾 TypeScript, of course
 
-- 🐶 Git hooks with [husky](https://typicode.github.io/husky)
+- 🐶 Git hooks with [lefthook](https://github.com/evilmartians/lefthook)
 
 - ⚙️ Unit Testing with [Vitest](https://github.com/vitest-dev/vitest)<!--, E2E Testing with [Cypress](https://cypress.io/)
   on [GitHub Actions](https://github.com/features/actions) # miss ci piplines and e2e test-->
 
-- ☁️ Deploy on Netlify, zero-config
-
-- 🔎 Inspect code with - [Vite Inspect](https://github.com/antfu/vite-plugin-inspect), visit it at `/__inspect`. also open components in editor with React DevTools, and use [Tailwind CSS Devtools](https://chromewebstore.google.com/detail/tailwind-css-devtools/pgamkpjkbfldnmemhcbekimfdnjcgkco) for tailwind inspecting
-
-- 📝 Mocking Server API with [json-server](https://github.com/yracnet/vite-plugin-json-server/tree/main)
-
-> for component preview add [Preview.js](https://marketplace.visualstudio.com/items?itemName=zenclabs.previewjs) to vscode
+- 🔎 Inspect code with - [Vite Inspect](https://github.com/antfu/vite-plugin-inspect), visit it at `/__inspect`. also open components in editor with React DevTools.
 
 <br>
 
@@ -73,7 +65,7 @@ Mocking up web app with <b>Reactive</b><br>
 If you prefer to do it manually with the cleaner git history
 
 ```bash
-npx degit wusaby-rush/reactive my-reactive-app
+npx degit ws-rush/reactive my-reactive-app
 cd my-reactive-app
 pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 ```
@@ -107,10 +99,6 @@ pnpm build
 ```
 
 And you will see the generated file in `dist` that ready to be served.
-
-### Deploy on Netlify
-
-Go to [Netlify](https://app.netlify.com/start) and select your clone, `OK` along the way, and your App will be live in a minute.
 
 ### Docker Production Build
 

@@ -4,6 +4,7 @@ import {
   getComments,
   getDomain,
   getStory,
+  type Comment,
 } from '@/lib/hacker-news-api'
 import type { Route } from './+types/route'
 import { CommentItem } from './components/CommentItem'
@@ -17,7 +18,7 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 
   try {
     const story = await getStory(parseInt(id, 10))
-    let comments: any[] = []
+    let comments: Comment[] = []
 
     if (story.kids && story.kids.length > 0) {
       comments = await getComments(story.kids.slice(0, 50)) // Limit initial comments
@@ -40,7 +41,8 @@ export default function StoryDetail({ loaderData }: Route.ComponentProps) {
           Story not found
         </h1>
         <p className="text-gray-600 mb-4 text-sm">
-          The story you're looking for doesn't exist or has been removed.
+          The story you&aposre looking for doesn&apost exist or has been
+          removed.
         </p>
         <NavLink
           to="/"

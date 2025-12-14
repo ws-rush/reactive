@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router'
-import { formatTimeAgo } from '@/lib/hacker-news-api'
+import { formatTimeAgo, type Story } from '@/lib/hacker-news-api'
 import type { StoryLinkProps } from '../types'
 
 export function StoryLink({ storyId, index }: StoryLinkProps) {
-  const [story, setStory] = React.useState<any>(null)
+  const [story, setStory] = React.useState<Story | null>(null)
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {

@@ -27,7 +27,7 @@ export default function UserProfile({ loaderData }: Route.ComponentProps) {
       <div className="text-center py-8">
         <h1 className="text-xl font-bold text-gray-900 mb-2">User not found</h1>
         <p className="text-gray-600">
-          The user you're looking for doesn't exist.
+          The user you&apos;re looking for doesn&apos; exist.
         </p>
         <NavLink
           to="/"

@@ -1,13 +1,20 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": { "@/*": ["app/*"] },
+    "paths": {
+      "@/*": [
+        "app/*"
+      ]
+    },
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
-
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -15,22 +22,35 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
     /* unknown */
     "verbatimModuleSyntax": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["vite/client", "vitest", "unplugin-icons/types/react"],
-    "rootDirs": [".", "./.react-router/types"]
+    "types": [
+      "vite/client",
+      "vitest",
+      "unplugin-icons/types/react"
+    ],
+    "rootDirs": [
+      ".",
+      "./.react-router/types"
+    ]
   },
-  "include": [".eslintrc.json", "unimport.d.ts", "app", ".react-router/types/**/*"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    ".eslintrc.json",
+    "app",
+    ".react-router/types/**/*"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

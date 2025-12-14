@@ -1,9 +1,11 @@
+import type { Story } from '@/lib/hacker-news-api'
+
 export interface StoryItemProps {
-  story: any
+  story: Story
   index: number
 }
 
 export interface AskStoriesProps {
-  stories: any[]
+  stories: Story[]
   page: number
 }

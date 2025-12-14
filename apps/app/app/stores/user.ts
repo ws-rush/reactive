@@ -1,5 +1,3 @@
-/* eslint-disable canonical/sort-keys */
-
 import { defineStore } from '@tawr/state'
 
 export const userStore = defineStore({
@@ -12,7 +10,7 @@ export const userStore = defineStore({
   getters: {
     otherNames: (state) =>
       Array.from(state.previousNames).filter(
-        (name) => name !== state.savedName
+        (name) => name !== state.savedName,
       ),
     usedNames: (state) => Array.from(state.previousNames),
   },

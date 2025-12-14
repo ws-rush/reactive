@@ -35,14 +35,14 @@ async function fetchFromAPI<T>(endpoint: string): Promise<T> {
   const response = await fetch(`${HACKER_NEWS_API_BASE}${endpoint}`)
   if (!response.ok) {
     throw new Error(
-      `Failed to fetch from Hacker News API: ${response.statusText}`
+      `Failed to fetch from Hacker News API: ${response.statusText}`,
     )
   }
   return response.json()
 }
 
 export async function getStoryIds(
-  type: 'top' | 'new' | 'best' | 'ask' | 'show' | 'job' = 'top'
+  type: 'top' | 'new' | 'best' | 'ask' | 'show' | 'job' = 'top',
 ): Promise<number[]> {
   const endpoint = type === 'job' ? '/jobstories.json' : `/${type}stories.json`
   return fetchFromAPI<number[]>(endpoint)
@@ -55,7 +55,7 @@ export async function getStory(id: number): Promise<Story> {
 export async function getStories(
   type: 'top' | 'new' | 'best' | 'ask' | 'show' | 'job' = 'top',
   limit: number = 30,
-  offset: number = 0
+  offset: number = 0,
 ): Promise<Story[]> {
   const storyIds = await getStoryIds(type)
   const limitedIds = storyIds.slice(offset, offset + limit)
@@ -88,7 +88,7 @@ export async function getComments(commentIds: number[]): Promise<Comment[]> {
   const comments = await Promise.all(commentIds.map((id) => getComment(id)))
 
   return comments.filter(
-    (comment) => comment && !comment.deleted && !comment.dead
+    (comment) => comment && !comment.deleted && !comment.dead,
   )
 }
 

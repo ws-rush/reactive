@@ -1,6 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router'
-import { formatTimeAgo, getComments } from '@/lib/hacker-news-api'
+import {
+  formatTimeAgo,
+  getComments,
+  type Comment as ImportedComment,
+} from '@/lib/hacker-news-api'
 import type { CommentItemProps, CommentTreeProps } from '../types'
 
 export function CommentItem({ comment, depth }: CommentItemProps) {
@@ -42,7 +46,7 @@ export function CommentItem({ comment, depth }: CommentItemProps) {
 }
 
 export function CommentTree({ commentId, depth }: CommentTreeProps) {
-  const [comment, setComment] = React.useState<any>(null)
+  const [comment, setComment] = React.useState<ImportedComment | null>(null)
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -67,6 +71,8 @@ export function CommentTree({ commentId, depth }: CommentTreeProps) {
       </div>
     )
   }
+
+  if (!comment) return null
 
   return <CommentItem comment={comment} depth={depth} />
 }

@@ -9,11 +9,12 @@ import { plugin, Mode } from 'vite-plugin-markdown'
 import Inspect from 'vite-plugin-inspect'
 import { reactRouter } from '@react-router/dev/vite'
 import { qrcode } from 'vite-plugin-qrcode'
-import Unimport from 'unimport/unplugin'
 import macrosPlugin from 'vite-plugin-babel-macros'
 import { ValidateEnv } from '@julr/vite-plugin-validate-env'
 import tailwindcss from '@tailwindcss/vite'
-// import babel from 'vite-plugin-babel'
+import { visualizer } from 'rollup-plugin-visualizer'
+import reactScan from '@react-scan/vite-plugin-react-scan'
+import babel from 'vite-plugin-babel'
 
 const ReactCompilerConfig = {
   /* ... */
@@ -28,6 +29,15 @@ export default defineConfig({
     ValidateEnv({}),
     tailwindcss(),
     reactRouter(),
+    babel({
+      filter: /\.[jt]sx?$/,
+      babelConfig: {
+        presets: ['@babel/preset-typescript'], // if you use TypeScript
+        plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]],
+      },
+    }),
+    visualizer(),
+    reactScan(),
     macrosPlugin(),
     lingui(),
     Icons({
@@ -44,17 +54,6 @@ export default defineConfig({
     }),
     // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
     imagetools(),
-    qrcode(),
-    Unimport.vite({
-      presets: ['react', 'vitest'],
-      dirs: [
-        './app/components/**',
-        './app/globals/**',
-        './app/middlewares/**',
-        './app/stores/**',
-        './app/queries/**',
-      ],
-      dts: true,
-    }),
+    qrcode()
   ],
 })

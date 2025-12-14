@@ -21,7 +21,7 @@ class Locale {
     locales: Record<string, LocaleEntry>,
     defaultValue: string,
     mode: 'localStorage' | 'url',
-    i18nInstance: I18n
+    i18nInstance: I18n,
   ) {
     this.locales = locales
     this.defaultValue = defaultValue
@@ -39,7 +39,7 @@ class Locale {
     document.documentElement.setAttribute('lang', localeValue)
     document.documentElement.setAttribute(
       'dir',
-      this.locales[localeValue].direction
+      this.locales[localeValue].direction,
     )
   }
 
@@ -117,5 +117,5 @@ export const locale = new Locale(
   },
   'en',
   'url',
-  i18n
+  i18n,
 )
