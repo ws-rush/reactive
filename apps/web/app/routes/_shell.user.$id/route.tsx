@@ -18,17 +18,15 @@ export async function clientLoader({ params }: Route.ClientLoaderArgs) {
 
     if (user.submitted && user.submitted.length > 0) {
       // Fetch details for the first 30 submissions
-      const storyPromises = user.submitted
-        .slice(0, 30)
-        .map(async (storyId) => {
-          try {
-            const item = await getStory(storyId)
-            // Only include actual stories, not comments
-            return (item.type === 'story' || item.type === 'job') ? item : null
-          } catch {
-            return null
-          }
-        })
+      const storyPromises = user.submitted.slice(0, 30).map(async (storyId) => {
+        try {
+          const item = await getStory(storyId)
+          // Only include actual stories, not comments
+          return item.type === 'story' || item.type === 'job' ? item : null
+        } catch {
+          return null
+        }
+      })
 
       const results = await Promise.all(storyPromises)
       submittedStories = results.filter((s): s is Story => s !== null)
@@ -47,7 +45,9 @@ export default function UserProfile({ loaderData }: Route.ComponentProps) {
   if (!user) {
     return (
       <div className="text-center py-12">
-        <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">User not found</h1>
+        <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+          User not found
+        </h1>
         <NavLink
           to="/"
           className="text-hn-orange hover:underline text-sm font-medium"
@@ -58,11 +58,14 @@ export default function UserProfile({ loaderData }: Route.ComponentProps) {
     )
   }
 
-  const createdDate = new Date(user.created * 1000).toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+  const createdDate = new Date(user.created * 1000).toLocaleDateString(
+    undefined,
+    {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    },
+  )
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
@@ -76,21 +79,29 @@ export default function UserProfile({ loaderData }: Route.ComponentProps) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">{user.id}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+              {user.id}
+            </h1>
 
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600 dark:text-gray-400">
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-hn-orange text-base">{user.karma.toLocaleString()}</span>
+                <span className="font-bold text-hn-orange text-base">
+                  {user.karma.toLocaleString()}
+                </span>
                 <span>Karma</span>
               </div>
 
               <div className="flex items-center gap-1.5">
-                <span className="font-medium text-gray-900 dark:text-gray-300">Created</span>
+                <span className="font-medium text-gray-900 dark:text-gray-300">
+                  Created
+                </span>
                 <span>{createdDate}</span>
               </div>
 
               <div className="flex items-center gap-1.5">
-                <span className="font-medium text-gray-900 dark:text-gray-300">Submissions</span>
+                <span className="font-medium text-gray-900 dark:text-gray-300">
+                  Submissions
+                </span>
                 <span>{user.submitted?.length || 0}</span>
               </div>
             </div>
@@ -99,7 +110,9 @@ export default function UserProfile({ loaderData }: Route.ComponentProps) {
 
         {user.about && (
           <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
-            <h2 className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-3">About</h2>
+            <h2 className="text-sm font-bold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-3">
+              About
+            </h2>
             <div
               className="text-gray-700 dark:text-gray-300 leading-relaxed prose prose-sm dark:prose-invert max-w-none"
               dangerouslySetInnerHTML={{ __html: user.about }}
@@ -112,7 +125,9 @@ export default function UserProfile({ loaderData }: Route.ComponentProps) {
       <div className="space-y-4">
         <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center gap-3">
           Recent Stories
-          <Badge variant="secondary" size="sm" className="font-normal">Last 30</Badge>
+          <Badge variant="secondary" size="sm" className="font-normal">
+            Last 30
+          </Badge>
         </h2>
 
         {submittedStories.length > 0 ? (
@@ -139,4 +154,3 @@ export default function UserProfile({ loaderData }: Route.ComponentProps) {
     </div>
   )
 }
-

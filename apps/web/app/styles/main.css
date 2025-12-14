@@ -1,5 +1,6 @@
 /* Import the Lato font from Bunny Fonts */
-@import url('https://fonts.bunny.net/css?family=lato:400,700|inter:400,500,600,700&display=swap') layer(base);
+@import url('https://fonts.bunny.net/css?family=lato:400,700|inter:400,500,600,700&display=swap')
+layer(base);
 
 @import 'tailwindcss';
 
@@ -50,7 +51,6 @@
 }
 
 @layer base {
-
   *,
   ::after,
   ::before,

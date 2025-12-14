@@ -7,11 +7,35 @@ import { cn } from '@/lib/utils'
 // Inline/internal icons
 const Icons = {
   ChevronDown: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
   ),
   ChevronUp: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6" /></svg>
-  )
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m18 15-6-6-6 6" />
+    </svg>
+  ),
 }
 
 interface CommentThreadProps {
@@ -63,18 +87,27 @@ export function CommentThread({ comment, depth = 0 }: CommentThreadProps) {
   if (comment.deleted || comment.dead) return null
 
   return (
-    <div className={cn('relative', depth > 0 && 'pl-4 sm:pl-6 border-l-2 border-gray-100 dark:border-gray-800 ml-1')}>
-      <div className={cn("py-3", collapsed && "opacity-60")}>
+    <div
+      className={cn(
+        'relative',
+        depth > 0 &&
+          'pl-4 sm:pl-6 border-l-2 border-gray-100 dark:border-gray-800 ml-1',
+      )}
+    >
+      <div className={cn('py-3', collapsed && 'opacity-60')}>
         <div className="flex items-center gap-2 mb-2 text-xs text-gray-500 dark:text-gray-400">
           <button
             onClick={handleToggle}
             className="p-0.5 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors"
-            title={collapsed ? "Expand" : "Collapse"}
+            title={collapsed ? 'Expand' : 'Collapse'}
           >
             {collapsed ? <Icons.ChevronDown /> : <Icons.ChevronUp />}
           </button>
 
-          <Link to={`/user/${comment.by}`} className="font-semibold hover:underline">
+          <Link
+            to={`/user/${comment.by}`}
+            className="font-semibold hover:underline"
+          >
             {comment.by}
           </Link>
 
@@ -105,7 +138,11 @@ export function CommentThread({ comment, depth = 0 }: CommentThreadProps) {
                   </div>
                 ) : (
                   kids.map((kid) => (
-                    <CommentThread key={kid.id} comment={kid} depth={depth + 1} />
+                    <CommentThread
+                      key={kid.id}
+                      comment={kid}
+                      depth={depth + 1}
+                    />
                   ))
                 )}
 

@@ -68,7 +68,9 @@ export default function StoryDetail({ loaderData }: Route.ComponentProps) {
         <div className="space-y-4">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Badge variant="secondary" size="sm">{story.type}</Badge>
+              <Badge variant="secondary" size="sm">
+                {story.type}
+              </Badge>
               {story.url && (
                 <span className="text-sm text-gray-500 truncate max-w-[200px] sm:max-w-md">
                   {getDomain(story.url)}
@@ -93,8 +95,18 @@ export default function StoryDetail({ loaderData }: Route.ComponentProps) {
           </div>
 
           <div className="flex items-center flex-wrap gap-x-4 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
-            <span className="font-medium text-hn-orange">{story.score} points</span>
-            <span>by <NavLink to={`/user/${story.by}`} className="hover:text-hn-orange font-medium">{story.by}</NavLink></span>
+            <span className="font-medium text-hn-orange">
+              {story.score} points
+            </span>
+            <span>
+              by{' '}
+              <NavLink
+                to={`/user/${story.by}`}
+                className="hover:text-hn-orange font-medium"
+              >
+                {story.by}
+              </NavLink>
+            </span>
             <span>{formatTimeAgo(story.time)}</span>
             <span>{story.descendants || 0} comments</span>
           </div>
@@ -128,4 +140,3 @@ export default function StoryDetail({ loaderData }: Route.ComponentProps) {
     </div>
   )
 }
-
