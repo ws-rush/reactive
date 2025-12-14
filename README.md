@@ -21,8 +21,6 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🗂️ [File based routing with layouts support](https://reactrouter.com/dev/how-to/file-route-conventions)
 
-- 📦 [Components auto importing](./app/components)
-
 - 🔮 [State Management via Tawr](https://www.npmjs.com/package/@tawr/state)
 
 - 🎨 [Tailwindcss](https://tailwindcss.com/) - A utility-first CSS framework packed with classes
@@ -100,18 +98,25 @@ pnpm build
 
 And you will see the generated file in `dist` that ready to be served.
 
-### Docker Production Build
+### Container Production Build
 
-First, build the vitesse image by opening the terminal in the project's root directory.
+First, build the reactive image by opening the terminal in the project's root directory.
 
 ```bash
-docker buildx build . -t reactive:latest
+## SPA build
+podman build -t reactive-spa -f apps/web/Containerfile.spa apps/web
+
+## MPA build
 ```
 
 Run the image and specify port mapping with the `-p` flag.
 
 ```bash
-docker run --rm -it -p 8080:80 reactive:latest
+## SPA run
+podman run --rm -p 8080:80 reactive-spa:latest
+
+## MPA run
+podman run --rm -p 8080:80 reactive-mpa:latest
 ```
 
 ## Why
