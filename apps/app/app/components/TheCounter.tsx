@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 type Props = {
   readonly initial: number
 }
