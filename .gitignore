@@ -40,8 +40,6 @@ cache
 
 stats.html
 
-locales/*.js
-
 __screenshots__/
 
-apps/web/app/locales/*.js
+**/locales/*.js
