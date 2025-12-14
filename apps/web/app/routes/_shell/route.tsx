@@ -5,6 +5,9 @@ import Page from '../sidebar-floating/route'
 
 export default function ShellLayout() {
   return (
-    <Page />
+    <div className="flex h-screen w-screen overflow-hidden pl-65">
+
+      <Page />
+    </div>
   )
 }
