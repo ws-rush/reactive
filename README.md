@@ -107,6 +107,7 @@ First, build the reactive image by opening the terminal in the project's root di
 podman build -t reactive-spa -f apps/web/Containerfile.spa apps/web
 
 ## MPA build
+podman build -t reactive-mpa -f apps/web/Containerfile.mpa apps/web
 ```
 
 Run the image and specify port mapping with the `-p` flag.
@@ -116,7 +117,7 @@ Run the image and specify port mapping with the `-p` flag.
 podman run --rm -p 8080:80 reactive-spa:latest
 
 ## MPA run
-podman run --rm -p 8080:80 reactive-mpa:latest
+podman run --rm -env-file apps/web/.env -p 3000:3000 reactive-mpa:latest
 ```
 
 ## Why
