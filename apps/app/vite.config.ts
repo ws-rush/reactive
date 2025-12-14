@@ -52,6 +52,6 @@ export default defineConfig({
     }),
     // add `declare module "@/assets/*"` to vite-env.d.ts to use with typescript
     imagetools(),
-    qrcode()
+    qrcode(),
   ],
 })

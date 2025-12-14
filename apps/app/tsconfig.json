@@ -2,17 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "app/*"
-      ]
+      "@/*": ["app/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
@@ -33,21 +27,10 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "vite/client",
-      "vitest",
-      "unplugin-icons/types/react"
-    ],
-    "rootDirs": [
-      ".",
-      "./.react-router/types"
-    ]
+    "types": ["vite/client", "vitest", "unplugin-icons/types/react"],
+    "rootDirs": [".", "./.react-router/types"]
   },
-  "include": [
-    ".eslintrc.json",
-    "app",
-    ".react-router/types/**/*"
-  ],
+  "include": [".eslintrc.json", "app", ".react-router/types/**/*"],
   "references": [
     {
       "path": "./tsconfig.node.json"
