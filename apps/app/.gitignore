@@ -27,7 +27,8 @@ dist-ssr
 *.sln
 *.sw?
 
-.env
+.env.local
+.env.*.local
 auto-imports.d.ts
 .eslintrc-auto-import.json
 coverage/
