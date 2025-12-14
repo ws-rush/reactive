@@ -2,7 +2,7 @@ pre-commit:
   commands:
     check:
       exclude: "vite.config.ts|vitest.config.ts|tsconfig.json|pnpm-lock.yaml"
-      run: pnpm app check
+      run: pnpm web check
       stage_fixed: true
 
 # EXAMPLE USAGE:

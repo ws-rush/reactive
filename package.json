@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "app": "pnpm --filter @reactive/app",
+    "web": "pnpm --filter @reactive/web",
     "doc": "pnpm --filter @reactive/doc"
   },
   "devDependencies": {
