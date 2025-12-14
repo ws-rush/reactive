@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 import { lingui } from '@lingui/vite-plugin'
-import { defineConfig } from 'vite'
+import { defineConfig, type PluginOption } from 'vite'
 import Icons from 'unplugin-icons/vite'
 import { imagetools } from 'vite-imagetools'
 import { plugin, Mode } from 'vite-plugin-markdown'
@@ -13,7 +13,6 @@ import macrosPlugin from 'vite-plugin-babel-macros'
 import { ValidateEnv } from '@julr/vite-plugin-validate-env'
 import tailwindcss from '@tailwindcss/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
-import reactScan from '@react-scan/vite-plugin-react-scan'
 import babel from 'vite-plugin-babel'
 
 const ReactCompilerConfig = {
@@ -36,8 +35,7 @@ export default defineConfig({
         plugins: [['babel-plugin-react-compiler', ReactCompilerConfig]],
       },
     }),
-    visualizer(),
-    reactScan(),
+    visualizer() as unknown as PluginOption,
     macrosPlugin(),
     lingui(),
     Icons({

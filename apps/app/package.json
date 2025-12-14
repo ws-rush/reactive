@@ -45,7 +45,6 @@
     "@lingui/vite-plugin": "^5.3.2",
     "@react-router/dev": "^7.10.1",
     "@react-router/remix-routes-option-adapter": "^7.9.6",
-    "@react-scan/vite-plugin-react-scan": "^0.1.8",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
     "@tailwindcss/postcss": "^4.1.8",
