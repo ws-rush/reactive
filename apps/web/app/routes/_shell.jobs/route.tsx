@@ -23,57 +23,80 @@ export default function JobStories({ loaderData }: Route.ComponentProps) {
   const { stories, page } = loaderData
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-            Jobs
-          </h1>
-          <p className="text-sm text-gray-500 mt-1">
-            Job opportunities
-          </p>
+    <>
+      <div className="space-y-6 lg:hidden">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+              Jobs
+            </h1>
+            <p className="text-sm text-gray-500 mt-1">Job opportunities</p>
+          </div>
+          <div className="text-sm text-gray-500">Page {page}</div>
         </div>
-        <div className="text-sm text-gray-500">
-          Page {page}
+
+        {stories.length === 0 ? (
+          <div className="text-center py-12 bg-white dark:bg-gray-900 rounded-lg border border-dashed border-gray-300 dark:border-gray-700">
+            <p className="text-gray-500">No stories found or failed to load.</p>
+          </div>
+        ) : (
+          <div className="grid gap-3">
+            {stories.map((story, index) => (
+              <StoryCard
+                key={story.id}
+                story={story}
+                index={(page - 1) * 30 + index}
+              />
+            ))}
+          </div>
+        )}
+
+        <div className="flex justify-center space-x-4 pt-6">
+          <Link
+            to={`?page=${page - 1}`}
+            className={cn(
+              'px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors',
+              page <= 1 && 'pointer-events-none opacity-50',
+            )}
+            preventScrollReset={false}
+          >
+            Previous
+          </Link>
+          <Link
+            to={`?page=${page + 1}`}
+            className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            preventScrollReset={false}
+          >
+            Next
+          </Link>
         </div>
       </div>
 
-      {stories.length === 0 ? (
-        <div className="text-center py-12 bg-white dark:bg-gray-900 rounded-lg border border-dashed border-gray-300 dark:border-gray-700">
-          <p className="text-gray-500">No stories found or failed to load.</p>
+      <div className="hidden lg:flex flex-col items-center justify-center h-[calc(100vh-12rem)] text-center p-8 border-2 border-dashed border-gray-200 dark:border-gray-800 rounded-xl">
+        <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-gray-400"
+          >
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
         </div>
-      ) : (
-        <div className="grid gap-3">
-          {stories.map((story, index) => (
-            <StoryCard
-              key={story.id}
-              story={story}
-              index={(page - 1) * 30 + index}
-            />
-          ))}
-        </div>
-      )}
-
-      <div className="flex justify-center space-x-4 pt-6">
-        <Link
-          to={`?page=${page - 1}`}
-          className={cn(
-            "px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors",
-            page <= 1 && "pointer-events-none opacity-50"
-          )}
-          preventScrollReset={false}
-        >
-          Previous
-        </Link>
-        <Link
-          to={`?page=${page + 1}`}
-          className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-          preventScrollReset={false}
-        >
-          Next
-        </Link>
+        <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+          Select a job
+        </h3>
+        <p className="text-gray-500 max-w-sm mt-2">
+          Choose a job from the sidebar to view details.
+        </p>
       </div>
-    </div>
+    </>
   )
 }
-
