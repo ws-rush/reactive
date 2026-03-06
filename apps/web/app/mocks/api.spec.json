@@ -1,0 +1,19 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "System API 1.0",
+    "description": "This is versioned API documentation.",
+    "contact": {
+      "name": "Reactive",
+      "url": "https://reactive.pages.dev"
+    },
+    "version": "1.0"
+  },
+  "paths": {},
+  "components": {},
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

@@ -45,6 +45,7 @@
     "@lingui/cli": "^5.3.2",
     "@lingui/conf": "^5.3.2",
     "@lingui/vite-plugin": "^5.3.2",
+    "@msw/source": "^0.6.0",
     "@react-router/dev": "^7.10.1",
     "@react-router/remix-routes-option-adapter": "^7.9.6",
     "@svgr/core": "^8.1.0",
@@ -68,6 +69,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^15.15.0",
+    "msw": "^2.12.4",
     "postcss": "^8.5.4",
     "prettier": "^3.7.4",
     "react-scan": "^0.4.3",
@@ -89,5 +91,10 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
