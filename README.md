@@ -21,8 +21,6 @@ Mocking up web app with <b>Reactive</b><br>
 
 - 🗂️ [File based routing with layouts support](https://reactrouter.com/dev/how-to/file-route-conventions)
 
-- 🔮 [State Management via Tawr](https://www.npmjs.com/package/@tawr/state)
-
 - 🎨 [Tailwindcss](https://tailwindcss.com/) - A utility-first CSS framework packed with classes
 
 - 😃 [Use icons from any icon sets with components](https://github.com/unplugin/unplugin-icons)
